@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('ordens', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('totalPedido', 10, 2);
+            $table->string('estadoPedido');
+            $table->bigInteger('idMesa')->unsigned()->nullable();
+            $table->timestamps();
+
+            $table->foreign('idMesa')->references('id')->on('mesas')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('ordens');
+    }
+};
