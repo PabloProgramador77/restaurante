@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Platillo;
+use App\Models\CategoriaUser;
 use Illuminate\Http\Request;
 use App\Http\Requests\Categorias\StoreCategoria;
 use App\Http\Requests\Categorias\EditCategoria;
@@ -21,8 +22,9 @@ class CategoriaController extends Controller
     {
         try {
             
-            $categorias = Categoria::select('*')
-                ->orderBy('updated_at', 'desc')
+            $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+                ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                ->where('categoria_users.idUser', '=', auth()->user()->id)
                 ->get();
 
             $platillos = Platillo::select('*')
@@ -31,7 +33,11 @@ class CategoriaController extends Controller
 
             return view('categorias/index', compact('categorias', 'platillos'));
 
-        } catch (\Throwable $th) {
+        }catch(QueryException $qe){
+
+            echo "Fatal Error: ".$th->getMessage();
+
+        }catch (\Throwable $th) {
 
             echo "Fatal Error: ".$th->getMessage();
 
@@ -66,16 +72,31 @@ class CategoriaController extends Controller
 
             if( $categoria->id ){
 
-                $datos = Categoria::select('*')
-                    ->orderBy('updated_at', 'desc')
-                    ->get();
+                $categoriaUser = CategoriaUser::create([
 
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Categoría Agregada.';
+                    'idCategoria' => $categoria->id,
+                    'idUser' => auth()->user()->id
 
+                ]);
+
+                if( $categoriaUser->id ){
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Categoría Agregada.';
+                    
+                }
+
+            }else{
+
+                $datos['exito'] = false;
             }
 
-        } catch (\Throwable $th) {
+        } catch (QueryException $qe) {
+
+            $datos['exito'] = false;
+            $datos['mensaje'] = $qe->getMessage();
+
+        }catch(\Throwable $th){
 
             $datos['exito'] = false;
             $datos['mensaje'] = $th->getMessage();
@@ -114,8 +135,13 @@ class CategoriaController extends Controller
                 $datos['mensaje']  = $categoria->nombreCategoria;
 
             }
+        
+        }catch(QueryException $qe){
 
-        } catch (\Throwable $th) {
+            $datos['exito'] = false;
+            $datos['mensaje'] = $qe->getMessage();
+
+        }catch (\Throwable $th) {
 
             $datos['exito'] = false;
             $datos['mensaje'] = $th->getMessage();
@@ -145,8 +171,13 @@ class CategoriaController extends Controller
 
             $datos['exito'] = true;
             $datos['mensaje'] = 'Categoría Actualizada.';
+        
+        }catch(QueryException $qe){
 
-        } catch (\Throwable $th) {
+            $datos['exito'] = false;
+            $datos['mensaje'] = $qe->getMessage();
+
+        }catch (\Throwable $th) {
             
             $datos['exito'] = false;
             $datos['mensaje'] = $th->getMessage();
@@ -172,8 +203,13 @@ class CategoriaController extends Controller
 
             $datos['exito'] = true;
             $datos['mensaje'] = 'Categoría Eliminada.';
+            
+        }catch(QueryException $qe){
 
-        } catch (\Throwable $th) {
+            $datos['exito'] = false;
+            $datos['mensaje'] = $qe->getMessage();
+
+        }catch (\Throwable $th) {
             
             $datos['exito'] = false;
             $datos['mensaje'] = $th->getMessage();
