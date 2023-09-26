@@ -18,7 +18,11 @@ class MenuCategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+            ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+            ->where('categoria_users.idUser', '=', auth()->user()->id)
+            ->orderBy('categorias.nombreCategoria', 'asc')
+            ->get();
 
         return view('menu', compact('categorias'));
     }
@@ -35,7 +39,11 @@ class MenuCategoriaController extends Controller
             ->where('menu_categorias.idCategoria', '=', $idCategoria)
             ->get();
 
-        $mesas = Mesa::all();
+        $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
+            ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+            ->where('mesa_users.idUser', '=', auth()->user()->id)
+            ->orderBy('mesas.nombreMesa', 'asc')
+            ->get();
 
         return view('platillos', compact('menu', 'mesas'));
     }
