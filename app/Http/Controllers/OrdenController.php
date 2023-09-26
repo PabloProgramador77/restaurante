@@ -269,9 +269,10 @@ class OrdenController extends Controller
     public function historial(){
         try {
             
-            $ordenes = Orden::select('*')
-                ->where('estadoPedido', '!=', 'Abierto')
-                ->orderBy('estadoPedido', 'desc')
+            $ordenes = Orden::select('ordens.id', 'ordens.totalPedido', 'ordens.created_at', 'ordens.idMesa')
+                ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
+                ->where('ordens.estadoPedido', '!=', 'Abierto')
+                ->orderBy('ordens.estadoPedido', 'desc')
                 ->get();
 
             return view('ordenes/historial', compact('ordenes'));
