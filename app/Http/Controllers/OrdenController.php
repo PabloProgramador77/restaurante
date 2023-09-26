@@ -23,9 +23,10 @@ class OrdenController extends Controller
     {
         try {
             
-            $ordenes = Orden::select('*')
-                ->where('estadoPedido', '=', 'Abierto')
-                ->orderBy('updated_at', 'desc')
+            $ordenes = Orden::select('ordens.id', 'ordens.totalPedido', 'ordens.idMesa')
+                ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
+                ->where('ordens.estadoPedido', '=', 'Abierto')
+                ->orderBy('ordens.updated_at', 'desc')
                 ->get();
 
             return view('ordenes/index', compact('ordenes'));

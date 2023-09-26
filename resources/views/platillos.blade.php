@@ -131,9 +131,12 @@
         @if ( session()->get('idOrden') )
             
             <script src="{{ asset('storage/js/platillos/ordenar.js') }}" type="text/javascript"></script>
-            <script src="{{ asset('storage/js/ordenes/terminar.js') }}" type="text/javascript"></script>   
+            <script src="{{ asset('storage/js/ordenes/terminar.js') }}" type="text/javascript"></script>
+
         @else
+
             <script src="{{ asset('storage/js/platillos/orden.js') }}" type="text/javascript"></script>
+            
         @endif
         
     </div>
