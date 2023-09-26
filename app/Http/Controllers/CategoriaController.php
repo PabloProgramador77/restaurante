@@ -89,6 +89,7 @@ class CategoriaController extends Controller
             }else{
 
                 $datos['exito'] = false;
+                
             }
 
         } catch (QueryException $qe) {

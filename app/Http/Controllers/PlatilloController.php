@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Platillo;
 use App\Models\Categoria;
+use App\Models\PlatilloUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Platillos\StorePlatillo;
 use App\Http\Requests\Platillos\EditPlatillo;
@@ -21,12 +22,16 @@ class PlatilloController extends Controller
     {
         try {
             
-            $platillos = Platillo::select('*')
-                ->orderBy('updated_at', 'desc')
+            $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo')
+                ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+                ->where('platillo_users.idUser', '=', auth()->user()->id)
+                ->orderBy('platillos.updated_at', 'desc')
                 ->get();
 
-            $categorias = Categoria::select('*')
-                ->orderBy('nombreCategoria', 'asc')
+            $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+                ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                ->where('categoria_users.idUser', '=', auth()->user()->id)
+                ->orderBy('categorias.nombreCategoria', 'asc')
                 ->get();
 
             return view('platillos/index', compact('platillos', 'categorias'));
@@ -67,12 +72,31 @@ class PlatilloController extends Controller
 
             if( $platillo->id ){
 
-                $datos = Platillo::select('*')
-                    ->orderBy('updated_at', 'desc')
-                    ->get();
+                $platilloUser = PlatilloUsers::create([
 
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Platillo Agregado.';
+                    'idPlatillo' => $platillo->id,
+                    'idUser' => auth()->user()->id
+
+                ]);
+
+                if( $platilloUser->id ){
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Platillo Agregado.';
+
+                }else{
+
+                    $platillo->delete();
+
+                    $datos['exito'] = false;
+                    $datos['mensaje'] = 'Registro interrumpido. Intenta de nuevo.';
+
+                }
+
+            }else{
+
+                $datos['exito'] = false;
+                $datos['mensaje'] = 'Registro interrumpido. Intenta de nuevo.';
 
             }
 
