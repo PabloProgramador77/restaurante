@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mesa;
+use App\Models\MesaUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Mesas\StoreMesa;
 use App\Http\Requests\Mesas\EditMesa;
@@ -20,8 +21,10 @@ class MesaController extends Controller
     {
         try {
             
-            $mesas = Mesa::select('*')
-                ->orderBy('updated_at', 'desc')
+            $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
+                ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                ->where('mesa_users.idUser', '=', auth()->user()->id)
+                ->orderBy('mesas.updated_at', 'desc')
                 ->get();
 
             return view('mesas/index', compact('mesas'));
@@ -62,12 +65,31 @@ class MesaController extends Controller
 
             if( $mesa->id ){
 
-                $datos = Mesa::select('*')
-                    ->orderBy('updated_at', 'desc')
-                    ->get();
+                $mesaUser = MesaUsers::create([
 
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Mesa Agregada.';
+                    'idMesa' => $mesa->id,
+                    'idUser' => auth()->user()->id
+
+                ]);
+
+                if( $mesaUser->id ){
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Mesa Agregada.';
+
+                }else{
+
+                    $mesa->delete();
+
+                    $datos['exito'] = false;
+                    $datos['mensaje'] = 'Registro interrumpido. Intenta de nuevo.';
+
+                }
+
+            }else{
+
+                $datos['exito'] = false;
+                $datos['mensaje'] = 'Registro interrumpido. Intenta de nuevo.';
 
             }
 
