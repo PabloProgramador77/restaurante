@@ -6,6 +6,7 @@ use App\Models\Corte;
 use App\Models\Platillo;
 use App\Models\Orden;
 use App\Models\CortePlatillo;
+use App\Models\CorteUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Cortes\StoreCorte;
 use App\Http\Requests\Cortes\ShowCorte;
@@ -23,8 +24,10 @@ class CorteController extends Controller
     {
         try {
             
-            $cortes = Corte::select('*')
-                ->orderBy('created_at', 'desc')
+            $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
+                ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
+                ->where('corte_users.idUser', '=', auth()->user()->id)
+                ->orderBy('cortes.created_at', 'desc')
                 ->get();
 
             return view('cortes/index', compact('cortes'));
@@ -83,10 +86,33 @@ class CorteController extends Controller
 
             if( $corte->id ){
 
-                $this->update($corte);
+                $corteUser = CorteUsers::create([
 
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Corte Agregado.';
+                    'idCorte' => $corte->id,
+                    'idUser' => auth()->user()->id
+
+                ]);
+
+                if( $corteUser->id ){
+
+                    $this->update($corte);
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Corte Agregado.';
+
+                }else{
+
+                    $corte->delete();
+
+                    $datos['exito'] = false;
+                    $datos['mensaje'] = 'Registro interrumpido. Intenta de nuevo.';
+
+                }
+
+            }else{
+
+                $datos['exito'] = false;
+                $datos['mensaje'] = 'Registro interrumpido. Intenta de nuevo.';
 
             }
 
@@ -213,7 +239,8 @@ class CorteController extends Controller
     {
         try {
             
-            $ordenes = Orden::select('*')
+            $ordenes = Orden::select('ordens.id')
+                ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
                 ->where('ordens.estadoPedido', '=', 'Pagado')
                 ->where('ordens.created_at', '<=', $corte->created_at)
                 ->get();
