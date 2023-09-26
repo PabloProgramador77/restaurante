@@ -30,10 +30,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
-        $platillos = Platillo::all();
-        $mesas = Mesa::all();
-        $ordenes = Orden::all();
+        $categorias = Categoria::join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+            ->where('categoria_users.idUser', '=', auth()->user()->id)
+            ->get();
+
+        $platillos = Platillo::join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+            ->where('platillo_users.idUser', '=', auth()->user()->id)
+            ->get();
+
+        $mesas = Mesa::join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+            ->where('mesa_users.idUser', '=', auth()->user()->id)
+            ->get();
+
+        $ordenes = Orden::join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
+            ->where('mesa_users.idUser', '=', auth()->user()->id)
+            ->get();
 
         $ventas = 0;
 
