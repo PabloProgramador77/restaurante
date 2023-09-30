@@ -44,7 +44,7 @@
                             </svg>
 
                             <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                                versión 1.0.1
+                                versión 1.0.2
                             </div>
 
                         </div>

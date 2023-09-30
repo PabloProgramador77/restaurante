@@ -65,6 +65,7 @@ Route::post('/orden/cobrar', [App\Http\Controllers\OrdenController::class, 'cobr
 Route::post('/orden/eliminar', [App\Http\Controllers\OrdenController::class, 'destroy'])->name('eliminar_orden');
 Route::get('/ordenes/historial', [App\Http\Controllers\OrdenController::class, 'historial'])->name('historial');
 Route::get('/delivery', [App\Http\Controllers\OrdenController::class, 'delivery'])->name('delivery');
+Route::post('/orden/editar', [App\Http\Controllers\OrdenController::class, 'update'])->name('editar_orden');
 
 /**
  * ---------------------------------------------------------------------------

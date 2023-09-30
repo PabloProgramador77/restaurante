@@ -325,32 +325,6 @@ return [
                     'icon_color' => 'teal',
                     'label_color' => 'primary',
                 ],
-                [
-                    'text' => 'Domicilio',
-                    'url' => '/delivery',
-                    'icon' => 'fas fa-map-marker-alt',
-                    'icon_color' => 'teal',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning',
-                ],
-                [
-                    'text' => 'Dividir cuenta',
-                    'url' => '/dividir',
-                    'icon' => 'fas fa-cut',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ],
-                [
-                    'text' => 'Aplicar descuento',
-                    'url' => '/preparaciones',
-                    'icon' => 'fas fa-percent',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ]
             ]
         ],
         [
@@ -366,121 +340,9 @@ return [
                     'icon_color' => 'teal',
                     'label_color' => 'primary',
                 ],
-                [
-                    'text' => 'Movimientos',
-                    'url' => '/movimientos',
-                    'icon' => 'fas fa-receipt',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ],
                 
             ]
-        ],
-        [
-            'text' => 'Sabores',
-            'url' => '/sabores',
-            'icon' => 'fas fa-bookmark',
-            'icon_color' => 'teal',
-            'label_color' => 'primary',
-            'label' => 'PREMIUM',
-            'label_color' => 'warning'
-        ],
-        [
-            'text' => 'Preparaciones',
-            'url' => '/preparaciones',
-            'icon' => 'fas fa-temperature-high',
-            'icon_color' => 'teal',
-            'label_color' => 'primary',
-            'label' => 'PREMIUM',
-            'label_color' => 'warning'
-        ],
-        [
-            'text' => 'Empleados',
-            'url' => '/empleados',
-            'icon' => 'fas fa-users',
-            'icon_color' => 'teal',
-            'label_color' => 'primary',
-            'label' => 'PREMIUM',
-            'label_color' => 'warning'
-        ],
-        [
-            'text' => 'Impresoras',
-            'url' => '/impresoras',
-            'icon' => 'fas fa-print',
-            'icon_color' => 'teal',
-            'label_color' => 'primary',
-            'label' => 'PREMIUM',
-            'label_color' => 'warning'
-        ],
-        [
-            'text' => 'Inventario',
-            'url' => '/inventario',
-            'icon' => 'fas fa-boxes',
-            'icon_color' => 'teal',
-            'label_color' => 'primary',
-            'label' => 'PREMIUM',
-            'label_color' => 'warning',
-            'submenu' => [
-                [
-                    'text' => 'Insumos',
-                    'url' => '/insumos',
-                    'icon' => 'fas fa-seedling',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ],
-                [
-                    'text' => 'Proveedores',
-                    'url' => '/proveedores',
-                    'icon' => 'fas fa-truck-moving',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ],
-                [
-                    'text' => 'Consumos',
-                    'url' => '/consumos',
-                    'icon' => 'fas fa-utensils',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ],
-                [
-                    'text' => 'Compras',
-                    'url' => '/compras',
-                    'icon' => 'fas fa-shopping-basket',
-                    'icon_color' => 'teal',
-                    'label_color' => 'primary',
-                    'label' => 'PREMIUM',
-                    'label_color' => 'warning'
-                ]
-            ]
-        ],
-        [
-            'text' => 'Ajustes',
-            'icon' => 'fas fa-cogs',
-            'icon_color' => 'teal',
-            'submenu' => [
-                [
-                    'text' => 'Roles',
-                    'url' => '/roles',
-                    'icon' => 'fas fa-user-tag',
-                    'icon_color' => 'teal',
-                ],
-                [
-                    'text' => 'Permisos',
-                    'url' => '/permisos',
-                    'icon' => 'fas fa-address-book',
-                    'icon_color' => 'teal'
-                ]
-            ]
-        ]
-        
+        ],        
     ],
 
     /*

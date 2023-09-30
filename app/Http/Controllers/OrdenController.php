@@ -26,7 +26,7 @@ class OrdenController extends Controller
             $ordenes = Orden::select('ordens.id', 'ordens.totalPedido', 'ordens.idMesa')
                 ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
                 ->where('ordens.estadoPedido', '=', 'Abierto')
-                ->orderBy('ordens.updated_at', 'desc')
+                ->orderBy('ordens.idMesa', 'asc')
                 ->get();
 
             return view('ordenes/index', compact('ordenes'));
@@ -47,6 +47,7 @@ class OrdenController extends Controller
     {
         try {
             
+            //Orden Nueva
             $orden = Orden::find( session()->get('idOrden') );
 
             if( $orden->id ){
@@ -192,9 +193,29 @@ class OrdenController extends Controller
      * @param  \App\Models\Orden  $orden
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Orden $orden)
+    public function update(EditOrden $request)
     {
-        //
+        try {
+            
+            $orden = Orden::find($request->id);
+
+            if( $orden->id ){
+
+                session()->put('idOrden', $orden->id);
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Cargando menú.';
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            $datos['exito'] = false;
+            $datos['mensaje'] = $th->getMessage();
+
+        }
+
+        return response()->json($datos);
     }
 
     /**

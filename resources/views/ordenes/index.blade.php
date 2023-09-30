@@ -19,9 +19,13 @@
             @if ( count($ordenes) > 0 )
                 
                 @foreach ($ordenes as $orden)
-                    <div class="col-md-3">
-                        <x-adminlte-small-box title="{{ $orden->mesa->nombreMesa }}" text="$ {{ $orden->totalPedido }} M.N." icon="fas fa-chair" theme="info" url="#" url-text="Ver Pedido" class="orden" data-id="{{ $orden->id }}" data-toggle="modal" data-target="#modalOrden"/>
-                    </div>
+                    
+                    @if ($orden->idMesa)
+                        <div class="col-md-3">
+                            <x-adminlte-small-box title="{{ $orden->mesa->nombreMesa }}" text="$ {{ $orden->totalPedido }} M.N." icon="fas fa-chair" theme="info" url="#" url-text="Ver Pedido" class="orden" data-id="{{ $orden->id }}" data-toggle="modal" data-target="#modalOrden"/>
+                        </div>    
+                    @endif
+                    
                 @endforeach
 
             @else
@@ -64,10 +68,13 @@
                             </div>
                             <div class="container-fluid row p-1">
                                 <form novalidate class="container-fluid p-1 row">
-                                    <div class="form-group col-md-6 p-1 ">
+                                    <div class="form-group col-md-4 p-1 ">
+                                        <a href="#" class="bnt btn-info btn-block p-2 text-center editar"><i class="fas fa-plus-circle" ></i> Agregar Platillo(s)</a>
+                                    </div>
+                                    <div class="form-group col-md-4 p-1 ">
                                         <a href="#" class="bnt btn-success btn-block p-2 text-center cobrar"><i class="fas fa-hand-holding-usd" ></i> Cobrar Orden</a>
                                     </div>
-                                    <div class="form-group col-md-6 p-1 ">
+                                    <div class="form-group col-md-4 p-1 ">
                                         <a href="#" class="bnt btn-danger btn-block p-2 text-center eliminar"><i class="fas fa-trash-alt" ></i> Cancelar Orden</a>
                                     </div>
                                     <input type="hidden" name="idOrden" id="idOrden">
@@ -85,5 +92,6 @@
         <script src="{{ asset('storage/js/ordenes/orden.js') }}" type="text/javascript"></script>
         <script src="{{ asset('storage/js/ordenes/cobrar.js') }}" type="text/javascript"></script>
         <script src="{{ asset('storage/js/ordenes/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('storage/js/ordenes/editar.js') }}" type="text/javascript"></script>
     </div>
 @stop
