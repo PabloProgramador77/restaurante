@@ -58,9 +58,6 @@
                                     <a class="btn btn-danger eliminar" role="button" title="Eliminar Platillo" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $platillo->id }}">
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </a>
-                                    <a class="btn btn-primary receta" role="button" title="Receta de Platillo" data-toggle="modal" data-target="#modalReceta" data-id="{{ $platillo->id }}">
-                                        <i class="fas fa-receipt"></i> Receta
-                                    </a>
                                 </td>
                             </tr>
 

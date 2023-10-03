@@ -13,8 +13,11 @@
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <x-adminlte-small-box title="Ordenar" text="Crear nuevo pedido" icon="fas fa-utensils" theme="warning" url="{{ url('/menu') }}" url-text="Ordenar Ahora"/>
+            </div>
+            <div class="col-md-6">
+                <x-adminlte-small-box title="Videotutoriales" text="Tomate 7 minutos para ver los videos y aprende a usar la plataforma como todo un profesional" icon="fas fa-photo-video" theme="teal" url="{{ url('/videos') }}" url-text="Ver videos"/>
             </div>
         </div>
 

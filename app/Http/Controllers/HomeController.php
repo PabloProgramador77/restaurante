@@ -58,4 +58,22 @@ class HomeController extends Controller
 
         return view('index', compact('categorias', 'platillos', 'mesas', 'ordenes', 'ventas'));
     }
+
+    /**
+     * Mostrar el indice de videos
+     * 
+     */
+    public function create(){
+        try {
+            
+            if( auth()->user()->id ){
+
+                return view('videos');
+
+            }
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 }
