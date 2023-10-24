@@ -58,6 +58,9 @@
                                     <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $rol->id }}">
                                         <i class="fas fa-trash-alt"></i> Eliminar
                                     </a>
+                                    <a class="btn btn-primary asignar" role="button" title="Asignar permisos" data-toggle="modal" data-target="#modalPermisos" data-id="{{ $rol->id }}">
+                                        <i class="fas fa-signature"></i> Permisos
+                                    </a>
                                 </td>
                             </tr>
 
@@ -160,6 +163,48 @@
             </div>
         </div>
 
+        <!--Modal de Permisos-->
+        <div class="modal fade" id="modalPermisos" tabindex="-1" aria-labellebdy="modalPermisosLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom">
+                        <h3 class="modal-title fs-5 fw-bold" id="tituloRole">Permisos de Usuario</h3>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group bg-light p-1">
+                            <small class="text-info fw-semibold fs-6">A continuación, selecciona los <b>PERMISOS</b> que deseas agregar al rol de usuario:</small>
+                        </div>
+                        <form novalidate class="row">
+                            @if ( count($permisos) > 0 )
+                                
+                                @foreach ($permisos as $permiso)
+                                    <div class="custom-control custom-switch d-inline col-md-3 my-1">
+                                        <input type="checkbox" class="custom-control-input" name="permiso" id="{{ $permiso->name }}" value="{{ $permiso->id }}">
+                                        <label class="custom-control-label" for="{{ $permiso->name }}">{{ $permiso->name }}    
+                                    </div>        
+                                @endforeach
+
+                            @else
+                                <div class="container-fluid col-md-12">
+                                    <p class="text-info bg-light p-2 rounded text-center">Sin permisos registrados.
+                                        <a href="{{ url('/permisos') }}" class="btn btn-primary" role="button">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            @endif
+                            <div class="modal-footer col-md-12">
+                                <button type="submit" id="permisos" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Permisos</button>
+                            </div>
+                            <input type="hidden" name="idRole" id="idRole">
+                            <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
@@ -168,5 +213,6 @@
         <script src="{{ asset('storage/js/roles/actualizar.js') }}" type="text/javascript"></script>
         <script src="{{ asset('storage/js/roles/activarEliminar.js') }}" type="text/javascript"></script>
         <script src="{{ asset('storage/js/roles/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('storage/js/roles/permisos.js') }}" type="text/javascript"></script>
     </div>
 @stop

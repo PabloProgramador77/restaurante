@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rol;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\Roles\StoreRol;
 use App\Http\Requests\Roles\EditRol;
 use App\Http\Requests\Roles\UpdateRol;
 use App\Http\Requests\Roles\DestroyRol;
+use App\Http\Requests\Roles\CreateRol;
 
 class RolController extends Controller
 {
@@ -23,7 +26,10 @@ class RolController extends Controller
             $roles = Rol::orderBy('name', 'asc')
                 ->get();
 
-            return view('roles/index', compact('roles'));
+            $permisos = Permission::orderBy('name', 'asc')
+                ->get();
+
+            return view('roles/index', compact('roles', 'permisos'));
 
         } catch (\Throwable $th) {
 
@@ -37,9 +43,30 @@ class RolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreateRol $request)
     {
-        //
+        try {
+            
+            $role = Role::find($request->idRole);
+
+            if( $role->id ){
+
+                $role->syncPermissions( $request->permisos );
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Permisos Registrados.';
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            $datos['exito'] = false;
+            $datos['mensaje'] = $th->getMessage();
+
+        }
+
+        return response()->json($datos);
+
     }
 
     /**

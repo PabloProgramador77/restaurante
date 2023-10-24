@@ -100,6 +100,7 @@ Route::post('/roles/agregar', [App\Http\Controllers\RolController::class, 'store
 Route::post('/roles/editar', [App\Http\Controllers\RolController::class, 'edit'])->name('editar-rol');
 Route::post('/roles/actualizar', [App\Http\Controllers\RolController::class, 'update'])->name('actualizar-rol');
 Route::post('/roles/eliminar', [App\Http\Controllers\RolController::class, 'destroy'])->name('eliminar-rol');
+Route::post('/roles/permisos', [App\Http\Controllers\RolController::class, 'create'])->name('permisos-rol');
 
 /**
  * -------------------------------------------------------------
