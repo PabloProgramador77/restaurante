@@ -343,6 +343,39 @@ return [
                 ],
                 
             ]
+        ],
+        [
+            'text' => 'Empleados',
+            'icon' => 'fas fa-id-card-alt',
+            'icon_color' => 'purple',
+            'label' => 'Premium',
+            'label_color' => 'warning',
+            'submenu' => [
+                [
+                    'text' => 'Mis Empleados',
+                    'url' => '/empleados',
+                    'icon' => 'fas fa-users',
+                    'icon_color' => 'purple',
+                    'label' => 'Premium',
+                    'label_color' => 'warning'
+                ],
+                [
+                    'text' => 'Roles',
+                    'url' => '/roles',
+                    'icon' => 'fas fa-user-tag',
+                    'icon_color' => 'purple',
+                    'label' => 'Premium',
+                    'label_color' => 'warning'
+                ],
+                [
+                    'text' => 'Permisos',
+                    'url' => '/permisos',
+                    'icon' => 'fas fa-signature',
+                    'icon_color' => 'purple',
+                    'label' => 'Premium',
+                    'label_color' => 'warning'
+                ],
+            ]
         ],        
     ],
 

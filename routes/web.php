@@ -28,10 +28,10 @@ Route::get('/videos', [App\http\Controllers\HomeController::class, 'create'])->n
  * --------------------------------------------------------------
  */
 Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categorias');
-Route::post('/categorias/agregar', [App\Http\Controllers\CategoriaController::class, 'store'])->name('agregar');
-Route::post('/categorias/editar', [App\Http\Controllers\CategoriaController::class, 'edit'])->name('editar');
-Route::post('/categorias/actualizar', [App\Http\Controllers\CategoriaController::class, 'update'])->name('actualizar');
-Route::post('/categorias/eliminar', [App\Http\Controllers\CategoriaController::class, 'destroy'])->name('eliminar');
+Route::post('/categorias/agregar', [App\Http\Controllers\CategoriaController::class, 'store'])->name('agregar-categoria');
+Route::post('/categorias/editar', [App\Http\Controllers\CategoriaController::class, 'edit'])->name('editar-categoria');
+Route::post('/categorias/actualizar', [App\Http\Controllers\CategoriaController::class, 'update'])->name('actualizar-categoria');
+Route::post('/categorias/eliminar', [App\Http\Controllers\CategoriaController::class, 'destroy'])->name('eliminar-categoria');
 
 /**
  * Rutas de Menu de Categorias
@@ -46,10 +46,10 @@ Route::get('/menu/{idCategoria}', [App\Http\Controllers\MenuCategoriaController:
  * ----------------------------------------------------
  */
 Route::get('/platillos', [App\Http\Controllers\PlatilloController::class, 'index'])->name('platillos');
-Route::post('/platillos/agregar', [App\Http\Controllers\PlatilloController::class, 'store'])->name('agregar');
-Route::post('/platillos/editar', [App\Http\Controllers\PlatilloController::class, 'edit'])->name('editar');
-Route::post('/platillos/actualizar', [App\Http\Controllers\PlatilloController::class, 'update'])->name('actualizar');
-Route::post('/platillos/eliminar', [App\Http\Controllers\PlatilloController::class, 'destroy'])->name('eliminar');
+Route::post('/platillos/agregar', [App\Http\Controllers\PlatilloController::class, 'store'])->name('agregar-platillo');
+Route::post('/platillos/editar', [App\Http\Controllers\PlatilloController::class, 'edit'])->name('editar-platillo');
+Route::post('/platillos/actualizar', [App\Http\Controllers\PlatilloController::class, 'update'])->name('actualizar-platillo');
+Route::post('/platillos/eliminar', [App\Http\Controllers\PlatilloController::class, 'destroy'])->name('eliminar-platillo');
 
 /**
  * -------------------------------------------------
@@ -74,10 +74,10 @@ Route::post('/orden/editar', [App\Http\Controllers\OrdenController::class, 'upda
  * -----------------------------------------------------------------------
  */
 Route::get('/mesas', [App\Http\Controllers\MesaController::class, 'index'])->name('mesas');
-Route::post('/mesas/agregar', [App\Http\Controllers\MesaController::class, 'store'])->name('agregar');
-Route::post('/mesas/editar', [App\Http\Controllers\MesaController::class, 'edit'])->name('editar');
-Route::post('/mesas/actualizar', [App\Http\Controllers\MesaController::class, 'update'])->name('actualizar');
-Route::post('/mesas/eliminar', [App\Http\Controllers\MesaController::class, 'destroy'])->name('eliminar');
+Route::post('/mesas/agregar', [App\Http\Controllers\MesaController::class, 'store'])->name('agregar-mesa');
+Route::post('/mesas/editar', [App\Http\Controllers\MesaController::class, 'edit'])->name('editar-mesa');
+Route::post('/mesas/actualizar', [App\Http\Controllers\MesaController::class, 'update'])->name('actualizar-mesa');
+Route::post('/mesas/eliminar', [App\Http\Controllers\MesaController::class, 'destroy'])->name('eliminar-mesa');
 
 /**
  * -----------------------------------------------
@@ -111,3 +111,14 @@ Route::post('/permisos/agregar', [App\Http\Controllers\PermisoController::class,
 Route::post('/permisos/editar', [App\Http\Controllers\PermisoController::class, 'edit'])->name('editar-permiso');
 Route::post('/permisos/actualizar', [App\Http\Controllers\PermisoController::class, 'update'])->name('actualizar-permiso');
 Route::post('/permisos/eliminar', [App\Http\Controllers\PermisoController::class, 'destroy'])->name('eliminar-permiso');
+
+/**
+ * --------------------------------------------------------------
+ * Rutas de Empleados
+ * -------------------------------------------------------------
+ */
+Route::get('/empleados', [App\Http\Controllers\EmpleadoController::class, 'index'])->name('empleados');
+Route::post('/empleados/agregar', [App\Http\Controllers\EmpleadoController::class, 'store'])->name('agregar-empleado');
+Route::post('/empleados/editar', [App\Http\Controllers\EmpleadoController::class, 'edit'])->name('editar-empleado');
+Route::post('/empleados/actualizar', [App\Http\Controllers\EmpleadoController::class, 'update'])->name('actualizar-empleado');
+Route::post('/empleados/eliminar', [App\Http\Controllers\EmpleadoController::class, 'destroy'])->name('eliminar-empleado');
