@@ -297,27 +297,31 @@ return [
             'url'  => '/categorias',
             'icon' => 'fas fa-bars',
             'icon_color' => 'teal',
-            'label_color' => 'primary'
+            'label_color' => 'primary',
+            'can' => ['Ver categorias'],
         ],
         [
             'text' => 'Platillos',
             'url'  => '/platillos',
             'icon' => 'fas fa-hamburger',
             'icon_color' => 'teal',
-            'label_color' => 'primary'
+            'label_color' => 'primary',
+            'can' => ['Ver platillos'],
         ],
         [
             'text' => 'Mesas',
             'url'  => '/mesas',
             'icon' => 'fas fa-chair',
             'icon_color' => 'teal',
-            'label_color' => 'primary'
+            'label_color' => 'primary',
+            'can' => ['Ver mesas'],
         ],
         [
             'text' => 'Pedidos',
             'icon' => 'fas fa-tags',
             'icon_color' => 'teal',
             'label_color' => 'primary',
+            'can' => ['Ver pedidos'],
             'submenu' => [
                 [
                     'text' => 'Local',
@@ -325,6 +329,7 @@ return [
                     'icon' => 'fas fa-store',
                     'icon_color' => 'teal',
                     'label_color' => 'primary',
+                    'can' => ['Ver pedidos'],
                 ],
             ]
         ],
@@ -333,6 +338,7 @@ return [
             'icon' => 'fas fa-cash-register',
             'icon_color' => 'teal',
             'label_color' => 'primary',
+            'can' => ['Ver caja'],
             'submenu' => [
                 [
                     'text' => 'Cortes',
@@ -340,6 +346,7 @@ return [
                     'icon' => 'fas fa-cash-register',
                     'icon_color' => 'teal',
                     'label_color' => 'primary',
+                    'can' => ['Ver cortes'],
                 ],
                 
             ]
@@ -350,6 +357,7 @@ return [
             'icon_color' => 'purple',
             'label' => 'Premium',
             'label_color' => 'warning',
+            'can' => ['Ver empleados'],
             'submenu' => [
                 [
                     'text' => 'Mis Empleados',
@@ -357,7 +365,8 @@ return [
                     'icon' => 'fas fa-users',
                     'icon_color' => 'purple',
                     'label' => 'Premium',
-                    'label_color' => 'warning'
+                    'label_color' => 'warning',
+                    'can' => ['Ver empleados'],
                 ],
                 [
                     'text' => 'Roles',
@@ -365,7 +374,8 @@ return [
                     'icon' => 'fas fa-user-tag',
                     'icon_color' => 'purple',
                     'label' => 'Premium',
-                    'label_color' => 'warning'
+                    'label_color' => 'warning',
+                    'can' => ['Ver roles'],
                 ],
                 [
                     'text' => 'Permisos',
@@ -373,7 +383,8 @@ return [
                     'icon' => 'fas fa-signature',
                     'icon_color' => 'purple',
                     'label' => 'Premium',
-                    'label_color' => 'warning'
+                    'label_color' => 'warning',
+                    'can' => 'Ver permisos',
                 ],
             ]
         ],        

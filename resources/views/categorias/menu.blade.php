@@ -28,9 +28,11 @@
                             </p>
                         </div>
                     @endif
-                    <div class="modal-footer">
-                        <button type="submit" id="menu" name="menu" class="btn btn-primary w-25"><i class="fas fa-save"></i> Crear Menú</button>
-                    </div>
+                    @can('Crear menu')
+                        <div class="modal-footer">
+                            <button type="submit" id="menu" name="menu" class="btn btn-primary w-25"><i class="fas fa-save"></i> Crear Menú</button>
+                        </div>
+                    @endcan
                     <input type="hidden" name="idCategoriaMenu" id="idCategoriaMenu">
                     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                 </form>

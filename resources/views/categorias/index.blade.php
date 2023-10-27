@@ -23,10 +23,12 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige la categoría a gestionar o agrega una nueva</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
-                        <i class="fas fa-plus-circle"></i>
-                        Agregar Categoría
-                    </a>
+                    @can('Crear categoria')
+                        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
+                            <i class="fas fa-plus-circle"></i>
+                            Agregar Categoría
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -41,37 +43,45 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody id="contenedorCategorias">
-                    @if ( count($categorias) > 0 )
-                        
-                        @foreach ($categorias as $categoria)
+                @can('Ver categorias')
+                    <tbody id="contenedorCategorias">
+                        @if ( count($categorias) > 0 )
                             
+                            @foreach ($categorias as $categoria)
+                                
+                                <tr>
+                                    <td>{{ $categoria->id }}</td>
+                                    <td>{{ $categoria->nombreCategoria }}</td>
+                                    <td>
+                                        @can('Editar categoria')
+                                            <a class="btn btn-info editar" role="button" title="Editar Categoría" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $categoria->id }}">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </a>
+                                        @endcan
+                                        @can('Borrar categoria')
+                                            <a class="btn btn-danger eliminar" role="button" title="Eliminar Categoría" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $categoria->id }}">
+                                                <i class="fas fa-trash-alt"></i> Eliminar
+                                            </a>
+                                        @endcan
+                                        @can('Crear menu')
+                                            <a class="btn btn-primary menu" role="button" title="Crear Menú" data-toggle="modal" data-target="#modalMenu" data-id="{{ $categoria->id }}">
+                                                <i class="fas fa-bars"></i> Menú
+                                            </a>
+                                        @endcan
+                                    </td>
+                                </tr>
+
+                            @endforeach
+
+                        @else
+
                             <tr>
-                                <td>{{ $categoria->id }}</td>
-                                <td>{{ $categoria->nombreCategoria }}</td>
-                                <td>
-                                    <a class="btn btn-info editar" role="button" title="Editar Categoría" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $categoria->id }}">
-                                        <i class="fas fa-edit"></i> Editar
-                                    </a>
-                                    <a class="btn btn-danger eliminar" role="button" title="Eliminar Categoría" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $categoria->id }}">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </a>
-                                    <a class="btn btn-primary menu" role="button" title="Crear Menú" data-toggle="modal" data-target="#modalMenu" data-id="{{ $categoria->id }}">
-                                        <i class="fas fa-bars"></i> Menú
-                                    </a>
-                                </td>
+                                <td colspan="3" class="text-center"><i class="fas fa-info-circle"></i> Sin categorías de menú agregadas.</td>
                             </tr>
-
-                        @endforeach
-
-                    @else
-
-                        <tr>
-                            <td colspan="3" class="text-center"><i class="fas fa-info-circle"></i> Sin categorías de menú agregadas.</td>
-                        </tr>
-                        
-                    @endif
-                </tbody>
+                            
+                        @endif
+                    </tbody>
+                @endcan
             </table>
         </div>
 
@@ -93,9 +103,11 @@
                                 <label for="categoria">Categoría</label>
                                 <input type="text" id="categoria" name="categoria" required class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" id="registrar" name="registrar" class="btn btn-primary btn-block">Agregar</button>
-                            </div>
+                            @can('Crear categoria')
+                                <div class="form-group">
+                                    <button type="submit" id="registrar" name="registrar" class="btn btn-primary btn-block">Agregar</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>
                     </div>
@@ -118,9 +130,11 @@
                                 <label for="categoriaEditar">Categoría</label>
                                 <input type="text" name="categoriaEditar" id="categoriaEditar" required class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
-                            </div>
+                            @can('Editar categoria')
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idCategoriaEditar" id="idCategoriaEditar" >
                         </form>
@@ -146,10 +160,12 @@
                                 <label for="categoriaEliminar">Categoría</label>
                                 <input type="text" name="categoriaEliminar" id="categoriaEliminar" readonly="true" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
-                                <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
-                            </div>
+                            @can('Borrar categoria')
+                                <div class="form-group">
+                                    <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
+                                    <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
+                                </div>
+                            @endcan
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
                             </div>

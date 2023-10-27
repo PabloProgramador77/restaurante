@@ -13,27 +13,37 @@
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
-            <div class="col-md-6">
-                <x-adminlte-small-box title="Ordenar" text="Crear nuevo pedido" icon="fas fa-utensils" theme="warning" url="{{ url('/menu') }}" url-text="Ordenar Ahora"/>
-            </div>
+            @can('Crear pedido')
+                <div class="col-md-6">
+                    <x-adminlte-small-box title="Ordenar" text="Crear nuevo pedido" icon="fas fa-utensils" theme="warning" url="{{ url('/menu') }}" url-text="Ordenar Ahora"/>
+                </div>
+            @endcan
             <div class="col-md-6">
                 <x-adminlte-small-box title="Videotutoriales" text="Tomate 7 minutos para ver los videos y aprende a usar la plataforma como todo un profesional" icon="fas fa-photo-video" theme="teal" url="{{ url('/videos') }}" url-text="Ver videos"/>
             </div>
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
-            <div class="col-md-4">
-                <x-adminlte-info-box title="Categorías de Menú" text="{{ count($categorias) }}" icon="fas fa-bars" theme="gradient-teal"/>
-            </div>
-            <div class="col-md-4">
-                <x-adminlte-info-box title="Platillos" text="{{ count($platillos) }}" icon="fas fa-pizza-slice" theme="gradient-purple"/>
-            </div>
-            <div class="col-md-4">
-                <x-adminlte-info-box title="Mesas" text="{{ count($mesas) }}" icon="fas fa-chair" theme="gradient-primary"/>
-            </div>
-            <div class="col-md-4">
-                <x-adminlte-info-box title="Pedidos" text="{{ count($ordenes) }}" icon="fas fa-tags" theme="gradient-info"/>
-            </div>
+            @can('Ver categorias')
+                <div class="col-md-4">
+                    <x-adminlte-info-box title="Categorías de Menú" text="{{ count($categorias) }}" icon="fas fa-bars" theme="gradient-teal"/>
+                </div>
+            @endcan
+            @can('Ver platillos')
+                <div class="col-md-4">
+                    <x-adminlte-info-box title="Platillos" text="{{ count($platillos) }}" icon="fas fa-pizza-slice" theme="gradient-purple"/>
+                </div>
+            @endcan
+            @can('Ver mesas')
+                <div class="col-md-4">
+                    <x-adminlte-info-box title="Mesas" text="{{ count($mesas) }}" icon="fas fa-chair" theme="gradient-primary"/>
+                </div>
+            @endcan
+            @can('Ver pedidos')
+                <div class="col-md-4">
+                    <x-adminlte-info-box title="Pedidos" text="{{ count($ordenes) }}" icon="fas fa-tags" theme="gradient-info"/>
+                </div>
+            @endcan
             <div class="col-md-4">
                 <x-adminlte-info-box title="Total de Ventas" text="{{ $ventas }} M.N." icon="fas fa-dollar-sign" theme="gradient-success"/>
             </div>

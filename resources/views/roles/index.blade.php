@@ -23,10 +23,12 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige el ROL a gestionar o agrega uno nuevo</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
-                        <i class="fas fa-plus-circle"></i>
-                        Agregar Rol
-                    </a>
+                    @can('Crear rol')
+                        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
+                            <i class="fas fa-plus-circle"></i>
+                            Agregar Rol
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -44,27 +46,36 @@
                 </thead>
                 <tbody id="contenedorRoles">
                     @if ( count($roles) > 0 )
-                        
-                        @foreach ($roles as $rol)
-                            
-                            <tr>
-                                <td>{{ $rol->id }}</td>
-                                <td>{{ $rol->name }}</td>
-                                <td>{{ $rol->created_at }}</td>
-                                <td>
-                                    <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $rol->id }}">
-                                        <i class="fas fa-edit"></i> Editar
-                                    </a>
-                                    <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $rol->id }}">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </a>
-                                    <a class="btn btn-primary asignar" role="button" title="Asignar permisos" data-toggle="modal" data-target="#modalPermisos" data-id="{{ $rol->id }}">
-                                        <i class="fas fa-signature"></i> Permisos
-                                    </a>
-                                </td>
-                            </tr>
 
-                        @endforeach
+                        @can('Ver roles')
+                            
+                            @foreach ($roles as $rol)
+                                
+                                <tr>
+                                    <td>{{ $rol->id }}</td>
+                                    <td>{{ $rol->name }}</td>
+                                    <td>{{ $rol->created_at }}</td>
+                                    <td>
+                                        @can('Editar rol')
+                                            <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $rol->id }}">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </a>
+                                        @endcan
+                                        @can('Borrar rol')
+                                            <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $rol->id }}">
+                                                <i class="fas fa-trash-alt"></i> Eliminar
+                                            </a>
+                                        @endcan
+                                        @can('Asignar permisos')
+                                            <a class="btn btn-primary asignar" role="button" title="Asignar permisos" data-toggle="modal" data-target="#modalPermisos" data-id="{{ $rol->id }}">
+                                                <i class="fas fa-signature"></i> Permisos
+                                            </a>
+                                        @endcan
+                                    </td>
+                                </tr>
+
+                            @endforeach
+                        @endcan
 
                     @else
 
@@ -95,9 +106,11 @@
                                 <label for="rol">Rol</label>
                                 <input type="text" id="rol" name="rol" required class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" id="registrar" class="btn btn-primary btn-block">Agregar</button>
-                            </div>
+                            @can('Crear rol')
+                                <div class="form-group">
+                                    <button type="submit" id="registrar" class="btn btn-primary btn-block">Agregar</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>
                     </div>
@@ -120,9 +133,11 @@
                                 <label for="rolEditar">Rol</label>
                                 <input type="text" id="rolEditar" name="rolEditar" required class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
-                            </div>
+                            @can('Editar rol')
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idRolEditar" id="idRolEditar" >
                         </form>
@@ -148,13 +163,15 @@
                                 <label for="rolEliminar">Rol</label>
                                 <input type="text" name="rolEliminar" id="rolEliminar" readonly="true" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
-                                <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
-                            </div>
+                            @can('Borrar rol')
+                                <div class="form-group">
+                                    <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
+                                    <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idRolEliminar" id="idRolEliminar" >
                         </form>
@@ -178,12 +195,14 @@
                         <form novalidate class="row">
                             @if ( count($permisos) > 0 )
                                 
-                                @foreach ($permisos as $permiso)
-                                    <div class="custom-control custom-switch d-inline col-md-3 my-1">
-                                        <input type="checkbox" class="custom-control-input" name="permiso" id="{{ $permiso->name }}" value="{{ $permiso->id }}">
-                                        <label class="custom-control-label" for="{{ $permiso->name }}">{{ $permiso->name }}    
-                                    </div>        
-                                @endforeach
+                                @can('Ver permisos')
+                                    @foreach ($permisos as $permiso)
+                                        <div class="custom-control custom-switch d-inline col-md-3 my-1">
+                                            <input type="checkbox" class="custom-control-input" name="permiso" id="{{ $permiso->name }}" value="{{ $permiso->id }}">
+                                            <label class="custom-control-label" for="{{ $permiso->name }}">{{ $permiso->name }}    
+                                        </div>        
+                                    @endforeach
+                                @endcan
 
                             @else
                                 <div class="container-fluid col-md-12">
@@ -194,9 +213,11 @@
                                     </p>
                                 </div>
                             @endif
-                            <div class="modal-footer col-md-12">
-                                <button type="submit" id="permisos" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Permisos</button>
-                            </div>
+                            @can('Asignar permisos')
+                                <div class="modal-footer col-md-12">
+                                    <button type="submit" id="permisos" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Permisos</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="idRole" id="idRole">
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>

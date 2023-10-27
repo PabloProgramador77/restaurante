@@ -23,10 +23,12 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige el PERMISO a gestionar o agrega uno nuevo</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
-                        <i class="fas fa-plus-circle"></i>
-                        Agregar Permiso
-                    </a>
+                    @can('Crear permiso')
+                        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
+                            <i class="fas fa-plus-circle"></i>
+                            Agregar Permiso
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -45,23 +47,29 @@
                 <tbody id="contenedorPermisos">
                     @if ( count($permisos) > 0 )
                         
-                        @foreach ($permisos as $permiso)
-                            
-                            <tr>
-                                <td>{{ $permiso->id }}</td>
-                                <td>{{ $permiso->name }}</td>
-                                <td>{{ $permiso->created_at }}</td>
-                                <td>
-                                    <a class="btn btn-info editar" permisoe="button" title="Editar permiso" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $permiso->id }}">
-                                        <i class="fas fa-edit"></i> Editar
-                                    </a>
-                                    <a class="btn btn-danger eliminar" permisoe="button" title="Eliminar permiso" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $permiso->id }}">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </a>
-                                </td>
-                            </tr>
+                        @can('Ver permisos')
+                            @foreach ($permisos as $permiso)
+                                
+                                <tr>
+                                    <td>{{ $permiso->id }}</td>
+                                    <td>{{ $permiso->name }}</td>
+                                    <td>{{ $permiso->created_at }}</td>
+                                    <td>
+                                        @can('Editar permiso')
+                                            <a class="btn btn-info editar" permisoe="button" title="Editar permiso" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $permiso->id }}">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </a>
+                                        @endcan
+                                        @can('Borrar permiso')
+                                            <a class="btn btn-danger eliminar" permisoe="button" title="Eliminar permiso" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $permiso->id }}">
+                                                <i class="fas fa-trash-alt"></i> Eliminar
+                                            </a>
+                                        @endcan
+                                    </td>
+                                </tr>
 
-                        @endforeach
+                            @endforeach
+                        @endcan
 
                     @else
 
@@ -92,9 +100,11 @@
                                 <label for="permiso">Permiso</label>
                                 <input type="text" id="permiso" name="permiso" required class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" id="registrar" class="btn btn-primary btn-block">Agregar</button>
-                            </div>
+                            @can('Crear permiso')
+                                <div class="form-group">
+                                    <button type="submit" id="registrar" class="btn btn-primary btn-block">Agregar</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>
                     </div>
@@ -117,9 +127,11 @@
                                 <label for="permisoEditar">Permiso</label>
                                 <input type="text" id="permisoEditar" name="permisoEditar" required class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
-                            </div>
+                            @can('Editar permiso')
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idPermiso" id="idPermisoEditar" >
                         </form>
@@ -145,13 +157,15 @@
                                 <label for="permisoEliminar">Permiso</label>
                                 <input type="text" name="permisoEliminar" id="permisoEliminar" readonly="true" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
-                                <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
-                            </div>
+                            @can('Borrar permiso')
+                                <div class="form-group">
+                                    <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
+                                    <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
+                                </div>
+                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idPermiso" id="idPermisoEliminar" >
                         </form>

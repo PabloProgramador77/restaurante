@@ -21,11 +21,13 @@
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
             @if ( count($menu) > 0 )
                 
-                @foreach ($menu as $platillo)
-                    <div class="col-md-4">
-                        <x-adminlte-small-box title="{{ $platillo->nombrePlatillo }}" text="$ {{ $platillo->precioPlatillo }} M.N." icon="fas fa-utensils" theme="primary" url="#" url-text="Ordenar Platillo" data-id="{{ $platillo->id }}" data-toggle="modal" data-target="#modalPlatillo" class="platillo"/>
-                    </div>
-                @endforeach
+                @can('Ver platillos')
+                    @foreach ($menu as $platillo)
+                        <div class="col-md-4">
+                            <x-adminlte-small-box title="{{ $platillo->nombrePlatillo }}" text="$ {{ $platillo->precioPlatillo }} M.N." icon="fas fa-utensils" theme="primary" url="#" url-text="Ordenar Platillo" data-id="{{ $platillo->id }}" data-toggle="modal" data-target="#modalPlatillo" class="platillo"/>
+                        </div>
+                    @endforeach
+                @encan
 
             @else
                 <div class="col-md-12">
