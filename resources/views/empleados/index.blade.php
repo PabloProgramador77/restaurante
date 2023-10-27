@@ -52,13 +52,16 @@
                                 <td>{{ $empleado->id }}</td>
                                 <td>{{ $empleado->name }}</td>
                                 <td>{{ $empleado->email }}</td>
-                                <td>{{ $empleado->created_at }}</td>
+                                <td>{{ $empleado->role() }}</td>
                                 <td>
                                     <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $empleado->id }}">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
                                     <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $empleado->id }}">
                                         <i class="fas fa-trash-alt"></i> Eliminar
+                                    </a>
+                                    <a class="btn btn-secondary role" role="button" title="Cambiar Rol" data-toggle="modal" data-target="#modalRole" data-id="{{ $empleado->id }}">
+                                        <i class="fas fa-user-alt"></i> Rol
                                     </a>
                                 </td>
                             </tr>
@@ -136,14 +139,6 @@
                                 <input type="text" id="nombreEditar" name="nombreEditar" required class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="rolEditar">Rol</label>
-                                <select name="rolEditar" id="rolEditar" class="form-control" required>
-                                    @foreach($roles as $rol)
-                                        <option value="{{ $rol->id }}">{{ $rol->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="emailEditar">Email de acceso</label>
                                 <input type="email" id="emailEditar" name="emailEditar" required class="form-control">
                             </div>
@@ -176,10 +171,6 @@
                                 <input type="text" id="nombreEliminar" name="nombreEliminar" readonly="true" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="rolEliminar">Rol</label>
-                                <input type="text" name="rolEliminar" id="rolEliminar" readonly="true" class="form-control">
-                            </div>
-                            <div class="form-group">
                                 <label for="emailEliminar">Email</label>
                                 <input type="text" name="emailEliminar" id="emailEliminar" readonly="true" class="form-control">
                             </div>
@@ -198,6 +189,46 @@
             </div>
         </div>
 
+        <!--Modal de Edición de Rol-->
+        <div class="modal fade" id="modalRole" tabindex="-1" aria-labellebdy="modalRoleLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom">
+                        <h3 class="modal-title fs-4 fw-semibold">Cambio de Rol</h3>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group bg-light p-1">
+                            <small class="text-info fw-semibold fs-6">Elige el nuevo <b>ROL</b> del <b>EMPLEADO</b></small>
+                        </div>
+                        <form novalidate>
+                            <div class="form-group">
+                                <label for="nombreRole">Nombre</label>
+                                <input type="text" id="nombreRole" name="nombreRole" readonly="true" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="roleRole">Rol Actual</label>
+                                <input type="text" name="roleRole" id="roleRole" readonly="true" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="rolRole">Rol Nuevo</label>
+                                <select name="rolRole" id="rolRole" required class="form-control">
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block" id="role">Cambiar Rol</button>
+                            </div>
+                            <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="idEmpleadoRole" id="idEmpleadoRole" >
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
@@ -206,5 +237,6 @@
         <script src="{{ asset('storage/js/empleados/actualizar.js') }}" type="text/javascript"></script>
         <script src="{{ asset('storage/js/empleados/activarEliminar.js') }}" type="text/javascript"></script>
         <script src="{{ asset('storage/js/empleados/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('storage/js/empleados/role.js') }}" type="text/javascript"></script>
     </div>
 @stop

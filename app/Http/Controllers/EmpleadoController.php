@@ -11,6 +11,7 @@ use App\Http\Requests\Empleados\StoreEmpleado;
 use App\Http\Requests\Empleados\EditEmpleado;
 use App\Http\Requests\Empleados\UpdateEmpleado;
 use App\Http\Requests\Empleados\DestroyEmpleado;
+use App\Http\Requests\Empleados\RoleEmpleadoUpdate;
 use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller
@@ -139,6 +140,7 @@ class EmpleadoController extends Controller
                 $datos['exito'] = true;
                 $datos['mensaje'] = $empleado->name;
                 $datos['email'] = $empleado->email;
+                $datos['rol'] = $empleado->getRoleNames()->implode('');
 
             }
 
@@ -211,5 +213,36 @@ class EmpleadoController extends Controller
 
         return response()->json($datos);
         
+    }
+
+    /**
+     * Actualización de Rol de Empleado
+     * @param Request $id & $rol
+     * @return json
+     */
+    public function update_rol(RoleEmpleadoUpdate $request){
+        try {
+            
+            $empleado = User::find($request->id);
+
+            if( $empleado->id ){
+
+                $empleado->removeRole( $request->role );
+
+                $empleado->assignRole($request->rol);
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Rol Actualizado.';
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            $datos['exito'] = false;
+            $datos['mensaje'] = $th->getMessage();
+
+        }
+
+        return response()->json($datos);
     }
 }

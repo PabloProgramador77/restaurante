@@ -123,3 +123,4 @@ Route::post('/empleados/agregar', [App\Http\Controllers\EmpleadoController::clas
 Route::post('/empleados/editar', [App\Http\Controllers\EmpleadoController::class, 'edit'])->name('editar-empleado');
 Route::post('/empleados/actualizar', [App\Http\Controllers\EmpleadoController::class, 'update'])->name('actualizar-empleado');
 Route::post('/empleados/eliminar', [App\Http\Controllers\EmpleadoController::class, 'destroy'])->name('eliminar-empleado');
+Route::post('/empleados/role', [App\Http\Controllers\EmpleadoController::class, 'update_rol'])->name('actualizar-rol-empleado');

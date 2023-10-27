@@ -43,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Obtener role de usuario
+     */
+    public function role(){
+
+        return $this->getRoleNames()->implode('');
+
+    }
+
 }
