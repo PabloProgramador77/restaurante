@@ -74,7 +74,7 @@
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-info btn-block p-2 text-center editar"><i class="fas fa-plus-circle" ></i> Agregar Platillo(s)</a>
                                         </div>
-                                    @encan
+                                    @endcan
                                     @can('Cobrar pedido')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-success btn-block p-2 text-center cobrar"><i class="fas fa-hand-holding-usd" ></i> Cobrar Orden</a>

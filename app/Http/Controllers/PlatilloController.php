@@ -22,17 +22,37 @@ class PlatilloController extends Controller
     {
         try {
             
-            $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo')
+            if( auth()->user()->role() == 'Gerente' ){
+
+                $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo')
                 ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
                 ->where('platillo_users.idUser', '=', auth()->user()->id)
                 ->orderBy('platillos.updated_at', 'desc')
                 ->get();
 
-            $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
-                ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
-                ->where('categoria_users.idUser', '=', auth()->user()->id)
-                ->orderBy('categorias.nombreCategoria', 'asc')
-                ->get();
+                $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+                    ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                    ->where('categoria_users.idUser', '=', auth()->user()->id)
+                    ->orderBy('categorias.nombreCategoria', 'asc')
+                    ->get();
+
+            }else{
+
+                $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo')
+                    ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+                    ->join('user_empleados', 'platillo_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->orderBy('platillos.updated_at', 'desc')
+                    ->get();
+
+                $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+                    ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                    ->join('user_empleados', 'categoria_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->orderBy('categorias.nombreCategoria', 'asc')
+                    ->get();
+
+            }
 
             return view('platillos/index', compact('platillos', 'categorias'));
 

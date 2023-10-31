@@ -21,11 +21,24 @@ class MesaController extends Controller
     {
         try {
             
-            $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
-                ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
-                ->where('mesa_users.idUser', '=', auth()->user()->id)
-                ->orderBy('mesas.updated_at', 'desc')
-                ->get();
+            if( auth()->user()->role() == 'Gerente' ){
+
+                $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
+                    ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                    ->where('mesa_users.idUser', '=', auth()->user()->id)
+                    ->orderBy('mesas.updated_at', 'desc')
+                    ->get();
+
+            }else{
+
+                $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
+                    ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                    ->join('user_empleados', 'mesa_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->orderBy('mesas.updated_at', 'desc')
+                    ->get();
+
+            }
 
             return view('mesas/index', compact('mesas'));
 

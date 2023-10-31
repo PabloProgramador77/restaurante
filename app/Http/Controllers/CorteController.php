@@ -24,11 +24,24 @@ class CorteController extends Controller
     {
         try {
             
-            $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
-                ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
-                ->where('corte_users.idUser', '=', auth()->user()->id)
-                ->orderBy('cortes.created_at', 'desc')
-                ->get();
+            if( auth()->user()->role() == 'Gerente' ){
+
+                $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
+                    ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
+                    ->where('corte_users.idUser', '=', auth()->user()->id)
+                    ->orderBy('cortes.created_at', 'desc')
+                    ->get();
+
+            }else{
+
+                $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
+                    ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
+                    ->join('user_empleados', 'corte_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->orderBy('cortes.created_at', 'desc')
+                    ->get();
+
+            }
 
             return view('cortes/index', compact('cortes'));
 

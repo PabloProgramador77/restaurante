@@ -22,14 +22,35 @@ class CategoriaController extends Controller
     {
         try {
             
-            $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
-                ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
-                ->where('categoria_users.idUser', '=', auth()->user()->id)
-                ->get();
+            if( auth()->user()->role() == 'Gerente' ){
 
-            $platillos = Platillo::select('*')
-                ->orderBy('nombrePlatillo', 'asc')
-                ->get();
+                $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+                    ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                    ->where('categoria_users.idUser', '=', auth()->user()->id)
+                    ->get();
+
+                $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo')
+                    ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+                    ->where('platillo_users.idUser', '=', auth()->user()->id)
+                    ->orderBy('platillos.nombrePlatillo', 'asc')
+                    ->get();
+
+            }else{
+
+                $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
+                    ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                    ->join('user_empleados', 'categoria_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->get();
+
+                $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo')
+                    ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+                    ->join('user_empleados', 'platillo_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->orderBy('platillos.nombrePlatillo', 'asc')
+                    ->get();
+
+            }
 
             return view('categorias/index', compact('categorias', 'platillos'));
 
