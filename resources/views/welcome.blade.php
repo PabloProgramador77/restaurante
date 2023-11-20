@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand sticky-top bg-white shadow" id="inicio">
             <div class="container-fluid">
                 <a href="#" class="navbar-brand">
-                    <img src="{{ asset('media/LogoBGRmv.png') }}" alt="Logo" class="d-inline-block align-text-top" width="100px" height="auto">
+                    <img src="{{ asset('media/2-removebg-preview.png') }}" alt="Logo" class="d-inline-block align-text-top" width="100px" height="auto">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -73,8 +73,8 @@
         <!--Banner Principal-->
         <div class="container-fluid p-2" style="background-image: url('media/bg01.jpg'); background-position: center; background-container: container;">
             <div class="container-fluid">
-                <img src="{{ asset('media/LogoBGRmv.png') }}" alt="Logo" width="250px" height="auto" class="d-block m-auto">
-                <h1 class="text-center fs-1 fw-bold">Cocina & Barra</h1>
+                <img src="{{ asset('media/2-removebg-preview.png') }}" alt="Logo" width="250px" height="auto" class="d-block m-auto">
+                <h1 class="text-center fs-1 fw-bold">Foodify</h1>
                 <p class="text-center fs-5 fw-semibold w-50 m-auto p-3">La primer plataforma en línea con todo las funciones que tu restaurante, bar y cafetería necesita desde cualquier dispositivo móvil, tableta u ordenador.</p>
                 <p class="fw-semibold fs-5 text-center p-2 bg-warning w-50 m-auto">Y lo mejor de todo es que es gratuita.</p>
                 <a href="#about" class="d-block btn btn-info rounded shadow m-auto my-4 p-3" role="button" style="width: 200px">
@@ -86,7 +86,7 @@
 
         <!--About it-->
         <div class="container border-bottom p-2 my-5" id="about">
-            <h2 class="text-center fs-4 fw-bold">¿Qué es Cocina & Barra?</h2>
+            <h2 class="text-center fs-4 fw-bold">¿Qué es Foodify?</h2>
             <p class="text-center fs-6 fw-semibold w-50 m-auto text-secondary my-4">Es la primer plataforma en línea con las herramientas y funciones necesarias para administrar las diferentes áreas de cualquier restaurante, bar y cafetería.
                 Esto por medio de cualquier ordenador, tableta o dispositivo móvil que cuente con conexión a internet.
             </p>

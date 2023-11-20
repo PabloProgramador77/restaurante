@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Cocina y Barra',
+    'title' => 'Foodify',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Cocina&Barra</b>',
-    'logo_img' => 'media/logoBGRmv.png',
+    'logo' => '<b>Foodify</b>',
+    'logo_img' => 'media/2-removebg-preview.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Logo Foodify',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'media/LogoBG.png',
+            'path' => 'media/2-removebg-preview.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,8 +109,8 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'media/LogoBGRmv.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => 'media/2-removebg-preview.png',
+            'alt' => 'Logo Foodify',
             'effect' => 'animation__shake',
             'width' => 300,
             'height' => 300,
