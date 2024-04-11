@@ -23,12 +23,10 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige el EMPLEADO a gestionar o agrega uno nuevo</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    @can('Crear empleado')
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Empleado
                         </a>
-                    @endcan
                 </div>
             </div>
         </div>
@@ -48,7 +46,6 @@
                 <tbody id="contenedorEmpleados">
                     @if ( count($empleados) > 0 )
                         
-                        @can('Ver empleados')
                             @foreach ($empleados as $empleado)
                                 
                                 <tr>
@@ -57,26 +54,22 @@
                                     <td>{{ $empleado->email }}</td>
                                     <td>{{ $empleado->role() }}</td>
                                     <td>
-                                        @can('Editar empleado')
                                             <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $empleado->id }}">
                                                 <i class="fas fa-edit"></i> Editar
                                             </a>
-                                        @endcan
-                                        @can('Borrar empleado')
+                                        
                                             <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $empleado->id }}">
                                                 <i class="fas fa-trash-alt"></i> Eliminar
                                             </a>
-                                        @endcan
-                                        @can('Cambiar rol')
+                                        
                                             <a class="btn btn-secondary role" role="button" title="Cambiar Rol" data-toggle="modal" data-target="#modalRole" data-id="{{ $empleado->id }}">
                                                 <i class="fas fa-user-alt"></i> Rol
                                             </a>
-                                        @endcan
+                                        
                                     </td>
                                 </tr>
 
                             @endforeach
-                        @endcan
 
                     @else
 
@@ -123,11 +116,9 @@
                                 <label for="password">Contraseña de acceso</label>
                                 <input type="password" id="password" name="password" required class="form-control">
                             </div>
-                            @can('Crear empleado')
                                 <div class="form-group">
                                     <button type="submit" id="registrar" class="btn btn-primary btn-block">Agregar</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>
                     </div>
@@ -154,11 +145,9 @@
                                 <label for="emailEditar">Email de acceso</label>
                                 <input type="email" id="emailEditar" name="emailEditar" required class="form-control">
                             </div>
-                            @can('Editar empleado')
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idEmpleadoEditar" id="idEmpleadoEditar" >
                         </form>
@@ -188,7 +177,6 @@
                                 <label for="emailEliminar">Email</label>
                                 <input type="text" name="emailEliminar" id="emailEliminar" readonly="true" class="form-control">
                             </div>
-                            @can('Borrar empleado')
                                 <div class="form-group">
                                     <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
                                     <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
@@ -196,7 +184,6 @@
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idEmpleadoEliminar" id="idEmpleadoEliminar" >
                         </form>
@@ -234,11 +221,9 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @can('Cambiar rol')
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block" id="role">Cambiar Rol</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idEmpleadoRole" id="idEmpleadoRole" >
                         </form>

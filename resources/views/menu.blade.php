@@ -16,14 +16,12 @@
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
             @if ( count($categorias) > 0 )
                 
-                @can('Ver menu')
                     @foreach ($categorias as $categoria)
                         <div class="col-md-4">
                             <x-adminlte-small-box title="{{ $categoria->nombreCategoria }}" text="" icon="fas fa-bars" theme="info" url="{{ url('/menu') }}/{{ $categoria->id }}" url-text="Ver Platillos"/>
                         </div>
                     @endforeach
-                @endcan
-
+                
             @else
                 <div class="col-md-12">
                     <x-adminlte-small-box title="Sin Categorías Registradas" text="0" icon="fas fa-bars" theme="info" url="{{ url('/categorias') }}" url-text="Agregar Categoría(s) Ahora"/>

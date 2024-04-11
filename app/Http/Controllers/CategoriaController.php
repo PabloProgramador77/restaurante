@@ -22,7 +22,7 @@ class CategoriaController extends Controller
     {
         try {
             
-            if( auth()->user()->role() == 'Gerente' ){
+            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
 
                 $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
                     ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
@@ -35,7 +35,9 @@ class CategoriaController extends Controller
                     ->orderBy('platillos.nombrePlatillo', 'asc')
                     ->get();
 
-            }else{
+            }
+            
+            if( auth()->user()->role() == 'Mozo' ){
 
                 $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
                     ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')

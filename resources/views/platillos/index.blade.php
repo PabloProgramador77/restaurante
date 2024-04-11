@@ -23,12 +23,10 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige el PLATILLO a gestionar o agrega una nueva</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    @can('Crear platillo')
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Platillo
                         </a>
-                    @endcan
                 </div>
             </div>
         </div>
@@ -47,7 +45,6 @@
                 <tbody id="contenedorPlatillos">
                     @if ( count($platillos) > 0 )
                         
-                        @can('Ver platillos')
                             @foreach ($platillos as $platillo)
                                 
                                 <tr>
@@ -65,8 +62,7 @@
                                 </tr>
 
                             @endforeach
-                        @endcan
-
+                        
                     @else
 
                         <tr>
@@ -100,11 +96,9 @@
                                 <label for="precio">Precio</label>
                                 <input type="text" id="precio" name="precio" required class="form-control">
                             </div>
-                            @can('Crear platillo')
                                 <div class="form-group">
                                     <button type="submit" id="registrar" class="btn btn-primary btn-block">Agregar</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>
                     </div>
@@ -131,11 +125,9 @@
                                 <label for="precioEditar">Precio</label>
                                 <input type="text" id="precioEditar" name="precioEditar" required class="form-control">
                             </div>
-                            @can('Editar platillo')
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block" id="actualizar">Guardar Cambios</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idPlatillo" id="idPlatillo" >
                         </form>
@@ -165,7 +157,6 @@
                                 <label for="precioEliminar">Precio</label>
                                 <input type="text" id="precioEliminar" name="precioEliminar" readonly="true" class="form-control">
                             </div>
-                            @can('Borrar platillo')
                                 <div class="form-group">
                                     <input type="checkbox" name="borrar" id="borrar" class="position-relative top-0 start-0">
                                     <small class="fs-6 fw-semibold float-end" for>He leído la advertencia y aún deseo continuar.</small>
@@ -173,7 +164,6 @@
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block" id="eliminar">Eliminar</button>
                                 </div>
-                            @endcan
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idPlatillo" id="idPlatillo" >
                         </form>

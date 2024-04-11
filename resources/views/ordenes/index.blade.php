@@ -18,7 +18,6 @@
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
             @if ( count($ordenes) > 0 )
                 
-                @can('Ver pedidos')
                     @foreach ($ordenes as $orden)
                         
                         @if ($orden->idMesa)
@@ -28,8 +27,7 @@
                         @endif
                     
                     @endforeach
-                @endcan
-
+                
             @else
                 <div class="col-md-12">
                     <x-adminlte-small-box title="Sin Pedidos Abiertos" text="0" icon="fas fa-chair" theme="info" url="{{ url('/menu') }}" url-text="Ordenar"/>
@@ -70,21 +68,15 @@
                             </div>
                             <div class="container-fluid row p-1">
                                 <form novalidate class="container-fluid p-1 row">
-                                    @can('Editar pedido')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-info btn-block p-2 text-center editar"><i class="fas fa-plus-circle" ></i> Agregar Platillo(s)</a>
                                         </div>
-                                    @endcan
-                                    @can('Cobrar pedido')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-success btn-block p-2 text-center cobrar"><i class="fas fa-hand-holding-usd" ></i> Cobrar Orden</a>
                                         </div>
-                                    @endcan
-                                    @can('Borrar pedido')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-danger btn-block p-2 text-center eliminar"><i class="fas fa-trash-alt" ></i> Cancelar Orden</a>
                                         </div>
-                                    @endcan
                                     <input type="hidden" name="idOrden" id="idOrden">
                                     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                                 </form>

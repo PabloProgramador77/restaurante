@@ -15,12 +15,10 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige el CORTE a gestionar o agrega uno nuevo</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    @can('Crear corte')
                         <a class="btn btn-primary btn-block nuevoCorte" data-toggle="modal" data-target="#modalRegistroCorte">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Corte
                         </a>
-                    @endcan
                 </div>
             </div>
         </div>
@@ -28,14 +26,12 @@
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
             @if ( count($cortes) > 0 )
                 
-                @can('Ver cortes')
                     @foreach ($cortes as $corte)
                         <div class="col-md-3">
                             <x-adminlte-small-box title="$ {{ $corte->totalCorte }} M.N." text="{{ $corte->created_at }}" icon="fas fa-cash-register" theme="success" url="#" url-text="Ver Corte" class="corte" data-id="{{ $corte->id }}" data-toggle="modal" data-target="#modalCorte"/>
                         </div>
                     @endforeach
-                @endcan
-
+                
             @else
                 <div class="col-md-12">
                     <x-adminlte-small-box title="Sin Cortes Registrados" text="0" icon="fas fa-cash-register" theme="info"/>
@@ -80,11 +76,9 @@
                                         <input type="checkbox" name="activar" id="activar" class="position-relative top-0 start-0">
                                         <small class="fs-6 fw-semibold float-end" for> Acepto los datos y deseo continuar.</small>
                                     </div>
-                                    @can('Crear corte')
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block" id="registrar" name="registrar"><i class="fas fa-save"></i> Hacer Corte</button>
                                         </div>
-                                    @endcan
                                 </form>
                             </div>
                         </div>
