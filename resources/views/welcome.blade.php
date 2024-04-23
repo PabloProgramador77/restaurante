@@ -202,7 +202,7 @@
             <div class="row" style="background-image: url('media/coming.jpg'); background-size: cover; background-position: center;">
                 <div class="col-md-12 p-5 m-5 w-50 m-auto">
                     <h4 class="fs-4 fw-bold text-center p-2"><i class="fas fa-award"></i> Proximamente</h4>
-                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de Octubre de 2023 se actualizará a la versión 1.1.4 con una nueva función de administración de empleados.</p>
+                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de mayo de 2024 se actualizará a la versión 1.1.0 con una nueva función de administración de empleados.</p>
                     <p class="fs-6 fw-semibold bg-info p-2">Contará con funciones como:</p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Alta de empleados</li>
@@ -222,7 +222,7 @@
                     <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
                     </a>
-                    <span class="mb-3 mb-md-0 text-body-secondary">© 2023 PabloProgramador</span>
+                    <span class="mb-3 mb-md-0 text-body-secondary">© 2024 PabloProgramador</span>
                 </div>
 
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
