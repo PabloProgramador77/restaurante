@@ -67,6 +67,8 @@ Route::post('/orden/eliminar', [App\Http\Controllers\OrdenController::class, 'de
 Route::get('/ordenes/historial', [App\Http\Controllers\OrdenController::class, 'historial'])->name('historial');
 Route::get('/delivery', [App\Http\Controllers\OrdenController::class, 'delivery'])->name('delivery');
 Route::post('/orden/editar', [App\Http\Controllers\OrdenController::class, 'update'])->name('editar_orden');
+Route::get('/orden/comanda/{id}', [App\Http\Controllers\OrdenController::class, 'download'])->name('descargar-comanda');
+Route::get('/orden/ticket/{id}', [App\Http\Controllers\OrdenController::class, 'descarga'])->name('descargar-ticket');
 
 /**
  * ---------------------------------------------------------------------------
@@ -89,6 +91,7 @@ Route::post('/cortes/calcular', [App\Http\Controllers\CorteController::class, 'c
 Route::post('/cortes/agregar', [App\Http\Controllers\CorteController::class, 'store'])->name('nuevo-corte');
 Route::post('/cortes/corte', [App\Http\Controllers\CorteController::class, 'show'])->name('ver-corte');
 Route::post('/cortes/imprimir', [App\Http\Controllers\CorteController::class, 'edit'])->name('imprimir-corte');
+Route::get('/corte/imprimir/{id}', [App\Http\Controllers\CorteController::class, 'download'])->name('descargar-corte');
 
 /**
  * ---------------------------------------------------------------

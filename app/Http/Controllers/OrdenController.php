@@ -260,7 +260,7 @@ class OrdenController extends Controller
 
                 ]);
 
-            if( $this->ticket($request->id) ){
+            if( $this->ticket( $request->id ) ){
 
                 $datos['exito'] = true;
                 $datos['mensaje'] = 'Orden Pagada.';
@@ -463,6 +463,44 @@ class OrdenController extends Controller
         } catch (\Throwable $th) {
             
             echo "Fatal Error: ".$th->getMessage();
+
+        }
+    }
+
+    /**
+     * Descarga de comanda PDF
+     */
+    public function download( $id ){
+        try {
+            
+            if( file_exists( public_path('storage/pdf/comandas/').'comanda'.$id.'.pdf' ) ){
+
+                return response()->download( public_path('/storage/pdf/comandas/').'comanda'.$id.'.pdf' );
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            echo $th->getMessage();
+
+        }
+    }
+
+    /**
+     * Descarga de ticket PDF
+     */
+    public function descarga( $id ){
+        try {
+            
+            if( file_exists( public_path('storage/pdf/tickets/').'ticket'.$id.'.pdf' ) ){
+
+                return response()->download( public_path('storage/pdf/tickets/').'ticket'.$id.'.pdf' );
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            echo $th->getMessage();
 
         }
     }

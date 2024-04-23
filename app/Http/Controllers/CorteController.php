@@ -231,6 +231,13 @@ class CorteController extends Controller
 
             $reporte->Output(public_path('storage/pdf/cortes/').'corte'.$corte->id.'.pdf', \Mpdf\Output\Destination::FILE);
 
+            if( file_exists( public_path('storage/pdf/cortes/').'corte'.$corte->id ).'.pdf' ){
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Corte Creado';
+                
+            }
+
         } catch (\Throwable $th) {
             
             $datos['exito'] = false;
@@ -290,5 +297,24 @@ class CorteController extends Controller
     public function destroy(Corte $corte)
     {
         //
+    }
+
+    /**
+     * Descarga de corte PDF
+     */
+    public function download( $id ){
+        try {
+            
+            if( file_exists( public_path('storage/pdf/cortes/').'corte'.$id.'.pdf' ) ){
+
+                return response()->download( public_path('storage/pdf/cortes/').'corte'.$id.'.pdf' );
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            echo $th->getMessage();
+
+        }
     }
 }

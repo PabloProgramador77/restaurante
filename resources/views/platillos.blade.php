@@ -116,6 +116,7 @@
                                 <button type="submit" class="btn btn-primary btn-block" id="terminar" name="terminar"><i class="fas fa-dumpster-fire"></i> Terminar Orden</button>
                             </div>
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="idPedido" id="idPedido" value="{{ session()->get('idOrden') }}">
                         </form>
                     </div>
                 </div>
