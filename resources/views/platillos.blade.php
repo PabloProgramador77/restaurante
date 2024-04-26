@@ -28,9 +28,11 @@
                     @endforeach
                 
             @else
-                <div class="col-md-12">
-                    <x-adminlte-small-box title="Sin Platillos Agregados a la Categoría" text="0" icon="fas fa-bars" theme="info" url="{{ url('/categorias') }}" url-text="Agregar Platillos a Categoría Ahora"/>
-                </div>
+                @can('ver-categorias')
+                    <div class="col-md-12">
+                        <x-adminlte-small-box title="Sin Platillos Agregados a la Categoría" text="0" icon="fas fa-bars" theme="info" url="{{ url('/categorias') }}" url-text="Agregar Platillos a Categoría Ahora"/>
+                    </div>
+                @endcan
             @endif
             
         </div>

@@ -298,6 +298,7 @@ return [
             'icon' => 'fas fa-bars',
             'icon_color' => 'teal',
             'label_color' => 'primary',
+            'can' => 'ver-categorias',
         ],
         [
             'text' => 'Platillos',
@@ -305,6 +306,7 @@ return [
             'icon' => 'fas fa-hamburger',
             'icon_color' => 'teal',
             'label_color' => 'primary',
+            'can' => 'ver-platillos',
         ],
         [
             'text' => 'Mesas',
@@ -312,6 +314,7 @@ return [
             'icon' => 'fas fa-chair',
             'icon_color' => 'teal',
             'label_color' => 'primary',
+            'can' => 'ver-mesas',
         ],
         [
             'text' => 'Pedidos',
@@ -326,7 +329,8 @@ return [
                     'icon_color' => 'teal',
                     'label_color' => 'primary',
                 ],
-            ]
+            ],
+            'can' => 'ver-pedidos',
         ],
         [
             'text' => 'Caja',
@@ -340,9 +344,11 @@ return [
                     'icon' => 'fas fa-cash-register',
                     'icon_color' => 'teal',
                     'label_color' => 'primary',
+                    'can' => 'ver-cortes',
                 ],
                 
-            ]
+            ],
+            'can' => 'ver-cajas',
         ],
         [
             'text' => 'Empleados',
@@ -358,6 +364,7 @@ return [
                     'icon_color' => 'purple',
                     'label' => 'Premium',
                     'label_color' => 'warning',
+                    'can' => 'ver-empleados',
                 ],
                 [
                     'text' => 'Roles',
@@ -366,6 +373,7 @@ return [
                     'icon_color' => 'purple',
                     'label' => 'Premium',
                     'label_color' => 'warning',
+                    'can' => 'ver-roles',
                 ],
                 [
                     'text' => 'Permisos',
@@ -374,8 +382,10 @@ return [
                     'icon_color' => 'purple',
                     'label' => 'Premium',
                     'label_color' => 'warning',
+                    'can' => 'ver-permisos',
                 ],
-            ]
+            ],
+            'can' => 'ver-empleados',
         ],        
     ],
 

@@ -22,12 +22,14 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige la categoría a gestionar o agrega una nueva</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-categoria')
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Categoría
                         </a>
-                </div>
+                    </div>    
+                @endcan
             </div>
         </div>
 
@@ -42,38 +44,49 @@
                     </tr>
                 </thead>
                     <tbody id="contenedorCategorias">
-                        @if ( count($categorias) > 0 )
-                            
-                            @foreach ($categorias as $categoria)
+                        @can('ver-categorias')
+
+                            @if ( count($categorias) > 0 )
                                 
+                                @foreach ($categorias as $categoria)
+                                    
+                                @can('ver-categoria')
+                                    <tr>
+                                        <td>{{ $categoria->id }}</td>
+                                        <td>{{ $categoria->nombreCategoria }}</td>
+                                        <td>
+                                            @can('editar-categoria')
+                                                <a class="btn btn-info editar" role="button" title="Editar Categoría" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $categoria->id }}">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </a>
+                                            @endcan
+                                            @can('borrar-categoria')
+                                                <a class="btn btn-danger eliminar" role="button" title="Eliminar Categoría" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $categoria->id }}">
+                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                </a>
+                                            @endcan
+                                            @can('crear-menu')
+                                                <a class="btn btn-primary menu" role="button" title="Crear Menú" data-toggle="modal" data-target="#modalMenu" data-id="{{ $categoria->id }}">
+                                                    <i class="fas fa-bars"></i> Menú
+                                                </a>
+                                            @endcan
+                                                
+                                        </td>
+                                    </tr>
+                                @endcan
+                                    
+
+                                @endforeach
+
+                            @else
+
                                 <tr>
-                                    <td>{{ $categoria->id }}</td>
-                                    <td>{{ $categoria->nombreCategoria }}</td>
-                                    <td>
-                                            <a class="btn btn-info editar" role="button" title="Editar Categoría" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $categoria->id }}">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </a>
-                                        
-                                            <a class="btn btn-danger eliminar" role="button" title="Eliminar Categoría" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $categoria->id }}">
-                                                <i class="fas fa-trash-alt"></i> Eliminar
-                                            </a>
-                                        
-                                            <a class="btn btn-primary menu" role="button" title="Crear Menú" data-toggle="modal" data-target="#modalMenu" data-id="{{ $categoria->id }}">
-                                                <i class="fas fa-bars"></i> Menú
-                                            </a>
-                                        
-                                    </td>
+                                    <td colspan="3" class="text-center"><i class="fas fa-info-circle"></i> Sin categorías de menú agregadas.</td>
                                 </tr>
-
-                            @endforeach
-
-                        @else
-
-                            <tr>
-                                <td colspan="3" class="text-center"><i class="fas fa-info-circle"></i> Sin categorías de menú agregadas.</td>
-                            </tr>
-                            
-                        @endif
+                                
+                            @endif    
+                        @endcan
+                        
                     </tbody>
             </table>
         </div>

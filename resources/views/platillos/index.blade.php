@@ -22,12 +22,14 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige el PLATILLO a gestionar o agrega una nueva</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-platillo')
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Platillo
                         </a>
-                </div>
+                    </div>
+                @endcan
             </div>
         </div>
 
@@ -43,33 +45,39 @@
                     </tr>
                 </thead>
                 <tbody id="contenedorPlatillos">
-                    @if ( count($platillos) > 0 )
+                    @can('ver-platillos')
+                        @if ( count($platillos) > 0 )
                         
                             @foreach ($platillos as $platillo)
-                                
-                                <tr>
-                                    <td>{{ $platillo->id }}</td>
-                                    <td>{{ $platillo->nombrePlatillo }}</td>
-                                    <td>$ {{ $platillo->precioPlatillo }} M.N.</td>
-                                    <td>
-                                        <a class="btn btn-info editar" role="button" title="Editar Platillo" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $platillo->id }}">
-                                            <i class="fas fa-edit"></i> Editar
-                                        </a>
-                                        <a class="btn btn-danger eliminar" role="button" title="Eliminar Platillo" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $platillo->id }}">
-                                            <i class="fas fa-trash-alt"></i> Eliminar
-                                        </a>
-                                    </td>
-                                </tr>
-
+                                @can('ver-platillo')
+                                    <tr>
+                                        <td>{{ $platillo->id }}</td>
+                                        <td>{{ $platillo->nombrePlatillo }}</td>
+                                        <td>$ {{ $platillo->precioPlatillo }} M.N.</td>
+                                        <td>
+                                            @can('editar-platillo')
+                                                <a class="btn btn-info editar" role="button" title="Editar Platillo" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $platillo->id }}">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </a>
+                                            @endcan
+                                            @can('borrar-platillo')
+                                                <a class="btn btn-danger eliminar" role="button" title="Eliminar Platillo" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $platillo->id }}">
+                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                </a>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                @endcan
                             @endforeach
-                        
-                    @else
+                            
+                        @else
 
-                        <tr>
-                            <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin platillos de menú agregados.</td>
-                        </tr>
-                        
-                    @endif
+                            <tr>
+                                <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin platillos de menú agregados.</td>
+                            </tr>
+                            
+                        @endif
+                    @endcan
                 </tbody>
             </table>
         </div>

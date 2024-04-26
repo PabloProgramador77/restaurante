@@ -22,12 +22,14 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige el ROL a gestionar o agrega uno nuevo</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-role')
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Rol
                         </a>
-                </div>
+                    </div>
+                @endcan
             </div>
         </div>
 
@@ -43,36 +45,45 @@
                     </tr>
                 </thead>
                 <tbody id="contenedorRoles">
-                    @if ( count($roles) > 0 )
-                            
-                            @foreach ($roles as $rol)
+                    @can('ver-roles')
+                        @if ( count($roles) > 0 )
                                 
-                                <tr>
-                                    <td>{{ $rol->id }}</td>
-                                    <td>{{ $rol->name }}</td>
-                                    <td>{{ $rol->created_at }}</td>
-                                    <td>
-                                            <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $rol->id }}">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </a>
-                                            <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $rol->id }}">
-                                                <i class="fas fa-trash-alt"></i> Eliminar
-                                            </a>
-                                            <a class="btn btn-primary asignar" role="button" title="Asignar permisos" data-toggle="modal" data-target="#modalPermisos" data-id="{{ $rol->id }}">
-                                                <i class="fas fa-signature"></i> Permisos
-                                            </a>
-                                    </td>
-                                </tr>
+                                @foreach ($roles as $rol)
+                                    @can('ver-role')
+                                        <tr>
+                                            <td>{{ $rol->id }}</td>
+                                            <td>{{ $rol->name }}</td>
+                                            <td>{{ $rol->created_at }}</td>
+                                            <td>
+                                                @can('editar-role')
+                                                    <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $rol->id }}">
+                                                        <i class="fas fa-edit"></i> Editar
+                                                    </a>
+                                                @endcan
+                                                @can('borrar-role')
+                                                    <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $rol->id }}">
+                                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                                    </a>
+                                                @endcan
+                                                @can('asignar-permiso')
+                                                    <a class="btn btn-primary asignar" role="button" title="Asignar permisos" data-toggle="modal" data-target="#modalPermisos" data-id="{{ $rol->id }}">
+                                                        <i class="fas fa-signature"></i> Permisos
+                                                    </a>
+                                                @endcan
+                                            </td>
+                                        </tr>
+                                    @endcan
 
-                            @endforeach
+                                @endforeach
 
-                    @else
+                        @else
 
-                        <tr>
-                            <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin roles agregados.</td>
-                        </tr>
-                        
-                    @endif
+                            <tr>
+                                <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin roles agregados.</td>
+                            </tr>
+                            
+                        @endif
+                    @endcan
                 </tbody>
             </table>
         </div>

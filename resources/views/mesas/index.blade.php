@@ -22,12 +22,14 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige la mesa a gestionar o agrega una nueva</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-mesa')
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Mesa
                         </a>
-                </div>
+                    </div>
+                @endcan
             </div>
         </div>
 
@@ -42,32 +44,38 @@
                     </tr>
                 </thead>
                 <tbody id="contenedorMesas">
-                    @if ( count($mesas) > 0 )
-                        
-                            @foreach ($mesas as $mesa)
-                                
-                                <tr>
-                                    <td>{{ $mesa->id }}</td>
-                                    <td>{{ $mesa->nombreMesa }}</td>
-                                    <td>
-                                        <a class="btn btn-info editar" role="button" title="Editar Mesa" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $mesa->id }}">
-                                            <i class="fas fa-edit"></i> Editar
-                                        </a>
-                                        <a class="btn btn-danger eliminar" role="button" title="Eliminar Mesa" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $mesa->id }}">
-                                            <i class="fas fa-trash-alt"></i> Eliminar
-                                        </a>
-                                    </td>
-                                </tr>
+                    @can('ver-mesas')
+                        @if ( count($mesas) > 0 )
+                            @can('ver-mesa')
+                                @foreach ($mesas as $mesa)
+                                    
+                                    <tr>
+                                        <td>{{ $mesa->id }}</td>
+                                        <td>{{ $mesa->nombreMesa }}</td>
+                                        <td>
+                                            @can('editar-mesa')
+                                                <a class="btn btn-info editar" role="button" title="Editar Mesa" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $mesa->id }}">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </a>
+                                            @endcan
+                                            @can('borrar-mesa')
+                                                <a class="btn btn-danger eliminar" role="button" title="Eliminar Mesa" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $mesa->id }}">
+                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                </a>
+                                            @endcan
+                                        </td>
+                                    </tr>
 
-                            @endforeach
-                        
-                    @else
+                                @endforeach
+                            @endcan
+                        @else
 
-                        <tr>
-                            <td colspan="3" class="text-center"><i class="fas fa-info-circle"></i> Sin mesas agregadas.</td>
-                        </tr>
-                        
-                    @endif
+                            <tr>
+                                <td colspan="3" class="text-center"><i class="fas fa-info-circle"></i> Sin mesas agregadas.</td>
+                            </tr>
+                            
+                        @endif
+                    @endcan
                 </tbody>
             </table>
         </div>

@@ -22,12 +22,14 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige el EMPLEADO a gestionar o agrega uno nuevo</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-empleado')
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Empleado
                         </a>
-                </div>
+                    </div>
+                @endcan
             </div>
         </div>
 
@@ -44,40 +46,45 @@
                     </tr>
                 </thead>
                 <tbody id="contenedorEmpleados">
-                    @if ( count($empleados) > 0 )
-                        
-                            @foreach ($empleados as $empleado)
-                                
-                                <tr>
-                                    <td>{{ $empleado->id }}</td>
-                                    <td>{{ $empleado->name }}</td>
-                                    <td>{{ $empleado->email }}</td>
-                                    <td>{{ $empleado->role() }}</td>
-                                    <td>
-                                            <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $empleado->id }}">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </a>
-                                        
-                                            <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $empleado->id }}">
-                                                <i class="fas fa-trash-alt"></i> Eliminar
-                                            </a>
-                                        
-                                            <a class="btn btn-secondary role" role="button" title="Cambiar Rol" data-toggle="modal" data-target="#modalRole" data-id="{{ $empleado->id }}">
-                                                <i class="fas fa-user-alt"></i> Rol
-                                            </a>
-                                        
-                                    </td>
-                                </tr>
+                    @can('ver-empleados')
+                        @if ( count($empleados) > 0 )
+                            @can('ver-empleado')
+                                @foreach ($empleados as $empleado)
+                                    
+                                    <tr>
+                                        <td>{{ $empleado->id }}</td>
+                                        <td>{{ $empleado->name }}</td>
+                                        <td>{{ $empleado->email }}</td>
+                                        <td>{{ $empleado->role() }}</td>
+                                        <td>
+                                            @can('editar-empleado')
+                                                <a class="btn btn-info editar" role="button" title="Editar rol" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $empleado->id }}">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </a>
+                                            @endcan
+                                            @can('borrar-empleado')
+                                                <a class="btn btn-danger eliminar" role="button" title="Eliminar rol" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $empleado->id }}">
+                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                </a>
+                                            @endcan
+                                            @can('asignar-role')
+                                                <a class="btn btn-secondary role" role="button" title="Cambiar Rol" data-toggle="modal" data-target="#modalRole" data-id="{{ $empleado->id }}">
+                                                    <i class="fas fa-user-alt"></i> Rol
+                                                </a>
+                                            @endcan
+                                        </td>
+                                    </tr>
 
-                            @endforeach
+                                @endforeach
+                            @endcan
+                        @else
 
-                    @else
-
-                        <tr>
-                            <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin empleados agregados.</td>
-                        </tr>
-                        
-                    @endif
+                            <tr>
+                                <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin empleados agregados.</td>
+                            </tr>
+                            
+                        @endif
+                    @endcan
                 </tbody>
             </table>
         </div>
@@ -104,7 +111,9 @@
                                 <label for="rol">Rol</label>
                                 <select name="rol" id="rol" class="form-control" required>
                                     @foreach($roles as $rol)
-                                        <option value="{{ $rol->id }}">{{ $rol->name }}</option>
+                                        @if( $rol->name != 'Developer' )
+                                            <option value="{{ $rol->id }}">{{ $rol->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -217,7 +226,11 @@
                                 <label for="rolRole">Rol Nuevo</label>
                                 <select name="rolRole" id="rolRole" required class="form-control">
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        
+                                        @if ( $role->name != 'Developer' )
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>    
+                                        @endif
+                                        
                                     @endforeach
                                 </select>
                             </div>

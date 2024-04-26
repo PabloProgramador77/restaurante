@@ -3,9 +3,11 @@
     <div class="container-fluid my-2">
         <div class="container-fluid row bg-white rounded border-bottom my-1">
             <h3 class="fw-bold fs-5 col-md-6 my-2">Pedidos</h3>
-            <div class="col-md-2 my-2">
-                <a href="{{ url('/ordenes/historial') }}" class="btn btn-warning" role="button"><i class="fas fa-list"></i> Historial</a>
-            </div>
+            @can('historial-pedidos')
+                <div class="col-md-2 my-2">
+                    <a href="{{ url('/ordenes/historial') }}" class="btn btn-warning" role="button"><i class="fas fa-list"></i> Historial</a>
+                </div>
+            @endcan
             <div class="col-md-4">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item"><a href="{{ url('/home') }}"><i class="fas fa-home"></i> Inicio</a></li>
@@ -16,24 +18,27 @@
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
-            @if ( count($ordenes) > 0 )
-                
-                    @foreach ($ordenes as $orden)
-                        
-                        @if ($orden->idMesa)
-                            <div class="col-md-3">
-                                <x-adminlte-small-box title="{{ $orden->mesa->nombreMesa }}" text="$ {{ $orden->totalPedido }} M.N." icon="fas fa-chair" theme="info" url="#" url-text="Ver Pedido" class="orden" data-id="{{ $orden->id }}" data-toggle="modal" data-target="#modalOrden"/>
-                            </div>    
-                        @endif
+            @can('ver-pedidos')
+                @if ( count($ordenes) > 0 )
                     
+                    @foreach ($ordenes as $orden)
+                        @can('ver-pedido')
+                            @if ($orden->idMesa)
+                                <div class="col-md-3">
+                                    <x-adminlte-small-box title="{{ $orden->mesa->nombreMesa }}" text="$ {{ $orden->totalPedido }} M.N." icon="fas fa-chair" theme="info" url="#" url-text="Ver Pedido" class="orden" data-id="{{ $orden->id }}" data-toggle="modal" data-target="#modalOrden"/>
+                                </div>    
+                            @endif
+                        @endcan    
                     @endforeach
-                
-            @else
-                <div class="col-md-12">
-                    <x-adminlte-small-box title="Sin Pedidos Abiertos" text="0" icon="fas fa-chair" theme="info" url="{{ url('/menu') }}" url-text="Ordenar"/>
-                </div>
-            @endif
-            
+                    
+                @else
+                    @can('crear-pedido')
+                        <div class="col-md-12">
+                            <x-adminlte-small-box title="Sin Pedidos Abiertos" text="0" icon="fas fa-chair" theme="info" url="{{ url('/menu') }}" url-text="Ordenar"/>
+                        </div>
+                    @endcan
+                @endif
+            @endcan
         </div>
 
         <!--Modal de Pedido-->
@@ -68,15 +73,21 @@
                             </div>
                             <div class="container-fluid row p-1">
                                 <form novalidate class="container-fluid p-1 row">
+                                    @can('editar-platillo')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-info btn-block p-2 text-center editar"><i class="fas fa-plus-circle" ></i> Agregar Platillo(s)</a>
                                         </div>
+                                    @endcan
+                                    @can('cobrar-pedido')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-success btn-block p-2 text-center cobrar"><i class="fas fa-hand-holding-usd" ></i> Cobrar Orden</a>
                                         </div>
+                                    @endcan
+                                    @can('borrar-pedido')
                                         <div class="form-group col-md-4 p-1 ">
                                             <a href="#" class="bnt btn-danger btn-block p-2 text-center eliminar"><i class="fas fa-trash-alt" ></i> Cancelar Orden</a>
                                         </div>
+                                    @endcan
                                     <input type="hidden" name="idOrden" id="idOrden">
                                     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                                 </form>

@@ -14,29 +14,43 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige el CORTE a gestionar o agrega uno nuevo</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-corte')
+                
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block nuevoCorte" data-toggle="modal" data-target="#modalRegistroCorte">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Corte
                         </a>
-                </div>
+                    </div>
+
+                @endcan
+                
             </div>
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
-            @if ( count($cortes) > 0 )
-                
-                    @foreach ($cortes as $corte)
-                        <div class="col-md-3">
-                            <x-adminlte-small-box title="$ {{ $corte->totalCorte }} M.N." text="{{ $corte->created_at }}" icon="fas fa-cash-register" theme="success" url="#" url-text="Ver Corte" class="corte" data-id="{{ $corte->id }}" data-toggle="modal" data-target="#modalCorte"/>
-                        </div>
-                    @endforeach
-                
-            @else
-                <div class="col-md-12">
-                    <x-adminlte-small-box title="Sin Cortes Registrados" text="0" icon="fas fa-cash-register" theme="info"/>
-                </div>
-            @endif
+            @can('ver-cortes')
+            
+                @if ( count($cortes) > 0 )
+                    
+                    @can('ver-corte')
+                        
+                        @foreach ($cortes as $corte)
+                            <div class="col-md-3">
+                                <x-adminlte-small-box title="$ {{ $corte->totalCorte }} M.N." text="{{ $corte->created_at }}" icon="fas fa-cash-register" theme="success" url="#" url-text="Ver Corte" class="corte" data-id="{{ $corte->id }}" data-toggle="modal" data-target="#modalCorte"/>
+                            </div>
+                        @endforeach
+
+                    @endcan
+                    
+                @else
+                    <div class="col-md-12">
+                        <x-adminlte-small-box title="Sin Cortes Registrados" text="0" icon="fas fa-cash-register" theme="info"/>
+                    </div>
+                @endif
+
+            @endcan
+            
             
         </div>
 
@@ -118,9 +132,11 @@
                             </div>
                             <div class="container-fluid row p-1">
                                 <form novalidate class="container-fluid p-1 row">
-                                    <div class="form-group col-md-12 p-1">
-                                        <a href="#" class="bnt btn-primary btn-block p-2 text-center imprimir"><i class="fas fa-print" ></i> Imprimir</a>
-                                    </div>
+                                    @can('imprimir-corte')
+                                        <div class="form-group col-md-12 p-1">
+                                            <a href="#" class="bnt btn-primary btn-block p-2 text-center imprimir"><i class="fas fa-print" ></i> Imprimir</a>
+                                        </div>
+                                    @@endcan
                                     <input type="hidden" name="idCorte" id="idCorte">
                                     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                                 </form>

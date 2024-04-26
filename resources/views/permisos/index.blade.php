@@ -22,12 +22,14 @@
                 <div class="col-md-9 bg-light py-2 border rounded">
                     <small class="fw-semibold fs-5 text-info"><b>Elige el PERMISO a gestionar o agrega uno nuevo</b>.</small>
                 </div>
-                <div class="col-md-3">
+                @can('crear-permiso')
+                    <div class="col-md-3">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
                             Agregar Permiso
                         </a>
-                </div>
+                    </div>
+                @endcan
             </div>
         </div>
 
@@ -43,34 +45,39 @@
                     </tr>
                 </thead>
                 <tbody id="contenedorPermisos">
-                    @if ( count($permisos) > 0 )
-                        
+                    @can('ver-permisos')
+                        @if ( count($permisos) > 0 )
+                            
                             @foreach ($permisos as $permiso)
-                                
-                                <tr>
-                                    <td>{{ $permiso->id }}</td>
-                                    <td>{{ $permiso->name }}</td>
-                                    <td>{{ $permiso->created_at }}</td>
-                                    <td>
-                                            <a class="btn btn-info editar" permisoe="button" title="Editar permiso" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $permiso->id }}">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </a>
-                                        
-                                            <a class="btn btn-danger eliminar" permisoe="button" title="Eliminar permiso" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $permiso->id }}">
-                                                <i class="fas fa-trash-alt"></i> Eliminar
-                                            </a>
-                                    </td>
-                                </tr>
-
+                                @can('ver-permiso')
+                                    <tr>
+                                        <td>{{ $permiso->id }}</td>
+                                        <td>{{ $permiso->name }}</td>
+                                        <td>{{ $permiso->created_at }}</td>
+                                        <td>
+                                            @can('editar-permiso')
+                                                <a class="btn btn-info editar" permisoe="button" title="Editar permiso" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $permiso->id }}">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </a>
+                                            @endcan
+                                            @can('borrar-permiso')
+                                                <a class="btn btn-danger eliminar" permisoe="button" title="Eliminar permiso" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $permiso->id }}">
+                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                </a>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                @endcan
                             @endforeach
 
-                    @else
+                        @else
 
-                        <tr>
-                            <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin permisos agregados.</td>
-                        </tr>
-                        
-                    @endif
+                            <tr>
+                                <td colspan="4" class="text-center"><i class="fas fa-info-circle"></i> Sin permisos agregados.</td>
+                            </tr>
+                            
+                        @endif
+                    @endcan
                 </tbody>
             </table>
         </div>
