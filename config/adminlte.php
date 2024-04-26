@@ -344,7 +344,7 @@ return [
                 
             ]
         ],
-        /*[
+        [
             'text' => 'Empleados',
             'icon' => 'fas fa-id-card-alt',
             'icon_color' => 'purple',
@@ -376,7 +376,7 @@ return [
                     'label_color' => 'warning',
                 ],
             ]
-        ],*/        
+        ],        
     ],
 
     /*
