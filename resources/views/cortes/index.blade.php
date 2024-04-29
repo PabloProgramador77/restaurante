@@ -136,7 +136,7 @@
                                         <div class="form-group col-md-12 p-1">
                                             <a href="#" class="bnt btn-primary btn-block p-2 text-center imprimir"><i class="fas fa-print" ></i> Imprimir</a>
                                         </div>
-                                    @@endcan
+                                    @endcan
                                     <input type="hidden" name="idCorte" id="idCorte">
                                     <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                                 </form>

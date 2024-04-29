@@ -12,6 +12,9 @@
             <small class="fs-5 fw-semibold bg-light my-2 p-1 col-md-12 rounded">A continuación, se muestran los datos generales del restaurante:</small>
         </div>
 
+        <div class="container-fluid bg-light p-1 col-lg-12 col-md-12">
+            <p class="text-center p-1 rounded bg-info"><b><i class="fas fa-star"></i> Proxima actualización: Gestor de Empleados, Roles y Permisos de Empleados <i class="fas fa-star"></i></b>. <small class="d-block text-center p-1 rounded bg-info"><i class="fas fa-info-circle"></i> 31 de Mayo de 2024</small></p>
+        </div>
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
             @can('crear-pedido')
                 <div class="col-md-6">
