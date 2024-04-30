@@ -30,6 +30,9 @@
                         </a>
                     </div>
                 @endcan
+                <p class="col-lg-12 col-md-12 bg-light fs-4 fw-semibold p-1 border"><i class="fas fa-info-circle"></i> Cada rol de empleado tiene diferentes permisos. 
+                    <a href="#" data-toggle="modal" data-target="#modalRolesPermisos">Pulsa aquí para conocerlos</a>.
+                </p>
             </div>
         </div>
 
@@ -244,6 +247,8 @@
                 </div>
             </div>
         </div>
+
+        @include('empleados.info')
 
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
