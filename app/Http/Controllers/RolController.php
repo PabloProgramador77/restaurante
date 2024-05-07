@@ -124,12 +124,13 @@ class RolController extends Controller
     {
         try {
             
-            $rol = Rol::find($request->id);
+            $rol = Role::find($request->id);
 
             if( $rol->id ){
 
                 $datos['exito'] = true;
                 $datos['rol'] = $rol->name;
+                $datos['permisos'] = $rol->permissions;
 
             }
 
