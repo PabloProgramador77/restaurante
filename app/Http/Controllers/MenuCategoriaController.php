@@ -18,7 +18,7 @@ class MenuCategoriaController extends Controller
      */
     public function index()
     {
-        if( auth()->user()->role() == 'Gerente' ){
+        if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
 
             $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
                 ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')

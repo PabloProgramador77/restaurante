@@ -25,7 +25,7 @@ class EmpleadoController extends Controller
     {
         try {
 
-            if( auth()->user()->role() == 'Gerente' ){
+            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' || auth()->user()->role() === 'Developer' ){
 
                 $empleados = User::select('users.id', 'users.name', 'users.email', 'users.created_at')
                     ->join('user_empleados', 'users.id', '=', 'user_empleados.idEmpleado')

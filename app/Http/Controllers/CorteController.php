@@ -24,7 +24,7 @@ class CorteController extends Controller
     {
         try {
             
-            if( auth()->user()->role() == 'Gerente' ){
+            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
 
                 $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
                     ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
