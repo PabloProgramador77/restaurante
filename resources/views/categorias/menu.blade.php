@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group bg-light p-1">
-                    <small class="text-info fw-semibold fs-6">A continuación, selecciona los PLATILLOS que deseas agregar al menú de la categoría:</small>
+                    <small class="text-info fw-semibold fs-6">A continuación, selecciona los PLATILLOS que deseas agregar al menú de la categoría. Los botones ya seleccionados se encuentran asignados al menú:</small>
                 </div>
                 <form novalidate>
                     @if ( count($platillos) > 0 )

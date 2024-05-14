@@ -152,11 +152,16 @@ class CategoriaController extends Controller
         try {
             
             $categoria = Categoria::where('id', '=', $request->id)->first();
+            $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo')
+                        ->join('menu_categorias', 'platillos.id', '=', 'menu_categorias.idPlatillo')
+                        ->where('menu_categorias.idCategoria', '=', $request->id)
+                        ->get();
 
             if( $categoria->id ){
 
                 $datos['exito'] = true;
                 $datos['mensaje']  = $categoria->nombreCategoria;
+                $datos['platillos'] = $platillos;
 
             }
         
