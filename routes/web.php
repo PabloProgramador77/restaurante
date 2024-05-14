@@ -58,6 +58,7 @@ Route::post('/platillos/eliminar', [App\Http\Controllers\PlatilloController::cla
  */
 Route::post('/platillos/orden', [App\Http\Controllers\OrdenController::class, 'store'])->name('orden');
 Route::post('/platillos/ordenar', [App\Http\Controllers\OrdenPlatilloController::class, 'store'])->name('ordenar');
+Route::get('/orden/platillo/borrar/{id}', [App\Http\Controllers\OrdenPlatilloController::class, 'destroy'])->name('borrar-platillo');
 Route::post('/orden/ver', [App\Http\Controllers\OrdenController::class, 'show'])->name('ver_orden');
 Route::post('/orden/terminar', [App\Http\Controllers\OrdenController::class, 'create'])->name('terminar_orden');
 Route::get('/ordenes', [App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes');

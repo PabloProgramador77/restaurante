@@ -142,7 +142,7 @@ class OrdenController extends Controller
     {
         try {
             
-            $datos = OrdenPlatillo::select('platillos.nombrePlatillo', 'platillos.precioPlatillo', 'orden_platillos.cantidad', 'orden_platillos.nota')
+            $datos = OrdenPlatillo::select('orden_platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo', 'orden_platillos.cantidad', 'orden_platillos.nota')
                 ->join('platillos', 'orden_platillos.idPlatillo', '=', 'platillos.id')
                 ->where('orden_platillos.idOrden', '=', session()->get('idOrden'))
                 ->get();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrdenPlatillo;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrdenPlatillo\StoreOrdenPlatillo;
+use App\Http\Requests\OrdenPlatillo\Delete;
 
 class OrdenPlatilloController extends Controller
 {
@@ -104,8 +105,27 @@ class OrdenPlatilloController extends Controller
      * @param  \App\Models\OrdenPlatillo  $ordenPlatillo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrdenPlatillo $ordenPlatillo)
+    public function destroy( $id )
     {
-        //
+        try {
+            
+            $ordenPlatillo = OrdenPlatillo::find( $id );
+
+            if( $ordenPlatillo->id ){
+
+                $ordenPlatillo->delete();
+
+                $datos['exito'] = true;
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            echo $th->getMessage();
+
+        }
+
+        return redirect('/menu');
+
     }
 }
