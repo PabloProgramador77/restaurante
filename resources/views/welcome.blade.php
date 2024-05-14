@@ -74,9 +74,9 @@
         <div class="container-fluid p-2" style="background-image: url('media/bg01.jpg'); background-position: center; background-container: container;">
             <div class="container-fluid">
                 <img src="{{ asset('media/2-removebg-preview.png') }}" alt="Logo" width="250px" height="auto" class="d-block m-auto">
-                <h1 class="text-center fs-1 fw-bold">Foodify</h1>
+                <h1 class="text-center fs-1 fw-bold">TU ALIADO GASTRONÓMICO DIGITAL</h1>
                 <p class="text-center fs-5 fw-semibold w-50 m-auto p-3">La primer plataforma en línea con todo las funciones que tu restaurante, bar y cafetería necesita desde cualquier dispositivo móvil, tableta u ordenador.</p>
-                <p class="fw-semibold fs-5 text-center p-2 bg-warning w-50 m-auto">Y lo mejor de todo es que es gratuita.</p>
+                <p class="fw-semibold fs-6 text-center p-2 bg-light w-50 m-auto">Versión actual: 1.1.1.</p>
                 <a href="#about" class="d-block btn btn-info rounded shadow m-auto my-4 p-3" role="button" style="width: 200px">
                     <i class="fas fa-arrow-down"></i>
                     Saber más
