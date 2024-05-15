@@ -169,10 +169,10 @@
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/mesas/agregar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/mesas/editar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/mesas/actualizar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/mesas/activarEliminar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/mesas/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/mesas/agregar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/mesas/editar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/mesas/actualizar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/mesas/activarEliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/mesas/eliminar.js') }}" type="text/javascript"></script>
     </div>
 @stop

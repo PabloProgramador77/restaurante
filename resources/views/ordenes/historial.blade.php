@@ -77,6 +77,6 @@
 
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/ordenes/orden.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/ordenes/orden.js') }}" type="text/javascript"></script>
     </div>
 @stop

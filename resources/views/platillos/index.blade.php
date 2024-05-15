@@ -183,10 +183,10 @@
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/platillos/agregar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/platillos/editar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/platillos/actualizar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/platillos/activarEliminar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/platillos/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/platillos/agregar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/platillos/editar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/platillos/actualizar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/platillos/activarEliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/platillos/eliminar.js') }}" type="text/javascript"></script>
     </div>
 @stop

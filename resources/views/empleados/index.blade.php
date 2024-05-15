@@ -253,11 +253,11 @@
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/empleados/agregar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/empleados/editar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/empleados/actualizar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/empleados/activarEliminar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/empleados/eliminar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/empleados/role.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/empleados/agregar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/empleados/editar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/empleados/actualizar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/empleados/activarEliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/empleados/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/empleados/role.js') }}" type="text/javascript"></script>
     </div>
 @stop

@@ -184,10 +184,10 @@
     <!--AJAX-->
     <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('storage/js/categorias/agregar.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('storage/js/categorias/editar.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('storage/js/categorias/actualizar.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('storage/js/categorias/activarEliminar.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('storage/js/categorias/eliminar.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('storage/js/categorias/menu.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/categorias/agregar.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/categorias/editar.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/categorias/actualizar.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/categorias/activarEliminar.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/categorias/eliminar.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/categorias/menu.js') }}" type="text/javascript"></script>
 @stop

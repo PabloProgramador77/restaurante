@@ -128,17 +128,17 @@
 
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/platillos/editar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/ordenes/init.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/platillos/editar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/ordenes/init.js') }}" type="text/javascript"></script>
         
         @if ( session()->get('idOrden') )
             
-            <script src="{{ asset('storage/js/platillos/ordenar.js') }}" type="text/javascript"></script>
-            <script src="{{ asset('storage/js/ordenes/terminar.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('js/platillos/ordenar.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('js/ordenes/terminar.js') }}" type="text/javascript"></script>
 
         @else
 
-            <script src="{{ asset('storage/js/platillos/orden.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('js/platillos/orden.js') }}" type="text/javascript"></script>
             
         @endif
         

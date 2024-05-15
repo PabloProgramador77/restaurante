@@ -219,11 +219,11 @@
         <!--AJAX-->
         <script src="{{ asset('js/jquery-3.6.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/sweetAlert.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/roles/agregar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/roles/editar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/roles/actualizar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/roles/activarEliminar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/roles/eliminar.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('storage/js/roles/permisos.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/roles/agregar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/roles/editar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/roles/actualizar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/roles/activarEliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/roles/eliminar.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/roles/permisos.js') }}" type="text/javascript"></script>
     </div>
 @stop
