@@ -195,6 +195,22 @@
                     <video src="{{ asset('media/videos/Corte.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
+            <div class="row p-2 m-5 border-bottom rounded">
+                <h4 class="fs-5 fw-bold text-center bg-warning p-2 rounded"><i class="fas fa-star"></i> Nuevas Funciones <i class="fas fa-star"></i></h4>
+                <div class="col-md-6">
+                    <h4 class="fs-5 fw-bold">Gestión de Empleados</h4>
+                    <p class="fs-6 fw-semibold">Aprende a gestionar tus empleados, así como su rol y permisos dentro de la plataforma:</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Altas</li>
+                        <li class="list-group-item">Consulta</li>
+                        <li class="list-group-item">Visualización</li>
+                        <li class="list-group-item">Rol y Permisos</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <video src="{{ asset('media/videos/RolesPermisos.mp4') }}" controls="true" width="625px" height="auto"></video>
+                </div>
+            </div>
         </div>
 
         <!--Banner Proximamente-->
@@ -202,14 +218,15 @@
             <div class="row" style="background-image: url('media/coming.jpg'); background-size: cover; background-position: center;">
                 <div class="col-md-12 p-5 m-5 w-50 m-auto">
                     <h4 class="fs-4 fw-bold text-center p-2"><i class="fas fa-award"></i> Proximamente</h4>
-                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de mayo de 2024 se actualizará a la versión 1.1.0 con una nueva función de administración de empleados.</p>
+                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de junio de 2024 se actualizará a la versión 1.2.1 con una nueva función de administración de sabores.</p>
                     <p class="fs-6 fw-semibold bg-info p-2">Contará con funciones como:</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Alta de empleados</li>
-                        <li class="list-group-item">Consulta de empleados</li>
-                        <li class="list-group-item">Edición de empleados</li>
-                        <li class="list-group-item">Eliminación de empleados</li>
-                        <li class="list-group-item">Asignación de permisos</li>
+                        <li class="list-group-item">Alta de sabores</li>
+                        <li class="list-group-item">Consulta de sabores</li>
+                        <li class="list-group-item">Edición de sabores</li>
+                        <li class="list-group-item">Eliminación de sabores</li>
+                        <li class="list-group-item">Asignación de sabores a los platillos</li>
+                        <li class="list-group-item">Selección de sabores en los platillos al tomar la orden del cliente</li>
                     </ul>
                 </div>
             </div>
