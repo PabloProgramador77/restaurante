@@ -8,6 +8,8 @@ use App\Http\Requests\Impresora\Create;
 use App\Http\Requests\Impresora\Read;
 use App\Http\Requests\Impresora\Update;
 use App\Http\Requests\Impresora\Delete;
+use App\Http\Requests\Impresora\Test;
+use GuzzleHttp\Client;
 
 class ImpresoraController extends Controller
 {
@@ -44,9 +46,47 @@ class ImpresoraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Test $request)
     {
-        //
+        try {
+            
+            $apiKey = '75cbiK9DOGjsvmTXwckENT_Z-6FFVlss8AiPrNWa5jA';
+            $client = new Client();
+            $impresora = Impresora::find( $request->id );
+
+            if( $impresora->id ){
+
+                $response = $client->post( 'https://api.printnode.com/printjobs', [
+
+                    'auth' => [$apiKey, ''],
+                    'json' => [
+
+                        'printer' => $impresora->seriePrint,
+                        'title' => 'Testing Printer',
+                        'contentType' => 'pdf_base64',
+                        'content' => base64_encode( file_get_contents( public_path('media/').'test.pdf' ) ),
+                        'source' => 'Foodify',
+
+                    ]
+
+                ]);
+
+                if( $response->getBody() == true ){
+
+                    $datos['exito'] = true;
+
+                }
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            $datos['exito'] = false;
+            $datos['mensaje'] = $th->getMessage();
+
+        }
+
+        return response()->json( $datos );
     }
 
     /**

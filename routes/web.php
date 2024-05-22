@@ -139,3 +139,4 @@ Route::post('/impresoras/agregar', [App\Http\Controllers\ImpresoraController::cl
 Route::post('/impresoras/editar', [App\Http\Controllers\ImpresoraController::class, 'show'])->name('editar-impresora');
 Route::post('/impresoras/actualizar', [App\Http\Controllers\ImpresoraController::class, 'update'])->name('actualizar-impresora');
 Route::post('/impresoras/eliminar', [App\Http\Controllers\ImpresoraController::class, 'destroy'])->name('eliminar-impresora');
+Route::post('/impresoras/prueba', [App\Http\Controllers\ImpresoraController::class, 'create'])->name('prueba-impresora');

@@ -58,7 +58,7 @@
                                             <a class="btn btn-danger eliminar" role="button" title="Eliminar Impresora" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $impresora->id }}">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
-                                            <a class="btn btn-secondary menu" role="button" title="Prueba de Impresión" data-toggle="modal" data-target="#modalMenu" data-id="{{ $impresora->id }}">
+                                            <a class="btn btn-secondary prueba" role="button" title="Prueba de Impresión" data-id="{{ $impresora->id }}">
                                                 <i class="fas fa-print"></i>
                                             </a>
                                         </td>
@@ -189,5 +189,5 @@
     <script src="{{ asset('js/impresoras/actualizar.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/impresoras/activarEliminar.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/impresoras/eliminar.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/impresoras/prueba.js') }" type="text/javascript"></script>
+    <script src="{{ asset('js/impresoras/prueba.js') }}" type="text/javascript"></script>
 @stop
