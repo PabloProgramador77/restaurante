@@ -39,9 +39,12 @@
                 <div class="col-md-4">
                     <x-adminlte-info-box title="Pedidos" text="{{ count($ordenes) }}" icon="fas fa-tags" theme="gradient-info"/>
                 </div>
-            <div class="col-md-4">
-                <x-adminlte-info-box title="Total de Ventas" text="{{ $ventas }} M.N." icon="fas fa-dollar-sign" theme="gradient-success"/>
-            </div>
+                <div class="col-md-4">
+                    <x-adminlte-info-box title="Total de Ventas" text="{{ $ventas }} M.N." icon="fas fa-dollar-sign" theme="gradient-success"/>
+                </div>
+                <div class="col-md-4">
+                    <x-adminlte-info-box title="Impresoras" text="" icon="fas fa-print" theme="secondary"></x-adminlte-info-box>
+                </div>
         </div>
     </div>
 @stop

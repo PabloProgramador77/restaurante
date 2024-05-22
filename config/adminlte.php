@@ -385,8 +385,25 @@ return [
                     'can' => 'ver-permisos',
                 ],
             ],
-            'can' => 'ver-empleados',
-        ],        
+            'can' => 'ver-empleados',  
+        ],
+        [
+            'text' => 'Impresión',
+            'icon' => 'fas fa-print',
+            'icon_color' => 'purple',
+            'label' => 'Premium',
+            'label_color' => 'warning',
+            'submenu' => [
+                [
+                    'text' => 'Mis impresoras',
+                    'url' => '/impresoras',
+                    'icon' => 'fas fa-print',
+                    'icon_color' => 'purple',
+                    'label' => 'Premium',
+                    'label_color' => 'warning',
+                ],
+            ],
+        ],      
     ],
 
     /*

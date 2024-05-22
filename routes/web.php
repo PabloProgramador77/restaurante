@@ -128,3 +128,14 @@ Route::post('/empleados/editar', [App\Http\Controllers\EmpleadoController::class
 Route::post('/empleados/actualizar', [App\Http\Controllers\EmpleadoController::class, 'update'])->name('actualizar-empleado');
 Route::post('/empleados/eliminar', [App\Http\Controllers\EmpleadoController::class, 'destroy'])->name('eliminar-empleado');
 Route::post('/empleados/role', [App\Http\Controllers\EmpleadoController::class, 'update_rol'])->name('actualizar-rol-empleado');
+
+/**
+ * --------------------------------------------------------------------------
+ * Rutas de Impresoras
+ * --------------------------------------------------
+ */
+Route::get('/impresoras', [App\Http\Controllers\ImpresoraController::class, 'index'])->name('impresoras');
+Route::post('/impresoras/agregar', [App\Http\Controllers\ImpresoraController::class, 'store'])->name('agregar-impresora');
+Route::post('/impresoras/editar', [App\Http\Controllers\ImpresoraController::class, 'show'])->name('editar-impresora');
+Route::post('/impresoras/actualizar', [App\Http\Controllers\ImpresoraController::class, 'update'])->name('actualizar-impresora');
+Route::post('/impresoras/eliminar', [App\Http\Controllers\ImpresoraController::class, 'destroy'])->name('eliminar-impresora');
