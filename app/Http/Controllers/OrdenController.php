@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Orden;
 use App\Models\OrdenPlatillo;
 use App\Models\Platillo;
+use App\Models\Impresora;
 use Illuminate\Http\Request;
 use App\Http\Requests\Ordenes\StoreOrden;
 use App\Http\Requests\Ordenes\EditOrden;
 use App\Http\Requests\Ordenes\CobrarOrden;
 use App\Http\Requests\Ordenes\DestroyOrden;
 use \Mpdf\Mpdf as PDF;
+use GuzzleHttp\Client;
 
 class OrdenController extends Controller
 {
@@ -359,7 +361,15 @@ class OrdenController extends Controller
 
             if( file_exists(public_path('storage/pdf/comandas/').'comanda'.$orden->id).'.pdf' ){
 
-                return true;
+                if( $this->imprimirComanda( public_path('storage/pdf/comandas/').'comanda'.$orden->id.'.pdf' ) ){
+
+                    return true;
+
+                }else{
+
+                    return false;
+
+                }
 
             }else{
 
@@ -432,6 +442,8 @@ class OrdenController extends Controller
 
             if( file_exists(public_path('storage/pdf/tickets/').'ticket'.$orden->id).'.pdf' ){
 
+                $this->imprimirTicket( public_path('storage/pdf/tickets/').'ticket'.$orden->id.'.pdf' );
+
                 return true;
 
             }else{
@@ -501,6 +513,100 @@ class OrdenController extends Controller
         } catch (\Throwable $th) {
             
             echo $th->getMessage();
+
+        }
+    }
+
+    /**
+     * Impresión de comanda PDF
+     */
+    public function imprimirComanda( $nombreComanda ){
+        try {
+            
+            $impresora = Impresora::where('tipoImpresion', 'LIKE', '%Comandas%')->first();
+
+            if( $impresora->id ){
+
+                $apiKey = '75cbiK9DOGjsvmTXwckENT_Z-6FFVlss8AiPrNWa5jA';
+                $client = new Client();
+
+                $response = $client->post( 'https://api.printnode.com/printjobs', [
+
+                    'auth' => [$apiKey, ''],
+                    'json' => [
+
+                        'printer' => $impresora->seriePrint,
+                        'title' => 'Priting Comanda',
+                        'contentType' => 'pdf_base64',
+                        'content' => base64_encode( file_get_contents( $nombreComanda ) ),
+                        'source' => 'Foodify',
+
+                    ]
+
+                ]);
+
+                if( $response->getBody() == true ){
+
+                    return true;
+
+                }else{
+
+                    return false;
+
+                }
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            return false;
+
+        }
+    }
+
+    /**
+     * Impresion de ticket PDF
+     */
+    public function imprimirTicket( $nombreTicket ){
+        try {
+            
+            $impresora = Impresora::where('tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            if( $impresora->id ){
+
+                $apiKey = '75cbiK9DOGjsvmTXwckENT_Z-6FFVlss8AiPrNWa5jA';
+                $client = new Client();
+
+                $response = $client->post( 'https://api.printnode.com/printjobs', [
+
+                    'auth' => [$apiKey, ''],
+                    'json' => [
+
+                        'printer' => $impresora->seriePrint,
+                        'title' => 'Printing Ticket',
+                        'contentType' => 'pdf_base64',
+                        'content' => base64_encode( file_get_contents( $nombreTicket ) ),
+                        'source' => 'Foodify',
+
+                    ]
+
+                ]);
+
+                if( $response->getBody() == true ){
+
+                    return true;
+
+                }else{
+
+                    return false;
+
+                }
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            return false;
 
         }
     }

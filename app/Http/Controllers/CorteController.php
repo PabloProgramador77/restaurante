@@ -7,11 +7,13 @@ use App\Models\Platillo;
 use App\Models\Orden;
 use App\Models\CortePlatillo;
 use App\Models\CorteUsers;
+use App\Models\Impresora;
 use Illuminate\Http\Request;
 use App\Http\Requests\Cortes\StoreCorte;
 use App\Http\Requests\Cortes\ShowCorte;
 use App\Http\Requests\Cortes\PrintCorte;
 use Mpdf\Mpdf as PDF;
+use GuzzleHttp\Client;
 
 class CorteController extends Controller
 {
@@ -233,8 +235,17 @@ class CorteController extends Controller
 
             if( file_exists( public_path('storage/pdf/cortes/').'corte'.$corte->id ).'.pdf' ){
 
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Corte Creado';
+                if( $this->imprimirCorte( public_path('storage/pdf/cortes/').'corte'.$corte->id.'.pdf' ) ){
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Corte Creado e Impreso';
+
+                }else{
+
+                    $datos['exito'] = false;
+                    $datos['mensaje'] = 'Corte creado';
+
+                }
                 
             }
 
@@ -314,6 +325,54 @@ class CorteController extends Controller
         } catch (\Throwable $th) {
             
             echo $th->getMessage();
+
+        }
+
+    }
+
+    /**
+     * Impresion de Corte PDF
+     */
+    public function imprimirCorte( $nombreCorte ){
+        try {
+            
+            $impresora = Impresora::where('tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            if( $impresora->id ){
+
+                $apiKey = '75cbiK9DOGjsvmTXwckENT_Z-6FFVlss8AiPrNWa5jA';
+                $client = new Client();
+
+                $response = $client->post( 'https://api.printnode.com/printjobs', [
+
+                    'auth' => [$apiKey, ''],
+                    'json' => [
+
+                        'printer' => $impresora->seriePrint,
+                        'title' => 'Printing Corte',
+                        'contentType' => 'pdf_base64',
+                        'content' => base64_encode( file_get_contents( $nombreCorte ) ),
+                        'source' => 'Foodify',
+
+                    ]
+
+                ]);
+
+                if( $response->getBody() == true ){
+
+                    return true;
+
+                }else{
+
+                    return false;
+
+                }
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            return false;
 
         }
     }
