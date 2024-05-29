@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('impresoras', function (Blueprint $table) {
+            $table->bigInteger('idUser')->unsigned()->after('tipoImpresion')->nullable();
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('impresoras', function (Blueprint $table) {
+            $table->dropForeign(['idUser']);
+            $table->dropColumn('idUser');
+        });
+    }
+};

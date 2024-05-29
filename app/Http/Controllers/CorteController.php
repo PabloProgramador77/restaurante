@@ -336,7 +336,19 @@ class CorteController extends Controller
     public function imprimirCorte( $nombreCorte ){
         try {
             
-            $impresora = Impresora::where('tipoImpresion', 'LIKE', '%Tickets%')->first();
+            if( auth()->user()->role(['Gerente']) ){
+
+                $impresora = Impresora::where('idUser', '=', auth()->user()->id)
+                            ->where('tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            }else{
+
+                $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                            ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->where('impresoras.tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            }
 
             if( $impresora->id ){
 

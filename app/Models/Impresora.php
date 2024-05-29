@@ -15,7 +15,14 @@ class Impresora extends Model
 
         'seriePrint',
         'tipoImpresion',
+        'idUser',
 
     ];
+
+    public function user(){
+
+        return $this->hasOne( User::class, 'id', 'idUser' );
+        
+    }
     
 }

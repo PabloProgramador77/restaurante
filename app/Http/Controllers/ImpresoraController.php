@@ -24,7 +24,7 @@ class ImpresoraController extends Controller
             
             if( auth()->user()->id ){
 
-                $impresoras = Impresora::all();
+                $impresoras = Impresora::where('idUser', '=', auth()->user()->id)->get();
 
                 return view('impresoras.index', compact('impresoras'));
 
@@ -103,6 +103,7 @@ class ImpresoraController extends Controller
 
                 'seriePrint' => $request->impresora,
                 'tipoImpresion' => $request->funcion,
+                'idUser' => auth()->user()->id,
 
             ]);
 

@@ -523,7 +523,19 @@ class OrdenController extends Controller
     public function imprimirComanda( $nombreComanda ){
         try {
             
-            $impresora = Impresora::where('tipoImpresion', 'LIKE', '%Comandas%')->first();
+            if( auth()->user()->hasRole('Gerente') ){
+
+                $impresora = Impresora::where('idUser', '=', auth()->user()->id)
+                            ->where('tipoImpresion', 'LIKE', '%Comandas%')->first();
+
+            }else{
+
+                $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                            ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->where('impresoras.tipoImpresion', 'LIKE', '%Comandas%')->first();
+
+            }
 
             if( $impresora->id ){
 
@@ -570,7 +582,19 @@ class OrdenController extends Controller
     public function imprimirTicket( $nombreTicket ){
         try {
             
-            $impresora = Impresora::where('tipoImpresion', 'LIKE', '%Tickets%')->first();
+            if( auth()->user()->hasRole('Gerente') ){
+
+                $impresora = Impresora::where('idUser', '=', auth()->user()->id)
+                            ->where('tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            }else{
+
+                $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                            ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->where('impresoras.tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            }
 
             if( $impresora->id ){
 
