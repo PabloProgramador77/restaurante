@@ -140,3 +140,4 @@ Route::post('/impresoras/editar', [App\Http\Controllers\ImpresoraController::cla
 Route::post('/impresoras/actualizar', [App\Http\Controllers\ImpresoraController::class, 'update'])->name('actualizar-impresora');
 Route::post('/impresoras/eliminar', [App\Http\Controllers\ImpresoraController::class, 'destroy'])->name('eliminar-impresora');
 Route::post('/impresoras/prueba', [App\Http\Controllers\ImpresoraController::class, 'create'])->name('prueba-impresora');
+Route::get('/impresoras/descargar', [App\Http\Controllers\ImpresoraController::class, 'printNode'])->name('printNode-descargar');

@@ -17,13 +17,17 @@
         </div>
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
             @can('crear-pedido')
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-6 col-sm-6">
                     <x-adminlte-small-box title="Ordenar" text="Crear nuevo pedido" icon="fas fa-utensils" theme="warning" url="{{ url('/menu') }}" url-text="Ordenar Ahora"/>
                 </div>
             @endcan
-            <div class="col-md-6">
-                <x-adminlte-small-box title="Videotutoriales" text="Tomate 7 minutos para ver los videos y aprende a usar la plataforma como todo un profesional" icon="fas fa-photo-video" theme="teal" url="{{ url('/videos') }}" url-text="Ver videos"/>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <x-adminlte-small-box title="Impresión Remota" text="Instala el software para imprimir tus comandas y tickets" icon="fas fa-print" theme="danger" url="{{ url('/impresoras/descargar') }}" url-text="Descargar ahora"></x-adminlte-small-box>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <x-adminlte-small-box title="Videotutoriales" text="Aprende a usar Foodify como todo un profesional con los videos que tenemos para ti en el mismo tiempo que toma prepararte un café" icon="fas fa-photo-video" theme="teal" url="{{ url('/videos') }}" url-text="Ver videos"/>
+            </div>
+            
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">

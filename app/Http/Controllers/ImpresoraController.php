@@ -221,4 +221,24 @@ class ImpresoraController extends Controller
 
         return response()->json( $datos );
     }
+
+    /**
+     * Descarga de software cliente PrintNode
+     * ! Se retorna el exe del path publico
+     */
+    public function printNode(){
+        try {
+            
+            if( file_exists(public_path().'/PrintNode-4.28.0.exe' ) ){
+
+                return response()->download( public_path().'/PrintNode-4.28.0.exe' );
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            echo $th->getMessage();
+
+        }
+    }
 }
