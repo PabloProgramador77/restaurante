@@ -211,6 +211,22 @@
                     <video src="{{ asset('media/videos/RolesPermisos.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
+            <div class="row p-2 m-5 border-bottom rounded">
+                <h4 class="fs-5 fw-bold text-center bg-warning p-2 rounded"><i class="fas fa-star"></i> Nuevas Funciones <i class="fas fa-star"></i></h4>
+                <div class="col-md-6">
+                    <h4 class="fs-5 fw-bold">Gestión de Impresoras</h4>
+                    <p class="fs-6 fw-semibold">Aprende a gestionar tus impresoras para la impresión de comandas y tickets dentro de la plataforma:</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Altas</li>
+                        <li class="list-group-item">Consulta</li>
+                        <li class="list-group-item">Visualización</li>
+                        <li class="list-group-item">Configuración</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <video src="{{ asset('media/videos/Impresoras.mp4') }}" controls="true" width="625px" height="auto"></video>
+                </div>
+            </div>
         </div>
 
         <!--Banner Proximamente-->

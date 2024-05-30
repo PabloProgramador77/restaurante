@@ -14,23 +14,26 @@
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">
-            <div class="col-md-4">
-                <x-adminlte-small-box title="Categorías" text="Registro, edición y borrar categorías" icon="fas fa-bars" theme="secondary" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalCategorias"/>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Categorías" text="Administración de categorías" icon="fas fa-bars" theme="secondary" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalCategorias"/>
             </div>
-            <div class="col-md-4">
-                <x-adminlte-small-box title="Platillos" text="Registro, edición y borrar platillos" icon="fas fa-hamburger" theme="primary" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalPlatillos"/>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Platillos" text="Administración de platillos" icon="fas fa-hamburger" theme="primary" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalPlatillos"/>
             </div>
-            <div class="col-md-4">
-                <x-adminlte-small-box title="Mesas" text="Registro, edición y borrar mesas" icon="fas fa-chair" theme="info" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalMesas"/>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Mesas" text="Administración de mesas" icon="fas fa-chair" theme="info" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalMesas"/>
             </div>
-            <div class="col-md-4">
-                <x-adminlte-small-box title="Pedidos" text="Crear, editar y cobrar" icon="fas fa-tags" theme="success" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalPedidos"/>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Pedidos" text="Administración de pedidos" icon="fas fa-tags" theme="success" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalPedidos"/>
             </div>
-            <div class="col-md-4">
-                <x-adminlte-small-box title="Caja" text="Corte de caja" icon="fas fa-cash-register" theme="teal" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalCaja"/>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Caja" text="Administración de cortes de caja" icon="fas fa-cash-register" theme="teal" url="#" url-text="Ver videos" data-toggle="modal" data-target="#modalCaja"/>
             </div>
-            <div class="col-md-4">
-                <x-adminlte-small-box title="Empleados" text="Registro, edición, eliminación y asignación de roles" icon="fas fa-users" theme="warning" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalEmpleado"/>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Empleados" text="Administración de empleados" icon="fas fa-user-alt" theme="warning" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalEmpleado"/>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Impresoras" text="Administración de impresoras" icon="fas fa-print" theme="purple" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalImpresora"/>
             </div>
         </div>
     </div>
@@ -45,7 +48,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid border rounde">
-                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y borrar categorías de tu restaurante, cafetería o bar.</p>
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y borrar categorías de tu negocio.</p>
                         <video src="{{ asset('media/videos/Categorias.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
@@ -62,7 +65,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid border rounde">
-                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y borrar platillos de tu restaurante, cafetería o bar.</p>
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y borrar platillos de tu negocio.</p>
                         <video src="{{ asset('media/videos/Platillos.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
@@ -79,7 +82,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid border rounde">
-                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y borrar mesas de tu restaurante, cafetería o bar.</p>
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y borrar mesas de tu negocio.</p>
                         <video src="{{ asset('media/videos/Mesas.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
@@ -96,7 +99,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid border rounde">
-                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y cobrar pedidos de tu restaurante, cafetería o bar.</p>
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como registrar, editar y cobrar pedidos de tu negocio.</p>
                         <video src="{{ asset('media/videos/Pedidos.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
@@ -113,7 +116,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid border rounde">
-                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como hacer corte de caja de tu restaurante, cafetería o bar.</p>
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como hacer corte de caja de tu negocio.</p>
                         <video src="{{ asset('media/videos/Corte.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
@@ -130,8 +133,25 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid border rounde">
-                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como gestionar los empleados de tu restaurante, cafetería o bar.</p>
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como gestionar los empleados de tu negocio.</p>
                         <video src="{{ asset('media/videos/RolesPermisos.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalImpresora" tabindex="-1" aria-labellebdy="modalImpresoraLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-bottom">
+                    <h3 class="modal-title fs-4 fw-semibold"><i class="fas fa-cash-register"></i> Administración de Impresoras</h3>
+                    <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid border rounde">
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como gestionar los impresoras de tu negocio.</p>
+                        <video src="{{ asset('media/videos/Impresoras.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
             </div>
