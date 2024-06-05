@@ -71,15 +71,39 @@ class OrdenController extends Controller
                 $orden->idMesa = $request->mesa;
                 $orden->save();
 
-                if( $this->comanda() ){
+                //Comprobación de impresoras
+                if( auth()->user()->hasRole('Gerente') ){
 
-                    $datos['exito'] = true;
-                    $datos['mensaje'] = 'Orden Terminada.';
+                    $impresora = Impresora::where('idUser', '=', auth()->user()->id)
+                                ->where('tipoImpresion', 'LIKE', '%Comandas%')->first();
+    
+                }else{
+    
+                    $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                                ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                                ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                                ->where('impresoras.tipoImpresion', 'LIKE', '%Comandas%')->first();
+    
+                }
+
+                if( $impresora->id ){
+
+                    if( $this->comanda() ){
+
+                        $datos['exito'] = true;
+                        $datos['mensaje'] = 'Orden Terminada.';
+    
+                    }else{
+    
+                        $datos['exito'] = false;
+                        $datos['mensaje'] = 'Comanda no impresa.';
+    
+                    }
 
                 }else{
 
-                    $datos['exito'] = false;
-                    $datos['mensaje'] = 'Comanda no impresa.';
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Orden Terminada';
 
                 }
 
@@ -260,17 +284,40 @@ class OrdenController extends Controller
 
                     'estadoPedido' => 'Pagado'
 
-                ]);
+            ]);
 
-            if( $this->ticket( $request->id ) ){
+            if( auth()->user()->hasRole('Gerente') ){
 
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Orden Pagada.';
+                $impresora = Impresora::where('idUser', '=', auth()->user()->id)
+                            ->where('tipoImpresion', 'LIKE', '%Tickets%')->first();
 
             }else{
 
-                $datos['exito'] = false;
-                $datos['mensaje'] = 'Ticket no impreso.';
+                $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                            ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->where('impresoras.tipoImpresion', 'LIKE', '%Tickets%')->first();
+
+            }
+
+            if( $impresora->id ){
+
+                if( $this->ticket( $request->id ) ){
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Orden Pagada.';
+    
+                }else{
+    
+                    $datos['exito'] = false;
+                    $datos['mensaje'] = 'Ticket no impreso.';
+    
+                }
+
+            }else{
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Orden Cobrada';
 
             }
 

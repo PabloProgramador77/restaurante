@@ -80,9 +80,21 @@ $(document).ready(function(){
 
                     }else{
 
-                        Toast.fire({
-                            icon: 'error',
-                            title: respuesta.mensaje
+                        Swal.fire({
+
+                            icon: 'warning',
+                            title: respuesta.mensaje,
+                            allowOutsideClick: false,
+                            showConfirmButton: true,
+
+                        }).then((resultado)=>{
+
+                            if( resultado.isConfirmed ){
+
+                                window.location.href = '/ordenes';
+
+                            }
+
                         });
 
                         $("#terminar").attr('disabled', false);
