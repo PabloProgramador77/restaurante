@@ -79,16 +79,17 @@ $(document).ready(function(){
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Platillo Ordenado.',
-                                    showConfirmButton: false,
-                                    timer: 975
+                                    showConfirmButton: true,
+                                    allowOutsideClick: false,
+                                }).then( function( resultado ){
+
+                                    if( resultado.isConfirmed ){
+
+                                        window.location.href = '/menu';
+
+                                    }
+                                    
                                 });
-
-                                $("#platillo").val('');
-                                $("#cantidad").val(1);
-                                $("#nota").val('');
-
-                                $("#cantidad").attr('disabled', false);
-                                $("#nota").attr('disabled', false);
         
                             }else{
         
