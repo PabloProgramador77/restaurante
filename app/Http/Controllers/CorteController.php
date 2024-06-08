@@ -26,22 +26,24 @@ class CorteController extends Controller
     {
         try {
             
-            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
+            if( auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Mozo') ){
 
                 $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
                     ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
+                    ->join('user_empleados', 'corte_users.idUser', '=', 'user_empleados.idEmpleado')
                     ->where('corte_users.idUser', '=', auth()->user()->id)
                     ->orderBy('cortes.created_at', 'desc')
                     ->get();
 
-            }else{
+            }
+
+            if( auth()->user()->hasRole('Gerente') ){
 
                 $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
-                    ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
-                    ->join('user_empleados', 'corte_users.idUser', '=', 'user_empleados.idUser')
-                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                    ->orderBy('cortes.created_at', 'desc')
-                    ->get();
+                        ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
+                        ->where('corte_users.idUser', '=', auth()->user()->id)
+                        ->orderBy('cortes.created_at', 'desc')
+                        ->get();
 
             }
 

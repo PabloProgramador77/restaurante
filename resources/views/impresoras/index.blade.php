@@ -23,10 +23,12 @@
                     <small class="fw-semibold fs-5 text-info"><b>Elige la impresora a gestionar o agrega una nueva</b>.</small>
                 </div>
                 <div class="col-md-3">
-                    <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
-                        <i class="fas fa-plus-circle"></i>
-                        Agregar Impresora
-                    </a>
+                    @can('crear-impresora')
+                        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
+                            <i class="fas fa-plus-circle"></i>
+                            Agregar Impresora
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -42,28 +44,35 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
+                    @can('ver-impresoras')
                     <tbody id="contenedorImpresoras">
                         @if ( count($impresoras) > 0 )
                                 
                                 @foreach ($impresoras as $impresora)
-                                    
+                                    @can('ver-impresora')
                                     <tr>
                                         <td>{{ $impresora->id }}</td>
                                         <td>{{ $impresora->seriePrint }}</td>
                                         <td>{{ $impresora->tipoImpresion }}</td>
                                         <td>
+                                            @can('editar-impresora')
                                             <a class="btn btn-info editar" role="button" title="Editar Impresora" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $impresora->id }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+                                            @endcan
+                                            @can('borrar-impresora')
                                             <a class="btn btn-danger eliminar" role="button" title="Eliminar Impresora" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $impresora->id }}">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
+                                            @endcan
+                                            @can('probar-impresora')
                                             <a class="btn btn-secondary prueba" role="button" title="Prueba de Impresión" data-id="{{ $impresora->id }}">
                                                 <i class="fas fa-print"></i>
                                             </a>
+                                            @endcan
                                         </td>
                                     </tr>    
-
+                                    @endcan
                                 @endforeach
 
                             @else
@@ -74,6 +83,7 @@
                                 
                             @endif
                     </tbody>
+                @endcan
             </table>
         </div>
 

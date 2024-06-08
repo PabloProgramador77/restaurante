@@ -401,8 +401,10 @@ return [
                     'icon_color' => 'purple',
                     'label' => 'Premium',
                     'label_color' => 'warning',
+                    'can' => 'ver-impresoras',
                 ],
             ],
+            'can' => 'ver-impresoras'
         ],      
     ],
 

@@ -21,7 +21,7 @@ class MesaController extends Controller
     {
         try {
             
-            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
+            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
 
                 $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
                     ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')

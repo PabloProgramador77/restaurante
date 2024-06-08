@@ -22,7 +22,7 @@ class PlatilloController extends Controller
     {
         try {
             
-            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
+            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
 
                 $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo')
                 ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')

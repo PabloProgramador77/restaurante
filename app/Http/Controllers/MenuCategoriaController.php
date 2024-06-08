@@ -18,7 +18,7 @@ class MenuCategoriaController extends Controller
      */
     public function index()
     {
-        if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
+        if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
 
             $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
                 ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
@@ -52,7 +52,7 @@ class MenuCategoriaController extends Controller
             ->where('menu_categorias.idCategoria', '=', $idCategoria)
             ->get();
 
-        if( auth()->user()->role() == 'Gerente' ){
+        if( auth()->user()->hasRole('Gerente') ){
 
             $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
                 ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')

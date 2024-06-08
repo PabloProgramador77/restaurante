@@ -24,8 +24,20 @@ class ImpresoraController extends Controller
             
             if( auth()->user()->id ){
 
-                $impresoras = Impresora::where('idUser', '=', auth()->user()->id)->get();
+                if( auth()->user()->hasRole('Gerente') ){
 
+                    $impresoras = Impresora::where('idUser', '=', auth()->user()->id)->get();
+
+                }else{
+
+                    $impresoras = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                                ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                                ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                                ->where('impresoras.tipoImpresion', 'LIKE', '%Comandas%')
+                                ->get();
+
+                }
+                
                 return view('impresoras.index', compact('impresoras'));
 
             }else{

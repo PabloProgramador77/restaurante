@@ -25,19 +25,11 @@ class EmpleadoController extends Controller
     {
         try {
 
-            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' || auth()->user()->role() === 'Developer' ){
+            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Developer') ){
 
                 $empleados = User::select('users.id', 'users.name', 'users.email', 'users.created_at')
                     ->join('user_empleados', 'users.id', '=', 'user_empleados.idEmpleado')
                     ->where('user_empleados.idUser', '=', auth()->user()->id)
-                    ->orderBy('users.created_at', 'desc')
-                    ->get();
-
-            }else{
-
-                $empleados = User::select('users.id', 'users.name', 'users.email', 'users.created_at')
-                    ->join('user_empleados', 'users.id', '=', 'user_empleados.idUser')
-                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
                     ->orderBy('users.created_at', 'desc')
                     ->get();
 

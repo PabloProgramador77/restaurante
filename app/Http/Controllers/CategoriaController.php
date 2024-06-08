@@ -22,7 +22,7 @@ class CategoriaController extends Controller
     {
         try {
             
-            if( auth()->user()->role() == 'Gerente' || auth()->user()->role() == 'Supervisor' ){
+            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
 
                 $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
                     ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')

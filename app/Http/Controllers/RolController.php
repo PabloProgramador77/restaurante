@@ -51,7 +51,7 @@ class RolController extends Controller
 
             if( $role->id ){
 
-                $role->syncPermissions( $request->permisos );
+                $role->givePermissionTo( $request->permisos );
 
                 $datos['exito'] = true;
                 $datos['mensaje'] = 'Permisos Registrados.';
