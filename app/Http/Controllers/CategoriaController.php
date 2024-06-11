@@ -22,35 +22,33 @@ class CategoriaController extends Controller
     {
         try {
             
-            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
+            if( auth()->user()->hasRole('Gerente') ){
 
                 $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
-                    ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
-                    ->where('categoria_users.idUser', '=', auth()->user()->id)
-                    ->get();
+                            ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                            ->where('categoria_users.idUser', '=', auth()->user()->id)
+                            ->get();
 
                 $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo')
-                    ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
-                    ->where('platillo_users.idUser', '=', auth()->user()->id)
-                    ->orderBy('platillos.nombrePlatillo', 'asc')
-                    ->get();
+                            ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+                            ->where('platillo_users.idUser', '=', auth()->user()->id)
+                            ->get();
 
-            }
-            
-            if( auth()->user()->role() == 'Mozo' ){
+            }else{
 
                 $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
-                    ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
-                    ->join('user_empleados', 'categoria_users.idUser', '=', 'user_empleados.idUser')
-                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                    ->get();
+                            ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                            ->join('user_empleados', 'categoria_users.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->orderBy('categorias.created_at', 'desc')
+                            ->get();
 
                 $platillos = Platillo::select('platillos.id', 'platillos.nombrePlatillo')
-                    ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
-                    ->join('user_empleados', 'platillo_users.idUser', '=', 'user_empleados.idUser')
-                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                    ->orderBy('platillos.nombrePlatillo', 'asc')
-                    ->get();
+                            ->join('platillo_users', 'platillos.id', '=', 'platillo_users.idPlatillo')
+                            ->join('user_empleados', 'platillo_users.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->orderBy('platillos.nombrePlatillo', 'asc')
+                            ->get();
 
             }
 
@@ -58,7 +56,7 @@ class CategoriaController extends Controller
 
         }catch(QueryException $qe){
 
-            echo "Fatal Error: ".$th->getMessage();
+            echo "Fatal Error: ".$qe->getMessage();
 
         }catch (\Throwable $th) {
 
@@ -95,12 +93,25 @@ class CategoriaController extends Controller
 
             if( $categoria->id ){
 
-                $categoriaUser = CategoriaUser::create([
+                if( auth()->user()->hasRole('Gerente') ){
 
-                    'idCategoria' => $categoria->id,
-                    'idUser' => auth()->user()->id
+                    $categoriaUser = CategoriaUser::create([
 
-                ]);
+                        'idCategoria' => $categoria->id,
+                        'idUser' => auth()->user()->id
+    
+                    ]);
+
+                }else{
+
+                    $categoriaUser = CategoriaUser::create([
+
+                        'idCategoria' => $categoria->id,
+                        'idUser' => session()->get('idGerente')
+    
+                    ]);
+
+                }
 
                 if( $categoriaUser->id ){
 

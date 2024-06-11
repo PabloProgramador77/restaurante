@@ -25,13 +25,19 @@ class EmpleadoController extends Controller
     {
         try {
 
-            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Developer') ){
+            if( auth()->user()->hasRole('Gerente') ){
 
                 $empleados = User::select('users.id', 'users.name', 'users.email', 'users.created_at')
-                    ->join('user_empleados', 'users.id', '=', 'user_empleados.idEmpleado')
-                    ->where('user_empleados.idUser', '=', auth()->user()->id)
-                    ->orderBy('users.created_at', 'desc')
-                    ->get();
+                            ->join('user_empleados', 'users.id', '=', 'user_empleados.idEmpleado')
+                            ->where('user_empleados.idUser', '=', auth()->user()->id)
+                            ->get();
+
+            }else{
+
+                $empleados = User::select('users.id', 'users.name', 'users.email', 'users.created_at')
+                            ->join('user_empleados', 'users.id', '=', 'user_empleados.idEmpleado')
+                            ->where('user_empleados.idUser', '=', session()->get('idGerente'))
+                            ->get();
 
             }
 
@@ -76,13 +82,26 @@ class EmpleadoController extends Controller
 
             if( $empleado->id ){
 
-                $userEmpleado = UserEmpleado::create([
+                if( auth()->user()->hasRole('Gerente') ){
 
-                    'idUser' => auth()->user()->id,
-                    'idEmpleado' => $empleado->id
+                    $userEmpleado = UserEmpleado::create([
 
-                ]);
+                        'idUser' => auth()->user()->id,
+                        'idEmpleado' => $empleado->id
+    
+                    ]);
 
+                }else{
+
+                    $userEmpleado = UserEmpleado::create([
+
+                        'idUser' => session()->get('idGerente'),
+                        'idEmpleado' => $empleado->id
+    
+                    ]);    
+
+                }
+                
                 if( $userEmpleado->id ){
 
                     $empleado->assignRole($request->rol);

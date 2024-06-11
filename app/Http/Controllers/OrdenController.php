@@ -25,11 +25,24 @@ class OrdenController extends Controller
     {
         try {
             
-            $ordenes = Orden::select('ordens.id', 'ordens.totalPedido', 'ordens.idMesa')
-                ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
-                ->where('ordens.estadoPedido', '=', 'Abierto')
-                ->orderBy('ordens.idMesa', 'asc')
-                ->get();
+            if( auth()->user()->hasRole('Gerente') ){
+
+                $ordenes = Orden::select('ordens.id', 'ordens.totalPedido', 'ordens.idMesa')
+                            ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
+                            ->where('ordens.estadoPedido', '=', 'Abierto')
+                            ->where('mesa_users.idUser', '=', auth()->user()->id)
+                            ->get();
+
+            }else{
+
+                $ordenes = Orden::select('ordens.id', 'ordens.totalPedido', 'ordens.idMesa')
+                        ->join('mesa_users', 'ordens.idMesa', '=', 'mesa_users.idMesa')
+                        ->where('ordens.estadoPedido', '=', 'Abierto')
+                        ->where('mesa_users.idUser', '=', session()->get('idGerente'))
+                        ->get();
+
+            }
+            
 
             return view('ordenes/index', compact('ordenes'));
 
@@ -57,9 +70,9 @@ class OrdenController extends Controller
                 $total = 0;
 
                 $platillos = OrdenPlatillo::select('platillos.precioPlatillo', 'orden_platillos.cantidad')
-                    ->join('platillos', 'orden_platillos.idPlatillo', '=', 'platillos.id')
-                    ->where('orden_platillos.idOrden', '=', $orden->id)
-                    ->get();
+                            ->join('platillos', 'orden_platillos.idPlatillo', '=', 'platillos.id')
+                            ->where('orden_platillos.idOrden', '=', $orden->id)
+                            ->get();
 
                 foreach($platillos as $platillo){
 

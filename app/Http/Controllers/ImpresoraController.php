@@ -33,7 +33,6 @@ class ImpresoraController extends Controller
                     $impresoras = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
                                 ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
                                 ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                                ->where('impresoras.tipoImpresion', 'LIKE', '%Comandas%')
                                 ->get();
 
                 }
@@ -110,14 +109,28 @@ class ImpresoraController extends Controller
     public function store(Create $request)
     {
         try {
-            
-            $impresora = Impresora::create([
 
-                'seriePrint' => $request->impresora,
-                'tipoImpresion' => $request->funcion,
-                'idUser' => auth()->user()->id,
+            if( auth()->user()->hasRole('Gerente') ){
 
-            ]);
+                $impresora = Impresora::create([
+
+                    'seriePrint' => $request->impresora,
+                    'tipoImpresion' => $request->funcion,
+                    'idUser' => auth()->user()->id,
+    
+                ]);
+
+            }else{
+
+                $impresora = Impresora::create([
+
+                    'seriePrint' => $request->impresora,
+                    'tipoImpresion' => $request->funcion,
+                    'idUser' => session()->get('idGerente'),
+    
+                ]);
+
+            }
 
             $datos['exito'] = true;
 

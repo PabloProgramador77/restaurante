@@ -21,22 +21,22 @@ class MesaController extends Controller
     {
         try {
             
-            if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
+            if( auth()->user()->hasRole('Gerente') ){
 
                 $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
-                    ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
-                    ->where('mesa_users.idUser', '=', auth()->user()->id)
-                    ->orderBy('mesas.updated_at', 'desc')
-                    ->get();
+                        ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                        ->where('mesa_users.idUser', '=', auth()->user()->id)
+                        ->orderBy('mesas.updated_at', 'desc')
+                        ->get();
 
             }else{
 
                 $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
-                    ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
-                    ->join('user_empleados', 'mesa_users.idUser', '=', 'user_empleados.idUser')
-                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                    ->orderBy('mesas.updated_at', 'desc')
-                    ->get();
+                        ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                        ->join('user_empleados', 'mesa_users.idUser', '=', 'user_empleados.idUser')
+                        ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                        ->orderBy('mesas.updated_at', 'desc')
+                        ->get();
 
             }
 
@@ -78,12 +78,25 @@ class MesaController extends Controller
 
             if( $mesa->id ){
 
-                $mesaUser = MesaUsers::create([
+                if( auth()->user()->hasRole('Gerente') ){
 
-                    'idMesa' => $mesa->id,
-                    'idUser' => auth()->user()->id
+                    $mesaUser = MesaUsers::create([
 
-                ]);
+                        'idMesa' => $mesa->id,
+                        'idUser' => auth()->user()->id
+    
+                    ]);
+
+                }else{
+
+                    $mesaUser = MesaUsers::create([
+
+                        'idMesa' => $mesa->id,
+                        'idUser' => session()->get('idGerente')
+    
+                    ]);
+
+                }
 
                 if( $mesaUser->id ){
 

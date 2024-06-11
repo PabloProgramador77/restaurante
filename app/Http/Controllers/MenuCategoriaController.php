@@ -18,22 +18,21 @@ class MenuCategoriaController extends Controller
      */
     public function index()
     {
-        if( auth()->user()->hasRole('Gerente') || auth()->user()->hasRole('Supervisor') ){
+        if( auth()->user()->hasRole('Gerente') ){
 
             $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
-                ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
-                ->where('categoria_users.idUser', '=', auth()->user()->id)
-                ->orderBy('categorias.nombreCategoria', 'asc')
-                ->get();
+                        ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                        ->where('categoria_users.idUser', '=', auth()->user()->id)
+                        ->get();
 
         }else{
 
             $categorias = Categoria::select('categorias.id', 'categorias.nombreCategoria')
-                ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
-                ->join('user_empleados', 'categoria_users.idUser', '=', 'user_empleados.idUser')
-                ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                ->orderBy('categorias.nombreCategoria', 'asc')
-                ->get();
+                            ->join('categoria_users', 'categorias.id', '=', 'categoria_users.idCategoria')
+                            ->join('user_empleados', 'categoria_users.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->orderBy('categorias.created_at', 'desc')
+                            ->get();
 
         }
 
@@ -48,26 +47,26 @@ class MenuCategoriaController extends Controller
     public function create($idCategoria)
     {
         $menu = Platillo::select('platillos.id', 'platillos.nombrePlatillo', 'platillos.precioPlatillo')
-            ->join('menu_categorias', 'platillos.id', '=', 'menu_categorias.idPlatillo')
-            ->where('menu_categorias.idCategoria', '=', $idCategoria)
-            ->get();
+                ->join('menu_categorias', 'platillos.id', '=', 'menu_categorias.idPlatillo')
+                ->where('menu_categorias.idCategoria', '=', $idCategoria)
+                ->get();
 
         if( auth()->user()->hasRole('Gerente') ){
 
             $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
-                ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
-                ->where('mesa_users.idUser', '=', auth()->user()->id)
-                ->orderBy('mesas.nombreMesa', 'asc')
-                ->get();
+                    ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                    ->where('mesa_users.idUser', '=', auth()->user()->id)
+                    ->orderBy('mesas.nombreMesa', 'asc')
+                    ->get();
 
         }else{
 
             $mesas = Mesa::select('mesas.id', 'mesas.nombreMesa')
-                ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
-                ->join('user_empleados', 'mesa_users.idUser', '=', 'user_empleados.idUser')
-                ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                ->orderBy('mesas.nombreMesa', 'asc')
-                ->get();
+                    ->join('mesa_users', 'mesas.id', '=', 'mesa_users.idMesa')
+                    ->join('user_empleados', 'mesa_users.idUser', '=', 'user_empleados.idUser')
+                    ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                    ->orderBy('mesas.nombreMesa', 'asc')
+                    ->get();
 
         }
 

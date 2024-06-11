@@ -26,23 +26,20 @@ class CorteController extends Controller
     {
         try {
             
-            if( auth()->user()->hasRole('Supervisor') || auth()->user()->hasRole('Mozo') ){
-
-                $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
-                    ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
-                    ->join('user_empleados', 'corte_users.idUser', '=', 'user_empleados.idEmpleado')
-                    ->where('corte_users.idUser', '=', auth()->user()->id)
-                    ->orderBy('cortes.created_at', 'desc')
-                    ->get();
-
-            }
-
             if( auth()->user()->hasRole('Gerente') ){
 
                 $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
                         ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
                         ->where('corte_users.idUser', '=', auth()->user()->id)
                         ->orderBy('cortes.created_at', 'desc')
+                        ->get();
+
+            }else{
+
+                $cortes = Corte::select('cortes.id', 'cortes.totalCorte', 'cortes.created_at')
+                        ->join('corte_users', 'cortes.id', '=', 'corte_users.idCorte')
+                        ->join('user_empleados', 'corte_users.idUser', '=', 'user_empleados.idUser')
+                        ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
                         ->get();
 
             }
@@ -66,11 +63,11 @@ class CorteController extends Controller
         try {
             
             $datos = Platillo::select('platillos.nombrePlatillo', 'platillos.precioPlatillo', 'orden_platillos.cantidad')
-                ->join('orden_platillos', 'platillos.id', '=', 'orden_platillos.idPlatillo')
-                ->join('ordens', 'orden_platillos.idOrden', '=', 'ordens.id')
-                ->where('ordens.estadoPedido', '=', 'Pagado')
-                ->orderBy('platillos.nombrePlatillo', 'asc')
-                ->get();
+                    ->join('orden_platillos', 'platillos.id', '=', 'orden_platillos.idPlatillo')
+                    ->join('ordens', 'orden_platillos.idOrden', '=', 'ordens.id')
+                    ->where('ordens.estadoPedido', '=', 'Pagado')
+                    ->orderBy('platillos.nombrePlatillo', 'asc')
+                    ->get();
 
             $datos['exito'] = true;
 
@@ -103,12 +100,25 @@ class CorteController extends Controller
 
             if( $corte->id ){
 
-                $corteUser = CorteUsers::create([
+                if( auth()->user()->hasRole('Gerente') ){
 
-                    'idCorte' => $corte->id,
-                    'idUser' => auth()->user()->id
+                    $corteUser = CorteUsers::create([
 
-                ]);
+                        'idCorte' => $corte->id,
+                        'idUser' => auth()->user()->id
+    
+                    ]);
+
+                }else{
+
+                    $corteUser = CorteUsers::create([
+
+                        'idCorte' => $corte->id,
+                        'idUser' => session()->get('idGerente')
+    
+                    ]);
+
+                }
 
                 if( $corteUser->id ){
 

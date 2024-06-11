@@ -7,6 +7,7 @@ use App\Models\Platillo;
 use App\Models\Mesa;
 use App\Models\MenuCategoria;
 use App\Models\Orden;
+use App\Models\UserEmpleado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 
@@ -54,7 +55,26 @@ class HomeController extends Controller
 
         }
 
-        //session()->put('idUser', auth()->user()->id);
+        if( !auth()->user()->hasRole('Gerente') ){
+
+            if( !session()->get('idGerente') ){
+
+                $userEmpleado = UserEmpleado::where('idEmpleado', '=', auth()->user()->id)
+                                ->first();
+
+                session()->put('idGerente', $userEmpleado->idUser);
+
+            }
+
+        }else{
+
+            if( session()->get('idGerente') ){
+
+                session()->forget('idGerente');
+
+            }
+
+        }
 
         return view('index', compact('categorias', 'platillos', 'mesas', 'ordenes', 'ventas'));
     }
