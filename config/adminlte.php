@@ -405,7 +405,40 @@ return [
                 ],
             ],
             'can' => 'ver-impresoras'
-        ],      
+        ],
+        [
+            'text' => 'Sabores',
+            'icon' => 'fas fa-lemon',
+            'icon_color' => 'purple',
+            'label' => 'Premium',
+            'label_color' => 'warning',
+            'submenu' => [
+                [
+                    'text' => 'Sabores',
+                    'url' => '/sabores',
+                    'icon' => 'fas fa-lemon',
+                    'icon_color' => 'purple',
+                ],
+                [
+                    'text' => 'Aderezos',
+                    'url' => '/aderezos',
+                    'icon' => 'fas fa-cheese',
+                    'icon_color' => 'purple',
+                ],
+                [
+                    'text' => 'Ingredientes',
+                    'url' => '/ingredientes',
+                    'icon' => 'fas fa-carrot',
+                    'icon_color' => 'purple',
+                ],
+                [
+                    'text' => 'Complementos',
+                    'url' => '/complementos',
+                    'icon' => 'fas fa-cookie-bite',
+                    'icon_color' => 'purple',
+                ]
+            ],
+        ],
     ],
 
     /*

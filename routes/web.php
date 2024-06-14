@@ -141,3 +141,14 @@ Route::post('/impresoras/actualizar', [App\Http\Controllers\ImpresoraController:
 Route::post('/impresoras/eliminar', [App\Http\Controllers\ImpresoraController::class, 'destroy'])->name('eliminar-impresora');
 Route::post('/impresoras/prueba', [App\Http\Controllers\ImpresoraController::class, 'create'])->name('prueba-impresora');
 Route::get('/impresoras/descargar', [App\Http\Controllers\ImpresoraController::class, 'printNode'])->name('printNode-descargar');
+
+/**
+ * -----------------------------------------------------------
+ * *Rutas de Sabores
+ * -----------------------------------------------------------
+ */
+Route::get('/sabores', [App\Http\Controllers\SaborController::class, 'index'])->name('sabores');
+Route::post('/sabores/agregar', [App\Http\Controllers\SaborController::class, 'store'])->name('agregar-sabor');
+Route::post('/sabores/editar', [App\Http\Controllers\SaborController::class, 'show'])->name('editar-sabor');
+Route::post('/sabores/actualizar', [App\Http\Controllers\SaborController::class, 'update'])->name('actualizar-sabor');
+Route::post('/sabores/eliminar', [App\Http\Controllers\SaborController::class, 'destroy'])->name('eliminar-sabor');
