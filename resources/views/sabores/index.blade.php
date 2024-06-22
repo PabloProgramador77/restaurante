@@ -18,10 +18,13 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige el SABOR a gestionar o agrega uno nuevo</b>.</small>
+                <div class="col-md-10 bg-warning py-1 border">
+                    <p class="fw-semibold fs-5">
+                        <i class="fas fa-info-circle"></i><b> Elige el SABOR a gestionar o agrega uno nuevo pulsando el botón "<i class="fas fa-plus-circle"></i> Sabor".</b>
+                        Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a>
+                    </p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                         <i class="fas fa-plus-circle"></i> Sabor
                     </a>
@@ -61,7 +64,7 @@
                                                     </a>
                                                 
                                                     <a class="btn btn-primary asignar" role="button" title="Asignar a platillos" data-toggle="modal" data-target="#modalPlatillos" data-id="{{ $sabor->id }}">
-                                                        <i class="fas fa-project-diagram"></i>
+                                                        <i class="fas fa-utensils"></i>
                                                     </a>
                                                 
                                             </td>
@@ -86,13 +89,13 @@
         <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labellebdy="modalRegistroLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
-                    <div class="modal-header border-bottom">
+                    <div class="bg-primary modal-header border-bottom">
                         <h3 class="modal-title fs-4 fw-semibold"><i class="fas fa-plus-circle"></i> Nuevo sabor</h3>
                         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group bg-light">
-                            <small class="p-2">Captura los siguientes datos:</small>
+                            <p class="p-2"><i class="fas fa-info-circle"></i> Captura los siguientes datos. Los campos con etiqueta * son obligatorios.</p>
                         </div>
                         <form novalidate>
                             @csrf
@@ -104,11 +107,14 @@
                                 <label for="descripcion">Descripción</label>
                                 <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" id="registrar" class="btn btn-primary btn-block">Guardar</button>
-                            </div>
+                            
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <button type="submit" id="registrar" class="btn btn-success btn-block"><i class="fas fa-save"></i> Guardar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -189,16 +195,16 @@
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group bg-light p-1">
-                            <small class="text-info fw-semibold fs-6">A continuación, selecciona los <b>PLATILLOS</b> a los que deseas agregar el sabor:</small>
+                        <div class="form-group bg-warning p-1">
+                            <small class="fw-semibold fs-6"><i class="fas fa-info-circle"></i> A continuación, elige los <b>PLATILLOS</b> a los que deseas agregar el sabor</small>
                         </div>
                         <form novalidate class="row">
                             @if ( count($platillos) > 0 )
                                 
                                     @foreach ($platillos as $platillo)
                                         <div class="custom-control custom-switch d-inline col-md-3 my-1">
-                                            <input type="checkbox" class="custom-control-input" name="platillo" id="{{ $platillo->name }}" value="{{ $platillo->id }}">
-                                            <label class="custom-control-label" for="{{ $platillo->nombre }}">{{ $platillo->nombre }}    
+                                            <input type="checkbox" class="custom-control-input" name="platillo" id="{{ $platillo->nombrePlatillo }}" value="{{ $platillo->id }}">
+                                            <label class="custom-control-label" for="{{ $platillo->nombrePlatillo }}">{{ $platillo->nombrePlatillo }}    
                                         </div>        
                                     @endforeach
                                 
@@ -211,9 +217,9 @@
                                     </p>
                                 </div>
                             @endif
-                                <div class="modal-footer col-md-12">
-                                    <button type="submit" id="platillos" class="btn btn-primary"><i class="fas fa-save"></i> Agregar Platillos</button>
-                                </div>
+                            <div class="modal-footer col-md-12">
+                                <button type="submit" id="asignar" class="btn btn-primary"><i class="fas fa-save"></i> Agregar</button>
+                            </div>
                             <input type="hidden" name="idSabor" id="idSabor">
                             <input type="hidden" name="token" id="token" value="{{ csrf_token() }}">
                         </form>

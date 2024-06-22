@@ -76,7 +76,7 @@
                 <img src="{{ asset('media/2-removebg-preview.png') }}" alt="Logo" width="250px" height="auto" class="d-block m-auto">
                 <h1 class="text-center fs-1 fw-bold">TU ALIADO GASTRONÓMICO DIGITAL</h1>
                 <p class="text-center fs-5 fw-semibold w-50 m-auto p-3">La primer plataforma en línea con todo las funciones que tu restaurante, bar y cafetería necesita desde cualquier dispositivo móvil, tableta u ordenador.</p>
-                <p class="fw-semibold fs-6 text-center p-2 bg-light w-50 m-auto">Versión actual: 1.2.3.</p>
+                <p class="fw-semibold fs-6 text-center p-2 bg-light w-50 m-auto">Versión actual: 1.3.3.</p>
                 <a href="#about" class="d-block btn btn-info rounded shadow m-auto my-4 p-3" role="button" style="width: 200px">
                     <i class="fas fa-arrow-down"></i>
                     Saber más
@@ -234,15 +234,15 @@
             <div class="row" style="background-image: url('media/coming.jpg'); background-size: cover; background-position: center;">
                 <div class="col-md-12 p-5 m-5 w-50 m-auto">
                     <h4 class="fs-4 fw-bold text-center p-2"><i class="fas fa-award"></i> Proximamente</h4>
-                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de junio de 2024 se actualizará a la versión 1.2.1 con una nueva función de administración de sabores.</p>
+                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de juLio de 2024 se actualizará a la versión 1.3.4 con una nueva función de administración de aderezos.</p>
                     <p class="fs-6 fw-semibold bg-info p-2">Contará con funciones como:</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Alta de sabores</li>
-                        <li class="list-group-item">Consulta de sabores</li>
-                        <li class="list-group-item">Edición de sabores</li>
-                        <li class="list-group-item">Eliminación de sabores</li>
-                        <li class="list-group-item">Asignación de sabores a los platillos</li>
-                        <li class="list-group-item">Selección de sabores en los platillos al tomar la orden del cliente</li>
+                        <li class="list-group-item">Alta de aderezos</li>
+                        <li class="list-group-item">Consulta de aderezos</li>
+                        <li class="list-group-item">Edición de aderezos</li>
+                        <li class="list-group-item">Eliminación de aderezos</li>
+                        <li class="list-group-item">Asignación de aderezos a los platillos</li>
+                        <li class="list-group-item">Selección de aderezos en los platillos al tomar la orden del cliente</li>
                     </ul>
                 </div>
             </div>

@@ -1,78 +1,33 @@
 $(document).ready(function(){
 
-    $("#permisos").attr('disabled', true);
+    $("#platillo").attr('disabled', true);
 
-    var permisos = new Array();
-
-    //Selección de Platillos
-    $("input[name=permiso]").on('click', function(){
-
-        if( $(this).is(':checked') == true ){
-
-            permisos.push( $(this).val() );
-
-            if( $("input[name=permiso]:checked").length > 0 ){
-
-                $("#permisos").attr('disabled', false);
-    
-            }else{
-    
-                $("#permisos").attr('disabled', true);
-    
-            }
-
-        }else{
-
-            var indice = permisos.indexOf( $(this).val() );
-
-            permisos.splice( indice, 1 );
-
-            if( $("input[name=permiso]:checked").length > 0 ){
-
-                $("#permisos").attr('disabled', false);
-    
-            }else{
-    
-                $("#permisos").attr('disabled', true);
-    
-            }
-
-        }
-
-        console.log( permisos );
-
-    });
+    var platillos = new Array();
 
     //Crear Menú de Platillos
-    $("#permisos").on('click', function(e){
+    $("#asignar").on('click', function(e){
 
         e.preventDefault();
         let procesamiento;
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2500,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
+        function sabores(){
 
-        function roles(){
-
-            window.location.href = '/roles';
+            window.location.href = '/sabores';
 
         }
 
-        $("#permisos").attr('disabled', true);
-        $("input[name=permiso]").attr('disabled', true);
+        $("input[type=checkbox][name=platillo]:checked").each( function(){
+
+            platillos.push( $(this).val() );
+
+        });
+
+        $("#platillo").attr('disabled', true);
+        $("input[name=platillo]").attr('disabled', true);
 
         Swal.fire({
 
-            title: 'Asignando Permisos',
+            title: 'Asignando sabor a platillo(s)',
             html: 'Un momento por favor. <b></b>',
             timer: 4975,
             allowOutsideClick: false,
@@ -89,12 +44,12 @@ $(document).ready(function(){
                 $.ajax({
 
                     type: 'POST',
-                    url: '/roles/permisos',
+                    url: '/sabor/platillos',
                     data:{
 
                         '_token' : $("#token").val(),
-                        'idRole' : $("#idRole").val(),
-                        'permisos' : permisos
+                        'sabor' : $("#idSabor").val(),
+                        'platillos' : platillos
 
                     },
                     dataType: 'json',
@@ -108,19 +63,24 @@ $(document).ready(function(){
                             icon: 'success',
                             title: respuesta.mensaje,
                             showConfirmButton: false,
-                            timer: 1500
+                            allowOutsideClick: false,
                         });
 
-                        setTimeout(roles, 1250);
+                        setTimeout(sabores, 1250);
 
                     }else{
 
-                        $("#permisos").attr('disabled', true);
+                        $("#platillo").attr('disabled', true);
 
-                        Toast.fire({
-                            icon: 'error',
-                            title: respuesta.mensaje
+                        Swal.fire({
+                            icon: 'warning',
+                            title: respuesta.mensaje,
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1750,
                         });
+
+                        setTimeout( sabores, 2250);
 
                     }
 
@@ -137,14 +97,15 @@ $(document).ready(function(){
 
             if( resultado.dismiss == Swal.DismissReason.timer ){
 
-                Toast.fire({
-
-                    icon: 'info',
-                    title: 'Ha ocurrido un inconveniente. Reiniciando proceso.'
-
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hubo un error. Reiniciando proceso.',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    timer: 1750,
                 });
 
-                setTimeout(roles, 1225);
+                setTimeout(roles, 2225);
 
             }
 

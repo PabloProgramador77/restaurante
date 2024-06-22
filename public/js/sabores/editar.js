@@ -128,7 +128,7 @@ $(document).ready(function(){
 
                 $.each(respuesta.platillos, function(i, platillo){
 
-                    $('input[type=checkbox][id='+platillo.nombre+']').attr('checked', true);
+                    $('input[type=checkbox][value='+platillo.id+']').attr('checked', true);
 
                 });
                 
@@ -141,7 +141,7 @@ $(document).ready(function(){
                     timer: 2500
                 });
 
-                $("#platillos").attr('disabled', true);
+                $("#asignar").attr('disabled', true);
                 $("#idSabor").val('');
 
             }

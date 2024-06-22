@@ -53,7 +53,7 @@ $(document).ready(function(){
                             icon: 'success',
                             title: respuesta.mensaje,
                             showConfirmButton: false,
-                            timer: 2500
+                            timer: 1000
                         });
 
                         setTimeout(sabores, 2250);
@@ -64,7 +64,6 @@ $(document).ready(function(){
                             icon: 'warning',
                             title: respuesta.mensaje,
                             showConfirmButton: false,
-                            timer: 2500
                         });
 
                         setTimeout(sabores, 2250);

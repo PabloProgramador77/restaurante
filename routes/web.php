@@ -152,3 +152,4 @@ Route::post('/sabores/agregar', [App\Http\Controllers\SaborController::class, 's
 Route::post('/sabores/editar', [App\Http\Controllers\SaborController::class, 'show'])->name('editar-sabor');
 Route::post('/sabores/actualizar', [App\Http\Controllers\SaborController::class, 'update'])->name('actualizar-sabor');
 Route::post('/sabores/eliminar', [App\Http\Controllers\SaborController::class, 'destroy'])->name('eliminar-sabor');
+Route::post('/sabor/platillos', [App\Http\Controllers\PlatilloHasSaboresController::class, 'store'])->name('sabor-platillos');

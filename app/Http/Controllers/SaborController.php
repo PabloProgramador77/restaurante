@@ -9,6 +9,7 @@ use App\Http\Requests\Sabores\Create;
 use App\Http\Requests\Sabores\Read;
 use App\Http\Requests\Sabores\Update;
 use App\Http\Requests\Sabores\Delete;
+use App\Http\Controllers\PlatilloHasSaboresController;
 
 class SaborController extends Controller
 {
@@ -146,6 +147,10 @@ class SaborController extends Controller
                 $datos['exito'] = true;
                 $datos['sabor'] = $sabor->nombre;
                 $datos['descripcion']= $sabor->descripcion;
+                $datos['platillos'] = Platillo::select('platillos.id', 'platillos.nombrePlatillo')
+                                    ->join('platillo_has_sabores', 'platillos.id', '=', 'platillo_has_sabores.idPlatillo')
+                                    ->where('platillo_has_sabores.idSabor', '=', $sabor->id)
+                                    ->get();
 
             }else{
 

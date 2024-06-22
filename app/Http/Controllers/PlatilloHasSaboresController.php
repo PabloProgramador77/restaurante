@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PlatilloHasSabores;
 use Illuminate\Http\Request;
+use App\Http\Requests\PlatilloHasSabores\Create;
 
 class PlatilloHasSaboresController extends Controller
 {
@@ -33,9 +34,61 @@ class PlatilloHasSaboresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Create $request )
     {
-        //
+        try {
+            
+            $platillos = PlatilloHasSabores::where('idSabor', '=', $request->sabor)
+                        ->get();
+
+            if( count( $platillos) > 0 ){
+
+                foreach( $platillos as $platillo){
+
+                    $platillo->delete();
+
+                }
+
+                foreach( $request->platillos as $platillo ){
+
+                    $platilloHasSabores = PlatilloHasSabores::create([
+    
+                        'idPlatillo' => $platillo,
+                        'idSabor' => $request->sabor,
+    
+                    ]);
+    
+                }
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Sabor asignado.';
+
+            }else{
+
+                foreach( $request->platillos as $platillo ){
+
+                    $platilloHasSabores = PlatilloHasSabores::create([
+    
+                        'idPlatillo' => $platillo,
+                        'idSabor' => $request->sabor,
+    
+                    ]);
+    
+                }
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Sabor asignado.';
+
+            }
+
+        } catch (\Throwable $th) {
+            
+            $datos['exito'] = false;
+            $datos['mensaje'] = $th->getMessage();
+
+        }
+
+        return response()->json( $datos );
     }
 
     /**
