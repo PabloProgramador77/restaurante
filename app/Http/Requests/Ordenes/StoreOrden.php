@@ -24,12 +24,7 @@ class StoreOrden extends FormRequest
     public function rules()
     {
         return [
-            
-            'idPlatillo' => 'required|integer',
-            'cantidad' => 'required',
-            'sabores' => 'array|nullable',
-            'sabores.*' => 'string|nullable',
-
+            //
         ];
     }
 }
