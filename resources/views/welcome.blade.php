@@ -227,6 +227,24 @@
                     <video src="{{ asset('media/videos/Impresoras.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
+            <div class="row p-2 m-5 border-bottom rounded">
+                <h4 class="fs-5 fw-bold text-center bg-warning p-2 rounded"><i class="fas fa-star"></i> Nuevas Funciones <i class="fas fa-star"></i></h4>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <h4 class="fs-5 fw-bold">Gestión de Sabores</h4>
+                    <p class="fs-6 fw-semibold">Descubre todo sobres los sabores para tus platillos en la plataforma:</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Alta de sabores</li>
+                        <li class="list-group-item">Consulta de sabores</li>
+                        <li class="list-group-item">Edición de sabores</li>
+                        <li class="list-group-item">Eliminación de sabores</li>
+                        <li class="list-group-item">Asignación de sabores a platillos</li>
+                        <li class="list-group-item">Selección de sabores en orden de cliente(s)</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <video src="{{ asset('media/videos/Sabores.mp4') }}" controls="true" width="625px" height="auto"></video>
+                </div>
+            </div>
         </div>
 
         <!--Banner Proximamente-->
@@ -234,7 +252,7 @@
             <div class="row" style="background-image: url('media/coming.jpg'); background-size: cover; background-position: center;">
                 <div class="col-md-12 p-5 w-50 m-auto">
                     <h4 class="fs-4 fw-bold text-center p-2"><i class="fas fa-award"></i> Proximamente</h4>
-                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de juLio de 2024 se actualizará a la versión 1.3.4 con una nueva función de administración de aderezos.</p>
+                    <p class="fs-5 fw-semibold text-center p-2">En la recta final de juLio de 2024 se actualizará a la versión 1.4.3 con una nueva función de administración de aderezos.</p>
                     <p class="fs-6 fw-semibold bg-info p-2">Contará con funciones como:</p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Alta de aderezos</li>
