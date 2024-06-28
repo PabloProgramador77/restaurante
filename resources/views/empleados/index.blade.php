@@ -19,20 +19,17 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige el EMPLEADO a gestionar o agrega uno nuevo</b>.</small>
+                <div class="col-md-10 bg-warning py-2">
+                    <small class="fw-semibold fs-5"><i class="fas fa-info-circle"></i> <b>Elige el EMPLEADO a gestionar o agrega uno nuevo presionando el botón <i class="fas fa-plus-circle"></i> Empleado</b>. Si necesitas más información de los roles <a href="#" data-toggle="modal" data-target="#modalRolesPermisos">presiona aquí para conocerlos</a>. Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a></small>
                 </div>
                 @can('crear-empleado')
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
-                            Agregar Empleado
+                             Empleado
                         </a>
                     </div>
                 @endcan
-                <p class="col-lg-12 col-md-12 bg-light fs-4 fw-semibold p-1 border"><i class="fas fa-info-circle"></i> Cada rol de empleado tiene diferentes permisos. 
-                    <a href="#" data-toggle="modal" data-target="#modalRolesPermisos">Pulsa aquí para conocerlos</a>.
-                </p>
             </div>
         </div>
 

@@ -19,14 +19,14 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige la impresora a gestionar o agrega una nueva</b>.</small>
+                <div class="col-md-10 bg-warning py-2 border">
+                    <small class="fw-semibold fs-5"><i class="fas fa-info-circle"></i> <b>Elige la impresora a gestionar o agrega una nueva pulsando el botón <i class="fas fa-plus-circle"></i> Impresora</b>.Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a>. </small>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @can('crear-impresora')
-                        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
+                        <a class="btn btn-primary btn-block shadow" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
-                            Agregar Impresora
+                             Impresora
                         </a>
                     @endcan
                 </div>

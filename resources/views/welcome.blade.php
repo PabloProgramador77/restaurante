@@ -75,7 +75,7 @@
             <div class="container-fluid">
                 <img src="{{ asset('media/2-removebg-preview.png') }}" alt="Logo" width="250px" height="auto" class="d-block m-auto">
                 <h1 class="text-center fs-1 fw-bold">TU ALIADO GASTRONÓMICO DIGITAL</h1>
-                <p class="text-center fs-5 fw-semibold w-50 m-auto p-3">La primer plataforma en línea con todo las funciones que tu restaurante, bar y cafetería necesita desde cualquier dispositivo móvil, tableta u ordenador.</p>
+                <p class="text-center fs-5 fw-semibold w-50 m-auto p-3">La primer plataforma en línea con todo las funciones que tu restaurante, bar y cafetería que necesitas para administrar tu negocio desde cualquier dispositivo móvil, tableta u ordenador.</p>
                 <p class="fw-semibold fs-6 text-center p-2 bg-light w-50 m-auto">Versión actual: 1.3.3.</p>
                 <a href="#about" class="d-block btn btn-info rounded shadow m-auto my-4 p-3" role="button" style="width: 200px">
                     <i class="fas fa-arrow-down"></i>
@@ -123,7 +123,7 @@
             <p class="fs-6 fw-semibold text-secondary text-center">Por si fuera poco, ponemos a tu disposición un video manual de las diferentes secciones de la plataforma.</p>
             <p class="fs-6 fw-semibold text-center bg-primary p-2 text-white w-50 m-auto">Te capacitas en el mismo tiempo en que preparas tu café.</p>
             <div class="row p-2 m-5 border-bottom">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Categorías de Menú</h4>
                     <p class="fs-6 fw-semibold">Aprende a gestionar las categorías de menú de tu negocio en el siguiente mínuto:</p>
                     <ul class="list-group list-group-flush">
@@ -133,12 +133,12 @@
                         <li class="list-group-item">Asignación de platillos</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/Categorias.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
             <div class="row p-2 m-5 border-bottom">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Platillos</h4>
                     <p class="fs-6 fw-semibold">Aprende a gestionar los platillos de menú de tu negocio en el siguiente mínuto:</p>
                     <ul class="list-group list-group-flush">
@@ -148,12 +148,12 @@
                         <li class="list-group-item">Asignación de platillos</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/Platillos.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
             <div class="row p-2 m-5 border-bottom">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Mesas</h4>
                     <p class="fs-6 fw-semibold">Aprende a gestionar las mesas de tu negocio en el siguiente mínuto:</p>
                     <ul class="list-group list-group-flush">
@@ -162,12 +162,12 @@
                         <li class="list-group-item">Eliminación</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/Mesas.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
             <div class="row p-2 m-5 border-bottom">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Pedidos</h4>
                     <p class="fs-6 fw-semibold">Aprende a crear y gestionar los pedidos de tu negocio en los siguientes 2 mínuto:</p>
                     <ul class="list-group list-group-flush">
@@ -177,12 +177,12 @@
                         <li class="list-group-item">Cobrar pedido</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/Pedidos.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
             <div class="row p-2 m-5 border-bottom">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Caja y Corte</h4>
                     <p class="fs-6 fw-semibold">Aprende a gestionar cortes de caja de tu negocio en el siguiente mínuto:</p>
                     <ul class="list-group list-group-flush">
@@ -191,13 +191,13 @@
                         <li class="list-group-item">Visualización</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/Corte.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
             <div class="row p-2 m-5 border-bottom rounded">
                 <h4 class="fs-5 fw-bold text-center bg-warning p-2 rounded"><i class="fas fa-star"></i> Nuevas Funciones <i class="fas fa-star"></i></h4>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Gestión de Empleados</h4>
                     <p class="fs-6 fw-semibold">Aprende a gestionar tus empleados, así como su rol y permisos dentro de la plataforma:</p>
                     <ul class="list-group list-group-flush">
@@ -207,13 +207,13 @@
                         <li class="list-group-item">Rol y Permisos</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/RolesPermisos.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
             <div class="row p-2 m-5 border-bottom rounded">
                 <h4 class="fs-5 fw-bold text-center bg-warning p-2 rounded"><i class="fas fa-star"></i> Nuevas Funciones <i class="fas fa-star"></i></h4>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <h4 class="fs-5 fw-bold">Gestión de Impresoras</h4>
                     <p class="fs-6 fw-semibold">Aprende a gestionar tus impresoras para la impresión de comandas y tickets dentro de la plataforma:</p>
                     <ul class="list-group list-group-flush">
@@ -223,7 +223,7 @@
                         <li class="list-group-item">Configuración</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <video src="{{ asset('media/videos/Impresoras.mp4') }}" controls="true" width="625px" height="auto"></video>
                 </div>
             </div>
@@ -232,7 +232,7 @@
         <!--Banner Proximamente-->
         <div class="container-fluid" id="coming">
             <div class="row" style="background-image: url('media/coming.jpg'); background-size: cover; background-position: center;">
-                <div class="col-md-12 p-5 m-5 w-50 m-auto">
+                <div class="col-md-12 p-5 w-50 m-auto">
                     <h4 class="fs-4 fw-bold text-center p-2"><i class="fas fa-award"></i> Proximamente</h4>
                     <p class="fs-5 fw-semibold text-center p-2">En la recta final de juLio de 2024 se actualizará a la versión 1.3.4 con una nueva función de administración de aderezos.</p>
                     <p class="fs-6 fw-semibold bg-info p-2">Contará con funciones como:</p>

@@ -13,7 +13,7 @@
                     @if ( count($platillos) > 0 )
                         
                         @foreach ($platillos as $platillo)
-                            <div class="custom-control custom-switch d-inline m-2">
+                            <div class="col-lg-4 col-md-3 col-sm-6 custom-control custom-switch d-inline m-2">
                                 <input type="checkbox" class="custom-control-input" name="platillo" id="{{ $platillo->nombrePlatillo }}" value="{{ $platillo->id }}">
                                 <label class="custom-control-label" for="{{ $platillo->nombrePlatillo }}">{{ $platillo->nombrePlatillo }}    
                             </div>        

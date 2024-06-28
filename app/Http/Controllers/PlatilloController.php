@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Platillo;
 use App\Models\Categoria;
 use App\Models\PlatilloUsers;
+use App\Models\Sabor;
 use Illuminate\Http\Request;
 use App\Http\Requests\Platillos\StorePlatillo;
 use App\Http\Requests\Platillos\EditPlatillo;
@@ -171,6 +172,10 @@ class PlatilloController extends Controller
                 $datos['exito'] = true;
                 $datos['nombre'] = $platillo->nombrePlatillo;
                 $datos['precio'] = $platillo->precioPlatillo;
+                $datos['sabores'] = Sabor::select('sabores.id', 'sabores.nombre')
+                                ->join('platillo_has_sabores', 'sabores.id', '=', 'platillo_has_sabores.idSabor')
+                                ->where('platillo_has_sabores.idPlatillo', '=', $platillo->id)
+                                ->get();
 
             }
 

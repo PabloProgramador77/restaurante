@@ -19,10 +19,10 @@
             </div>
             <div class="container-fluid row p-1">
                 <div class="col-md-10 bg-warning py-1 border">
-                    <p class="fw-semibold fs-5">
+                    <small class="fw-semibold fs-5">
                         <i class="fas fa-info-circle"></i><b> Elige el SABOR a gestionar o agrega uno nuevo pulsando el botón "<i class="fas fa-plus-circle"></i> Sabor".</b>
                         Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a>
-                    </p>
+                    </small>
                 </div>
                 <div class="col-md-2">
                     <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">

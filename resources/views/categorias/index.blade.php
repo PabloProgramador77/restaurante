@@ -19,14 +19,14 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige la categoría a gestionar o agrega una nueva</b>.</small>
+                <div class="col-md-10 bg-warning py-2 border rounded">
+                    <small class="fw-semibold fs-5"><i class="fas fa-info-circle"></i><b>Elige la categoría a gestionar o agrega una nueva presionando el botón <i class="fas fa-plus-circle"></i> Categoría</b>. Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a></small>
                 </div>
                 @can('crear-categoria')
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
-                            Agregar Categoría
+                             Categoría
                         </a>
                     </div>    
                 @endcan
@@ -57,17 +57,17 @@
                                         <td>
                                             @can('editar-categoria')
                                                 <a class="btn btn-info editar" role="button" title="Editar Categoría" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $categoria->id }}">
-                                                    <i class="fas fa-edit"></i> Editar
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
                                             @endcan
                                             @can('borrar-categoria')
                                                 <a class="btn btn-danger eliminar" role="button" title="Eliminar Categoría" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $categoria->id }}">
-                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             @endcan
                                             @can('crear-menu')
                                                 <a class="btn btn-primary menu" role="button" title="Crear Menú" data-toggle="modal" data-target="#modalMenu" data-id="{{ $categoria->id }}">
-                                                    <i class="fas fa-bars"></i> Menú
+                                                    <i class="fas fa-bars"></i>
                                                 </a>
                                             @endcan
                                                 

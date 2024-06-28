@@ -4,7 +4,7 @@
 
         <!--Encabezado-->
         <div class="container-fluid row bg-white rounded border-bottom my-1">
-            <h3 class="fw-bold fs-5 col-md-8 my-2">Mesas</h3>
+            <h3 class="fw-bold fs-5 col-md-8 my-2"><i class="fas fa-chair"></i> Mesas</h3>
             <div class="col-md-4">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item">
@@ -19,14 +19,14 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige la mesa a gestionar o agrega una nueva</b>.</small>
+                <div class="col-md-10 bg-warning py-2 border rounded">
+                    <small class="fw-semibold fs-5"><i class="fas fa-info-circle"></i> <b> Elige la mesa a gestionar o agrega una nueva presionando el botón <i class="fas fa-plus-circle"></i> Mesa</b>. Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a></small>
                 </div>
                 @can('crear-mesa')
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
-                            Agregar Mesa
+                             Mesa
                         </a>
                     </div>
                 @endcan

@@ -13,6 +13,7 @@ use App\Http\Requests\Ordenes\CobrarOrden;
 use App\Http\Requests\Ordenes\DestroyOrden;
 use \Mpdf\Mpdf as PDF;
 use GuzzleHttp\Client;
+use App\Http\Controllers\OrdenPlatilloController;
 
 class OrdenController extends Controller
 {
@@ -63,66 +64,64 @@ class OrdenController extends Controller
         try {
             
             //Orden Nueva
-            $orden = Orden::find( session()->get('idOrden') );
+            $total = 0;
 
-            if( $orden->id ){
+            $platillos = OrdenPlatillo::select('platillos.precioPlatillo', 'orden_platillos.cantidad')
+                        ->join('platillos', 'orden_platillos.idPlatillo', '=', 'platillos.id')
+                        ->where('orden_platillos.idOrden', '=', session()->get('idOrden'))
+                        ->get();
 
-                $total = 0;
+            foreach($platillos as $platillo){
 
-                $platillos = OrdenPlatillo::select('platillos.precioPlatillo', 'orden_platillos.cantidad')
-                            ->join('platillos', 'orden_platillos.idPlatillo', '=', 'platillos.id')
-                            ->where('orden_platillos.idOrden', '=', $orden->id)
-                            ->get();
-
-                foreach($platillos as $platillo){
-
-                    $total += ($platillo->precioPlatillo * $platillo->cantidad);
-
-                }
-
-                $orden->totalPedido = $total;
-                $orden->idMesa = $request->mesa;
-                $orden->save();
-
-                //Comprobación de impresoras
-                if( auth()->user()->hasRole('Gerente') ){
-
-                    $impresora = Impresora::where('idUser', '=', auth()->user()->id)
-                                ->where('tipoImpresion', 'LIKE', '%Comandas%')->first();
-    
-                }else{
-    
-                    $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
-                                ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
-                                ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
-                                ->where('impresoras.tipoImpresion', 'LIKE', '%Comandas%')->first();
-    
-                }
-
-                if( $impresora->id ){
-
-                    if( $this->comanda() ){
-
-                        $datos['exito'] = true;
-                        $datos['mensaje'] = 'Orden Terminada.';
-    
-                    }else{
-    
-                        $datos['exito'] = false;
-                        $datos['mensaje'] = 'Comanda no impresa.';
-    
-                    }
-
-                }else{
-
-                    $datos['exito'] = true;
-                    $datos['mensaje'] = 'Orden Terminada';
-
-                }
-
-                session()->forget('idOrden');
+                $total += ($platillo->precioPlatillo * $platillo->cantidad);
 
             }
+
+            $orden = Orden::where('id', '=', session()->get('idOrden'))
+                    ->update([
+
+                        'totalPedido' => $total,
+                        'idMesa' => $request->mesa,
+
+                    ]);
+
+            //Comprobación de impresoras
+            if( auth()->user()->hasRole('Gerente') ){
+
+                $impresora = Impresora::where('idUser', '=', auth()->user()->id)
+                            ->where('tipoImpresion', 'LIKE', '%Comandas%')->first();
+
+            }else{
+
+                $impresora = Impresora::select('impresoras.id', 'impresoras.seriePrint', 'impresoras.tipoImpresion')
+                            ->join('user_empleados', 'impresoras.idUser', '=', 'user_empleados.idUser')
+                            ->where('user_empleados.idEmpleado', '=', auth()->user()->id)
+                            ->where('impresoras.tipoImpresion', 'LIKE', '%Comandas%')->first();
+
+            }
+
+            if( $impresora && $impresora->id ){
+
+                if( $this->comanda() ){
+
+                    $datos['exito'] = true;
+                    $datos['mensaje'] = 'Orden Terminada.';
+
+                }else{
+
+                    $datos['exito'] = false;
+                    $datos['mensaje'] = 'Comanda no impresa.';
+
+                }
+
+            }else{
+
+                $datos['exito'] = true;
+                $datos['mensaje'] = 'Orden Terminada';
+
+            }
+
+            session()->forget('idOrden');
 
         } catch (\Throwable $th) {
             
@@ -152,12 +151,11 @@ class OrdenController extends Controller
 
             ]);
 
-            if ($orden->id){
-
-                $datos['exito'] = true;
-                $datos['mensaje'] = 'Orden Nueva Agregada.';
+            if ( $orden && $orden->id){
 
                 session()->put('idOrden', $orden->id);
+
+                $datos['exito'] = true;
 
             }
 
@@ -313,7 +311,7 @@ class OrdenController extends Controller
 
             }
 
-            if( $impresora->id ){
+            if( $impresora && $impresora->id ){
 
                 if( $this->ticket( $request->id ) ){
 

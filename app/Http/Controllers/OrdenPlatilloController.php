@@ -38,13 +38,25 @@ class OrdenPlatilloController extends Controller
     public function store(StoreOrdenPlatillo $request)
     {
         try {
+
+            $nota = '';
+
+            if( is_array( $request->sabores ) && count( $request->sabores ) > 0 ){
+
+                foreach( $request->sabores as $sabor){
+
+                    $nota .= $sabor.', ';
+
+                }
+
+            }
             
             $platillo = OrdenPlatillo::create([
 
                 'idOrden' => session()->get('idOrden'),
                 'idPlatillo' => $request->idPlatillo,
                 'cantidad' => $request->cantidad,
-                'nota' => $request->nota
+                'nota' => $request->nota.', '.$nota,
 
             ]);
 

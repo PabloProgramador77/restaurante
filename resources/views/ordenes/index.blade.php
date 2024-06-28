@@ -4,17 +4,17 @@
         <div class="container-fluid row bg-white rounded border-bottom my-1">
             <h3 class="fw-bold fs-5 col-md-6 my-2">Pedidos</h3>
             @can('historial-pedidos')
-                <div class="col-md-2 my-2">
-                    <a href="{{ url('/ordenes/historial') }}" class="btn btn-warning" role="button"><i class="fas fa-list"></i> Historial</a>
+                <div class="col-md-3 my-2">
+                    <a href="{{ url('/ordenes/historial') }}" class="btn btn-primary" role="button"><i class="fas fa-list"></i> Historial de Pedidos</a>
                 </div>
             @endcan
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <ol class="breadcrumb float-right">
                     <li class="breadcrumb-item"><a href="{{ url('/home') }}"><i class="fas fa-home"></i> Inicio</a></li>
                     <li class="breadcrumb-item active"><i class="fas fa-tags"></i> Pedidos</li>
                 </ol>
             </div>
-            <small class="fs-5 fw-semibold bg-light my-2 p-1 col-md-12 rounded">A continuación, se muestran los <b>PEDIDOS</b> del restaurante:</small>
+            <small class="fs-5 fw-semibold bg-warning my-2 p-1 col-md-12"><i class="fas fa-info-circle"></i> <b>A continuación, se muestran los PEDIDOS del restaurante, elige el que deseas manipular.</b> En caso no de haber pedidos puedes crear uno pulsando el botón Ordenar. Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a></small>
         </div>
 
         <div class="container-fluid bg-white row rounded p-2 my-1 shadow">

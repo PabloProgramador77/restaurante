@@ -11,15 +11,15 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige el CORTE a gestionar o agrega uno nuevo</b>.</small>
+                <div class="col-md-10 bg-warning py-2">
+                    <small class="fw-semibold fs-5"><i class="fas fa-info-circle"></i> <b>Elige el CORTE a gestionar o agrega uno nuevo presionando el botón <i class="fas fa-plus-circle"></i> Corte</b>. Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a></small>
                 </div>
                 @can('crear-corte')
                 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a class="btn btn-primary btn-block nuevoCorte" data-toggle="modal" data-target="#modalRegistroCorte">
                             <i class="fas fa-plus-circle"></i>
-                            Agregar Corte
+                             Corte
                         </a>
                     </div>
 

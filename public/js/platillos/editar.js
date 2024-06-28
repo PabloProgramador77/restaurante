@@ -130,6 +130,31 @@ $(document).ready(function(){
                 $("#platillo").val('');
                 $("#platillo").val( respuesta.nombre );
 
+                if( respuesta.sabores.length > 0 ){
+
+                    var filas = '<p class="col-lg-12 col-md-12 col-sm-12 p-2 border-bottom"><b>Sabor(es) disponible(s)</b></p>';
+
+                    respuesta.sabores.forEach(function(sabor){
+
+                        filas += '<div class="col-lg-4 col-md-6 col-sm-12">'+
+                                    '<label for="'+sabor.id+'">'+sabor.nombre+'</label>'+
+                                    '<input class="custom-control" type="checkbox" name="sabor" id="'+sabor.id+'" value="'+sabor.nombre+'">'+
+                                '</div>';
+
+                    });
+
+                    $("#contenedorSabores").empty().append( filas );
+
+                }else{
+
+                    var filas = '<p class="col-lg-12 col-md-12 col-sm-12 p-2 border-bottom"><b>Sabor(es) disponible(s)</b></p>';
+
+                    filas += '<p class="text-center text-danger fw-semibold p-2 bg-light">Sin sabores</p>';
+
+                    $("#contenedorSabores").empty().append( filas );
+
+                }
+
                 $("#ordenar").attr('disabled', false);
                 
             }else{

@@ -362,7 +362,7 @@ class CorteController extends Controller
 
             }
 
-            if( $impresora->id ){
+            if( $impresora && $impresora->id ){
 
                 $apiKey = '75cbiK9DOGjsvmTXwckENT_Z-6FFVlss8AiPrNWa5jA';
                 $client = new Client();
@@ -392,6 +392,10 @@ class CorteController extends Controller
 
                 }
 
+            }else{
+
+                return true;
+                
             }
 
         } catch (\Throwable $th) {

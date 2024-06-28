@@ -19,14 +19,14 @@
                 </ol>
             </div>
             <div class="container-fluid row p-1">
-                <div class="col-md-9 bg-light py-2 border rounded">
-                    <small class="fw-semibold fs-5 text-info"><b>Elige el PLATILLO a gestionar o agrega una nueva</b>.</small>
+                <div class="col-md-10 bg-warning py-2">
+                    <small class="fw-semibold fs-5"><i class="fas fa-info-circle"></i><b>Elige el PLATILLO a gestionar o agrega una nuevo presionando el botón <i class="fas fa-plus-circle"></i> Platillo.</b> Si tienes dudas visita los videomanuales <a href="{{ url('/videos') }}">aquí</a></small>
                 </div>
                 @can('crear-platillo')
-                    <div class="col-md-3">
-                        <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalRegistro">
+                    <div class="col-md-2">
+                        <a class="btn btn-primary btn-block shadow" data-toggle="modal" data-target="#modalRegistro">
                             <i class="fas fa-plus-circle"></i>
-                            Agregar Platillo
+                             Platillo
                         </a>
                     </div>
                 @endcan
@@ -57,12 +57,12 @@
                                         <td>
                                             @can('editar-platillo')
                                                 <a class="btn btn-info editar" role="button" title="Editar Platillo" data-toggle="modal" data-target="#modalEdicion" data-id="{{ $platillo->id }}">
-                                                    <i class="fas fa-edit"></i> Editar
+                                                    <i class="fas fa-edit"></i>
                                                 </a>
                                             @endcan
                                             @can('borrar-platillo')
                                                 <a class="btn btn-danger eliminar" role="button" title="Eliminar Platillo" data-toggle="modal" data-target="#modalEliminacion" data-id="{{ $platillo->id }}">
-                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                    <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             @endcan
                                         </td>

@@ -27,6 +27,8 @@ class StoreOrden extends FormRequest
             
             'idPlatillo' => 'required|integer',
             'cantidad' => 'required',
+            'sabores' => 'array|nullable',
+            'sabores.*' => 'string|nullable',
 
         ];
     }

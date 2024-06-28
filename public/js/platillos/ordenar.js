@@ -1,18 +1,14 @@
 $(document).ready(function(){
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 2500,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    });
-
     $("#ordenar").on('click', function(e){
+
+        var sabores = new Array();
+
+        $("input[type=checkbox][name=sabor]:checked").each(function(){
+
+            sabores.push( $(this).val() );
+
+        });
 
         e.preventDefault();
 
@@ -48,7 +44,7 @@ $(document).ready(function(){
                         'idPlatillo' : $("#idPlatilloMenu").val(),
                         'cantidad' : $("#cantidad").val(),
                         'nota' : $("#nota").val(),
-                        'idOrden' : $("#idOrden").val()
+                        'sabores' : sabores,
 
                     },
                     dataType: 'json',

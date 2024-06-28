@@ -59,6 +59,8 @@
                                 <label for="cantidad">Cantidad</label>
                                 <input type="number" name="cantidad" id="cantidad" required class="form-control" value="1" max="100" min="1">
                             </div>
+                            <div class="container-fluid row border mx-1" id="contenedorSabores">
+                            </div>
                             <div class="form-group">
                                 <label for="nota">Nota de preparación</label>
                                 <textarea name="nota" id="nota" cols="30" rows="3" class="form-control"></textarea>
@@ -95,7 +97,7 @@
                                     <th scope="col">Precio</th>
                                     <th scope="col">Platillo</th>
                                     <th scope="col">Nota de Preparación</th>
-                                    <th></th>
+                                    <th></th>x
                                 </tr>
                                 <tbody id="contenedorPlatillos">
                                     <td colspan="3" class="text-info bg-light fs-5 fw-semibold">Sin platillos agregados.</td>
