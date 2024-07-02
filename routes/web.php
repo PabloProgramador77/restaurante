@@ -153,3 +153,15 @@ Route::post('/sabores/editar', [App\Http\Controllers\SaborController::class, 'sh
 Route::post('/sabores/actualizar', [App\Http\Controllers\SaborController::class, 'update'])->name('actualizar-sabor');
 Route::post('/sabores/eliminar', [App\Http\Controllers\SaborController::class, 'destroy'])->name('eliminar-sabor');
 Route::post('/sabor/platillos', [App\Http\Controllers\PlatilloHasSaboresController::class, 'store'])->name('sabor-platillos');
+
+/**
+ * ------------------------------------------------
+ * Rutas de Aderezos
+ * ---------------------------------------------
+ */
+Route::get('/aderezos', [App\Http\Controllers\AderezoController::class, 'index'])->name('aderezos');
+Route::post('/aderezos/agregar', [App\Http\Controllers\AderezoController::class, 'store'])->name('agregar-aderezo');
+Route::post('/aderezos/editar', [App\Http\Controllers\AderezoController::class, 'show'])->name('editar-aderezo');
+Route::post('/aderezos/actualizar', [App\Http\Controllers\AderezoController::class, 'update'])->name('actualizar-aderezo');
+Route::post('/aderezos/eliminar', [App\Http\Controllers\AderezoController::class, 'destroy'])->name('eliminar-aderezo');
+Route::post('/aderezo/platillos', [App\Http\Controllers\PlatilloHasAderezoController::class, 'store'])->name('aderezo-platillos');

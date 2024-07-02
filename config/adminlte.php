@@ -419,13 +419,13 @@ return [
                     'icon' => 'fas fa-lemon',
                     'icon_color' => 'purple',
                 ],
-                /*[
+                [
                     'text' => 'Aderezos',
                     'url' => '/aderezos',
                     'icon' => 'fas fa-cheese',
                     'icon_color' => 'purple',
                 ],
-                [
+                /*[
                     'text' => 'Ingredientes',
                     'url' => '/ingredientes',
                     'icon' => 'fas fa-carrot',

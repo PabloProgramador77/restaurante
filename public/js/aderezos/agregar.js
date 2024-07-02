@@ -1,37 +1,27 @@
 $(document).ready(function(){
 
-    $("#platillo").attr('disabled', true);
+    function aderezos(){
 
-    var platillos = new Array();
+        window.location.href = '/aderezos';
 
-    //Crear Menú de Platillos
-    $("#asignar").on('click', function(e){
+    }
+
+    $("#registrar").on('click', function(e){
 
         e.preventDefault();
         let procesamiento;
 
-        function sabores(){
-
-            window.location.href = '/sabores';
-
-        }
-
-        $("input[type=checkbox][name=platillo]:checked").each( function(){
-
-            platillos.push( $(this).val() );
-
-        });
-
-        $("#platillo").attr('disabled', true);
-        $("input[name=platillo]").attr('disabled', true);
-
         Swal.fire({
 
-            title: 'Asignando sabor a platillo(s)',
-            html: 'Un momento por favor. <b></b>',
-            timer: 4975,
+            title: 'Agregando aderezo',
+            html: 'Espera un poco: <b></b>',
+            timer: 9975,
             allowOutsideClick: false,
             didOpen: ()=>{
+
+                $("#aderezo").attr('disabled', true);
+                $("#descripcion").attr('disabled', true);
+                $("#registrar").attr('disabled', true);
 
                 Swal.showLoading()
                 const b = Swal.getHtmlContainer().querySelector('b')
@@ -44,15 +34,15 @@ $(document).ready(function(){
                 $.ajax({
 
                     type: 'POST',
-                    url: '/sabor/platillos',
+                    url: '/aderezos/agregar',
                     data:{
 
                         '_token' : $("#token").val(),
-                        'sabor' : $("#idSabor").val(),
-                        'platillos' : platillos
+                        'aderezo' : $("#aderezo").val(),
+                        'descripcion' : $("#descripcion").val(),
 
                     },
-                    dataType: 'json',
+                    dataType:'json',
                     encode: true
 
                 }).done(function(respuesta){
@@ -63,28 +53,24 @@ $(document).ready(function(){
                             icon: 'success',
                             title: respuesta.mensaje,
                             showConfirmButton: false,
-                            allowOutsideClick: false,
+                            timer: 1000
                         });
 
-                        setTimeout(sabores, 1250);
+                        setTimeout(aderezos, 2250);
 
                     }else{
-
-                        $("#platillo").attr('disabled', true);
 
                         Swal.fire({
                             icon: 'warning',
                             title: respuesta.mensaje,
                             showConfirmButton: false,
-                            allowOutsideClick: false,
-                            timer: 1750,
                         });
 
-                        setTimeout( sabores, 2250);
+                        setTimeout(aderezos, 2250);
 
                     }
 
-                }); 
+                });
 
             },
             willClose: ()=>{
@@ -95,17 +81,16 @@ $(document).ready(function(){
 
         }).then((resultado)=>{
 
-            if( resultado.dismiss == Swal.DismissReason.timer ){
+            if(resultado.dismiss == Swal.DismissReason.timer){
 
                 Swal.fire({
                     icon: 'error',
-                    title: 'Hubo un error. Reiniciando proceso.',
+                    title: 'Hubo un error, estamos reiniciando el proceso.',
                     showConfirmButton: false,
-                    allowOutsideClick: false,
-                    timer: 1750,
+                    timer: 2500
                 });
 
-                setTimeout(sabores, 2225);
+                setTimeout(aderezos, 2250);
 
             }
 

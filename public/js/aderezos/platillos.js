@@ -10,9 +10,9 @@ $(document).ready(function(){
         e.preventDefault();
         let procesamiento;
 
-        function sabores(){
+        function aderezos(){
 
-            window.location.href = '/sabores';
+            window.location.href = '/aderezos';
 
         }
 
@@ -27,7 +27,7 @@ $(document).ready(function(){
 
         Swal.fire({
 
-            title: 'Asignando sabor a platillo(s)',
+            title: 'Asignando aderezo a platillo(s)',
             html: 'Un momento por favor. <b></b>',
             timer: 4975,
             allowOutsideClick: false,
@@ -44,11 +44,11 @@ $(document).ready(function(){
                 $.ajax({
 
                     type: 'POST',
-                    url: '/sabor/platillos',
+                    url: '/aderezo/platillos',
                     data:{
 
                         '_token' : $("#token").val(),
-                        'sabor' : $("#idSabor").val(),
+                        'aderezo' : $("#idAderezo").val(),
                         'platillos' : platillos
 
                     },
@@ -66,7 +66,7 @@ $(document).ready(function(){
                             allowOutsideClick: false,
                         });
 
-                        setTimeout(sabores, 1250);
+                        setTimeout(aderezos, 1250);
 
                     }else{
 
@@ -80,7 +80,7 @@ $(document).ready(function(){
                             timer: 1750,
                         });
 
-                        setTimeout( sabores, 2250);
+                        setTimeout( aderezos, 2250);
 
                     }
 
@@ -105,7 +105,7 @@ $(document).ready(function(){
                     timer: 1750,
                 });
 
-                setTimeout(sabores, 2225);
+                setTimeout(aderezos, 2225);
 
             }
 
