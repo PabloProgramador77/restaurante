@@ -155,6 +155,31 @@ $(document).ready(function(){
 
                 }
 
+                if( respuesta.aderezos.length > 0 ){
+
+                    var filas = '<p class="col-lg-12 col-md-12 col-sm-12 p-2 border-bottom"><b>Aderezo(s) disponible(s)</b></p>';
+
+                    respuesta.aderezos.forEach(function(aderezo){
+
+                        filas += '<div class="col-lg-4 col-md-6 col-sm-12">'+
+                                    '<label for="'+aderezo.id+'">'+aderezo.nombre+'</label>'+
+                                    '<input class="custom-control" type="checkbox" name="aderezo" id="'+aderezo.id+'" value="'+aderezo.nombre+'">'+
+                                '</div>';
+
+                    });
+
+                    $("#contenedorAderezos").empty().append( filas );
+
+                }else{
+
+                    var filas = '<p class="col-lg-12 col-md-12 col-sm-12 p-2 border-bottom"><b>Aderezo(s) disponible(s)</b></p>';
+
+                    filas += '<p class="text-center text-danger fw-semibold p-2 bg-light">Sin aderezos</p>';
+
+                    $("#contenedorAderezos").empty().append( filas );
+
+                }
+
                 $("#ordenar").attr('disabled', false);
                 
             }else{

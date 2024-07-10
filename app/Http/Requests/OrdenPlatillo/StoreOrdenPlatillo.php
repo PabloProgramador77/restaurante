@@ -30,6 +30,8 @@ class StoreOrdenPlatillo extends FormRequest
             'nota' => 'string|nullable',
             'sabores' => 'array|nullable',
             'sabores.*' => 'string|nullable',
+            'aderezos' => 'array|nullable',
+            'aderezos.*' => 'string|nullable',
 
         ];
     }

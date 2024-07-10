@@ -61,6 +61,8 @@
                             </div>
                             <div class="container-fluid row border mx-1" id="contenedorSabores">
                             </div>
+                            <div class="container-fluid row border mx-1" id="contenedorAderezos">
+                            </div>
                             <div class="form-group">
                                 <label for="nota">Nota de preparación</label>
                                 <textarea name="nota" id="nota" cols="30" rows="3" class="form-control"></textarea>

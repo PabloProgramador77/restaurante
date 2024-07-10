@@ -50,6 +50,16 @@ class OrdenPlatilloController extends Controller
                 }
 
             }
+
+            if( is_array( $request->aderezos ) && count( $request->aderezos ) > 0 ){
+
+                foreach( $request->aderezos as $aderezo){
+
+                    $nota .= $aderezo.', ';
+
+                }
+
+            }
             
             $platillo = OrdenPlatillo::create([
 

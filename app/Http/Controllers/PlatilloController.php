@@ -6,6 +6,7 @@ use App\Models\Platillo;
 use App\Models\Categoria;
 use App\Models\PlatilloUsers;
 use App\Models\Sabor;
+use App\Models\Aderezo;
 use Illuminate\Http\Request;
 use App\Http\Requests\Platillos\StorePlatillo;
 use App\Http\Requests\Platillos\EditPlatillo;
@@ -176,6 +177,10 @@ class PlatilloController extends Controller
                                 ->join('platillo_has_sabores', 'sabores.id', '=', 'platillo_has_sabores.idSabor')
                                 ->where('platillo_has_sabores.idPlatillo', '=', $platillo->id)
                                 ->get();
+                $datos['aderezos'] = Aderezo::select('aderezos.id', 'aderezos.nombre')
+                                    ->join('platillo_has_aderezos', 'aderezos.id', '=', 'platillo_has_aderezos.idAderezo')
+                                    ->where('platillo_has_aderezos.idPlatillo', '=', $platillo->id)
+                                    ->get();
 
             }
 

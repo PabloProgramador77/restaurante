@@ -3,10 +3,17 @@ $(document).ready(function(){
     $("#ordenar").on('click', function(e){
 
         var sabores = new Array();
+        var aderezos = new Array();
 
         $("input[name=sabor][type=checkbox]:checked").each(function(){
 
             sabores.push( $(this).val() );
+
+        });
+
+        $("input[name=aderezo][type=checkbox]:checked").each(function(){
+
+            aderezos.push( $(this).val() );
 
         });
 
@@ -61,6 +68,7 @@ $(document).ready(function(){
                                 'cantidad' : $("#cantidad").val(),
                                 'nota' : $("#nota").val(),
                                 'sabores' : sabores,
+                                'aderezos' : aderezos,
         
                             },
                             dataType: 'json',
