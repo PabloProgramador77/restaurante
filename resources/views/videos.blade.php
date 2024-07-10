@@ -35,6 +35,12 @@
             <div class="col-lg-4 col-md-3 col-sm-6">
                 <x-adminlte-small-box title="Impresoras" text="Administración de impresoras" icon="fas fa-print" theme="purple" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalImpresora"/>
             </div>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Sabores" text="Administración de Sabores" icon="fas fa-print" theme="danger" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalSabores"/>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-6">
+                <x-adminlte-small-box title="Aderezos" text="Administración de Aderezos" icon="fas fa-print" theme="white" url="#" url-text="Ver video" data-toggle="modal" data-target="#modalAderezos"/>
+            </div>
         </div>
     </div>
 
@@ -152,6 +158,40 @@
                     <div class="container-fluid border rounde">
                         <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como gestionar los impresoras de tu negocio.</p>
                         <video src="{{ asset('media/videos/Impresoras.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSabores" tabindex="-1" aria-labellebdy="modalSaboresLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-bottom">
+                    <h3 class="modal-title fs-4 fw-semibold"><i class="fas fa-cash-register"></i> Administración de Sabores</h3>
+                    <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid border rounde">
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como gestionar los sabores de tus platillos.</p>
+                        <video src="{{ asset('media/videos/Sabores.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAderezos" tabindex="-1" aria-labellebdy="modalAderezoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-bottom">
+                    <h3 class="modal-title fs-4 fw-semibold"><i class="fas fa-cash-register"></i> Administración de Aderezos</h3>
+                    <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid border rounde">
+                        <p class="fs-4 fw-semibold text-secondary">Video breve explicativo de como gestionar los aderezos de tus platillos.</p>
+                        <video src="{{ asset('media/videos/Aderezos.mp4') }}" controls width="100%" height="auto" autoplay="true"></video>
                     </div>
                 </div>
             </div>
